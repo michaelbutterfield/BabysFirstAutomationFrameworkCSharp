@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.common", "training.automation.common\training.automation.common.csproj", "{E01AFCF7-5D39-40C9-9B65-0139992E0C56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.selenium", "training.automation.selenium\training.automation.selenium.csproj", "{9E309766-D458-4BAA-8DFF-56C5DAC3F4B4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E01AFCF7-5D39-40C9-9B65-0139992E0C56} = {E01AFCF7-5D39-40C9-9B65-0139992E0C56}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{E01AFCF7-5D39-40C9-9B65-0139992E0C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E01AFCF7-5D39-40C9-9B65-0139992E0C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E01AFCF7-5D39-40C9-9B65-0139992E0C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E309766-D458-4BAA-8DFF-56C5DAC3F4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E309766-D458-4BAA-8DFF-56C5DAC3F4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E309766-D458-4BAA-8DFF-56C5DAC3F4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E309766-D458-4BAA-8DFF-56C5DAC3F4B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
