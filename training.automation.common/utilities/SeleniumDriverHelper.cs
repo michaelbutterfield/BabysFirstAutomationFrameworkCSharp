@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -12,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace training.automation.common.utilities
 {
-    class SeleniumDriverHelper
+    public class SeleniumDriverHelper
     { 
         private static IWebDriver m_Driver = null;
         public static TimeSpan m_DEFAULT_TIMEOUT = new TimeSpan(0, 0, 10);
@@ -22,13 +17,13 @@ namespace training.automation.common.utilities
             //
         }
 
-        public void DestroyDriver()
+        public static void DestroyDriver()
         {
-            m_Driver.Quit();
+            m_Driver.Close();
             m_Driver = null;
         }
 
-        public string GetCurrentUrl()
+        public static string GetCurrentUrl()
         {
             return m_Driver.Url;
         }
@@ -38,12 +33,12 @@ namespace training.automation.common.utilities
             return m_Driver;
         }
 
-        public void GoToUrl(string Url)
+        public static void GoToUrl(string Url)
         {
             m_Driver.Navigate().GoToUrl(Url);
         }
 
-        public void Initialise(string browser)
+        public static void Initialise(string browser)
         {
             browser = browser.ToLower();
 

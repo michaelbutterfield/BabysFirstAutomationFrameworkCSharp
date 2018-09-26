@@ -1,0 +1,191 @@
+﻿using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using training.automation.common.utilities;
+using training.automation.selenium.Application;
+using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
+using System;
+
+namespace training.automation.selenium
+{
+    [TestClass]
+    public class Setup
+    {
+        [OneTimeSetUp]
+        public void Initialise()
+        {
+            //I set up the environment with password and email
+            SeleniumDriverHelper.Initialise("chrome");
+
+            SeleniumDriverHelper.GoToUrl("http://www.trello.com/login");
+
+            DesktopWebsite.logInPage.createAnAccount.AssertElementIsDisplayed();
+
+            DesktopWebsite.logInPage.emailAddress.InputText("michaelbutterf@gmail.com");
+
+            DesktopWebsite.logInPage.password.InputText("automationtest23");
+
+            DesktopWebsite.logInPage.logInButton.Click();
+
+            DesktopWebsite.boardsPage.addButton.WaitForElementToBeClickable();
+
+            NUnit.Framework.Assert.AreEqual(SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello", "Asserting {0} and {1} are same.", SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello");
+        }
+    }
+
+    [TestClass]
+    public class Trello : Setup
+    {
+        [Test, Order(1)]
+        public void CreateBoard()
+        {
+            //Click the add button in the top right
+            DesktopWebsite.boardsPage.addButton.Click();
+
+            //Click the create board option
+            DesktopWebsite.boardsPage.createNewBoardButton.Click();
+
+            //Create a new board with name and background
+            DesktopWebsite.boardsPage.nameInput.InputText("TestBoard");
+
+            DesktopWebsite.boardsPage.backgroundSelectionButton.Click();
+
+            DesktopWebsite.boardsPage.createBoardButton.Click();
+
+            //I Click back to home button
+            Thread.Sleep(3000);
+
+            DesktopWebsite.header.backToHome.JsClick();
+
+            //I confirm the board is created
+            DesktopWebsite.boardsPage.userBoardButton.AssertElementIsDisplayed();
+        }
+
+        [Test, Order(2)]
+        public void FavouriteABoard()
+        {
+            //I am on the boards page
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello");
+            //Console.WriteLine("Assert that the browser is currently on the Boards page");
+
+            //I Click the favourite board star
+            IWebElement userBoard = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//div[contains(@title, 'TestBoard')]"));
+
+            Actions action = new Actions(SeleniumDriverHelper.GetWebDriver());
+
+            action.MoveToElement(userBoard).Perform();
+
+            DesktopWebsite.boardsPage.favouriteButton.Click();
+
+            NUnit.Framework.TestContext.Progress.WriteLine("Successfully hovered over the user board and Clicked favourite");
+
+            Thread.Sleep(3000);
+
+            //The board will be favourited
+        }
+
+     
+
+        [Test, Order(3)]
+        public void AddingListsAndCards()
+        {
+            //i Click on the user created board
+            DesktopWebsite.boardsPage.userBoardButton.Click();
+
+            //I create three new lists
+            DesktopWebsite.specificBoardsPage.addAList.Click();
+
+            DesktopWebsite.specificBoardsPage.enterListTitle.InputText("To Do");
+
+            DesktopWebsite.specificBoardsPage.addListButton.Click();
+
+            DesktopWebsite.specificBoardsPage.addACard.Click();
+
+            for (int i = 0; i < 5; i++)
+            {
+                String testText = String.Format("Test Text Placeholder {0}", i);
+
+                DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
+
+                DesktopWebsite.specificBoardsPage.addCardButton.Click();
+            }
+
+            Console.WriteLine("Successfully created To Do and tasks 0-4");
+
+            //Doing
+
+            DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Doing");
+
+            DesktopWebsite.specificBoardsPage.addListButton.Click();
+
+            DesktopWebsite.specificBoardsPage.addCardSecondCol.Click();
+
+            for (int i = 5; i < 10; i++)
+            {
+                String testText = String.Format("Test Text Placeholder {0}", i);
+
+                DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
+
+                DesktopWebsite.specificBoardsPage.addCardButton.Click();
+            }
+
+            Console.WriteLine("Successfully created 'Doing' and tasks 5-9");
+
+            //Done
+
+            DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Done");
+
+            DesktopWebsite.specificBoardsPage.addListButton.Click();
+
+            DesktopWebsite.specificBoardsPage.addCardThirdCol.Click();
+
+            for (int i = 10; i < 15; i++)
+            {
+                String testText = String.Format("Test Text Placeholder {0}", i);
+
+                DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
+
+                DesktopWebsite.specificBoardsPage.addCardButton.Click();
+            }
+
+            Console.WriteLine("Successfully created Done and tasks 10-14");
+
+            //I click the back to home button
+            Thread.Sleep(2000);
+
+            DesktopWebsite.header.backToHome.Click();
+        }
+
+        [OneTimeTearDown]
+        public void KillTests()
+        {
+            //delete the board
+
+            //click home regardless of screen on
+            DesktopWebsite.header.backToHome.JsClick();
+
+            DesktopWebsite.boardsPage.userBoardButton.Click();
+
+            DesktopWebsite.specificBoardsPage.moreSideMenuButton.Click();
+
+            DesktopWebsite.specificBoardsPage.closeBoard.Click();
+
+            DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
+
+            DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
+
+            DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
+
+            DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
+
+            Thread.Sleep(5000);
+
+            DesktopWebsite.header.trelloLogoHome.Click();
+
+            //driver clean up
+            SeleniumDriverHelper.DestroyDriver();
+        }
+    }
+}

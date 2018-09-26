@@ -9,7 +9,7 @@ using training.automation.common.utilities;
 
 namespace training.automation.common.selenium.elements.common
 {
-    class Element
+    public class Element
     {
         protected By locator;
         protected string name;
@@ -50,7 +50,7 @@ namespace training.automation.common.selenium.elements.common
 
             try
             {
-                element = GetWebElement(false, false);
+                element = GetWebElement(false, true);
             }
             catch (Exception e)
             {
@@ -58,7 +58,7 @@ namespace training.automation.common.selenium.elements.common
             }
             finally
             {
-                //TODO fix testhelper assert that 
+                //TODO create assert that in test helper
                 //TestHelper.AssertThat(element, is(notNullValue()), assertionDescription);
             }
         }
@@ -105,11 +105,11 @@ namespace training.automation.common.selenium.elements.common
             }
         }
 
-        //public void JsClick()
-        //{
-        //    JavascriptExecutor executor = (JavascriptExecutor)CSeleniumDriverHelper.GetWebDriver();
-        //    executor.executeScript("arguments[0].click();", GetWebElement(true, true));
-        //}
+        public void JsClick()
+        {
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumDriverHelper.GetWebDriver();
+            executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
+        }
 
         public String GetElementAttribute(String attributeName)
         {

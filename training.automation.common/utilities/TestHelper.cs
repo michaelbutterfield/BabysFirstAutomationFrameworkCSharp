@@ -14,7 +14,7 @@ namespace training.automation.common.utilities
             String exception = String.Format("{0} : {1} : ", errorMessage, e);
             Console.WriteLine(exception);
 
-            throw new System.ArgumentException(e.Message, e.ToString());
+            throw new System.ArgumentException(e.Message, e);
         }
     }
 }
