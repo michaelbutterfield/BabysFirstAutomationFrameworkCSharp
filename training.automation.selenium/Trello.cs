@@ -19,19 +19,12 @@ namespace training.automation.selenium
         {
             //I set up the environment with password and email
             SeleniumDriverHelper.Initialise("chrome");
-
             SeleniumDriverHelper.GoToUrl("http://www.trello.com/login");
-
             DesktopWebsite.logInPage.createAnAccount.AssertElementIsDisplayed();
-
             DesktopWebsite.logInPage.emailAddress.InputText("michaelbutterf@gmail.com");
-
             DesktopWebsite.logInPage.password.InputText("automationtest23");
-
             DesktopWebsite.logInPage.logInButton.Click();
-
             DesktopWebsite.boardsPage.addButton.WaitForElementToBeClickable();
-
             NUnit.Framework.Assert.AreEqual(SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello", "Asserting {0} and {1} are same.",
                                             SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello");
 
@@ -43,16 +36,13 @@ namespace training.automation.selenium
 
             //Create a new board with name and background
             DesktopWebsite.boardsPage.nameInput.InputText("TestBoard");
-
             DesktopWebsite.boardsPage.backgroundSelectionButton.Click();
-
             DesktopWebsite.boardsPage.createBoardButton.Click();
 
             //I Click back to home button
             Thread.Sleep(3000);
-
             DesktopWebsite.header.backToHome.JsClick();
-
+            
             //I confirm the board is created
             DesktopWebsite.boardsPage.userBoardButton.AssertElementIsDisplayed();
         }
@@ -69,15 +59,10 @@ namespace training.automation.selenium
 
             //I Click the favourite board star
             IWebElement userBoard = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//div[(@title=\"TestBoard\")]"));
-
             Actions action = new Actions(SeleniumDriverHelper.GetWebDriver());
-
             action.MoveToElement(userBoard).Perform();
-
             DesktopWebsite.boardsPage.favouriteButton.Click();
-
             NUnit.Framework.TestContext.Progress.WriteLine("Successfully hovered over the user board and Clicked favourite");
-
             Thread.Sleep(3000);
 
             //The board will be favourited
@@ -95,7 +80,6 @@ namespace training.automation.selenium
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("To Do");
             DesktopWebsite.specificBoardsPage.addListButton.Click();
             DesktopWebsite.specificBoardsPage.addACard.Click();
-            DesktopWebsite.specificBoardsPage.enterCardTitle.JsClick();
 
             for (int i = 0; i < 5; i++)
             {
@@ -110,7 +94,8 @@ namespace training.automation.selenium
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Doing");
             DesktopWebsite.specificBoardsPage.addListButton.Click();
             DesktopWebsite.specificBoardsPage.addCardSecondCol.Click();
-            DesktopWebsite.specificBoardsPage.enterCardTitle.JsClick();
+
+            Thread.Sleep(1000);
 
             for (int i = 5; i < 10; i++)
             {
@@ -125,9 +110,8 @@ namespace training.automation.selenium
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Done");
             DesktopWebsite.specificBoardsPage.addListButton.Click();
             DesktopWebsite.specificBoardsPage.addCardThirdCol.Click();
-            DesktopWebsite.specificBoardsPage.enterCardTitle.JsClick();
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             for (int i = 10; i < 15; i++)
             {
@@ -143,6 +127,7 @@ namespace training.automation.selenium
             DesktopWebsite.header.backToHome.Click();
         }
 
+        //***************************
         [Test]
         public void DragAndDropCards()
         {
@@ -152,21 +137,14 @@ namespace training.automation.selenium
             //click and drag 3 cards
             //Move 0 to Doing
             IWebElement From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"));
-
             IWebElement To = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
-
             Actions act = new Actions(SeleniumDriverHelper.GetWebDriver());
-
             act.DragAndDrop(From, To).Build().Perform();
 
             ////Move 2 to Doing
-            //From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]/div[3]/span"));
+            From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]/div[3]/span"));
 
-            //act.DragAndDrop(From, To).Build().Perform();
-
-            //From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]"));
-
-            //act.DragAndDrop(From, To).Build().Perform();
+            act.DragAndDrop(From, To).Build().Perform();
         }
 
         //**************************************

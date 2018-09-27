@@ -46,7 +46,7 @@ namespace training.automation.common.utilities
             {
                 case "chrome":
                     {
-                        m_Driver = new ChromeDriver();
+                        m_Driver = new ChromeDriver(@"C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\Drivers");
                         break;
                     }
                 case "firefox":
