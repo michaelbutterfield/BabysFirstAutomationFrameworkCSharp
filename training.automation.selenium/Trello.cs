@@ -11,8 +11,9 @@ using System;
 namespace training.automation.selenium
 {
     [TestClass]
-    public class Setup
+    public class Tests
     {
+        //**************************
         [OneTimeSetUp]
         public void Initialise()
         {
@@ -31,16 +32,9 @@ namespace training.automation.selenium
 
             DesktopWebsite.boardsPage.addButton.WaitForElementToBeClickable();
 
-            NUnit.Framework.Assert.AreEqual(SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello", "Asserting {0} and {1} are same.", SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello");
-        }
-    }
+            NUnit.Framework.Assert.AreEqual(SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello", "Asserting {0} and {1} are same.",
+                                            SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello");
 
-    [TestClass]
-    public class Trello : Setup
-    {
-        [Test, Order(1)]
-        public void CreateBoard()
-        {
             //Click the add button in the top right
             DesktopWebsite.boardsPage.addButton.Click();
 
@@ -63,15 +57,18 @@ namespace training.automation.selenium
             DesktopWebsite.boardsPage.userBoardButton.AssertElementIsDisplayed();
         }
 
-        [Test, Order(2)]
+        //******************************
+        [Test, Order(1)]
         public void FavouriteABoard()
         {
             //I am on the boards page
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello");
-            //Console.WriteLine("Assert that the browser is currently on the Boards page");
+            if (!SeleniumDriverHelper.GetWebDriver().Title.Equals("Boards | Trello"))
+            {
+                DesktopWebsite.header.backToHome.Click();
+            }
 
             //I Click the favourite board star
-            IWebElement userBoard = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//div[contains(@title, 'TestBoard')]"));
+            IWebElement userBoard = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//div[(@title=\"TestBoard\")]"));
 
             Actions action = new Actions(SeleniumDriverHelper.GetWebDriver());
 
@@ -86,9 +83,8 @@ namespace training.automation.selenium
             //The board will be favourited
         }
 
-     
-
-        [Test, Order(3)]
+        //*******************************
+        [Test]
         public void AddingListsAndCards()
         {
             //i Click on the user created board
@@ -96,57 +92,47 @@ namespace training.automation.selenium
 
             //I create three new lists
             DesktopWebsite.specificBoardsPage.addAList.Click();
-
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("To Do");
-
             DesktopWebsite.specificBoardsPage.addListButton.Click();
-
             DesktopWebsite.specificBoardsPage.addACard.Click();
+            DesktopWebsite.specificBoardsPage.enterCardTitle.JsClick();
 
             for (int i = 0; i < 5; i++)
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
-
                 DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
-
                 DesktopWebsite.specificBoardsPage.addCardButton.Click();
             }
 
             Console.WriteLine("Successfully created To Do and tasks 0-4");
 
             //Doing
-
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Doing");
-
             DesktopWebsite.specificBoardsPage.addListButton.Click();
-
             DesktopWebsite.specificBoardsPage.addCardSecondCol.Click();
+            DesktopWebsite.specificBoardsPage.enterCardTitle.JsClick();
 
             for (int i = 5; i < 10; i++)
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
-
                 DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
-
                 DesktopWebsite.specificBoardsPage.addCardButton.Click();
             }
 
             Console.WriteLine("Successfully created 'Doing' and tasks 5-9");
 
             //Done
-
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Done");
-
             DesktopWebsite.specificBoardsPage.addListButton.Click();
-
             DesktopWebsite.specificBoardsPage.addCardThirdCol.Click();
+            DesktopWebsite.specificBoardsPage.enterCardTitle.JsClick();
+
+            Thread.Sleep(2000);
 
             for (int i = 10; i < 15; i++)
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
-
                 DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
-
                 DesktopWebsite.specificBoardsPage.addCardButton.Click();
             }
 
@@ -154,10 +140,36 @@ namespace training.automation.selenium
 
             //I click the back to home button
             Thread.Sleep(2000);
-
             DesktopWebsite.header.backToHome.Click();
         }
 
+        [Test]
+        public void DragAndDropCards()
+        {
+            //click the user board
+            DesktopWebsite.boardsPage.userBoardButton.Click();
+
+            //click and drag 3 cards
+            //Move 0 to Doing
+            IWebElement From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"));
+
+            IWebElement To = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+
+            Actions act = new Actions(SeleniumDriverHelper.GetWebDriver());
+
+            act.DragAndDrop(From, To).Build().Perform();
+
+            ////Move 2 to Doing
+            //From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]/div[3]/span"));
+
+            //act.DragAndDrop(From, To).Build().Perform();
+
+            //From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]"));
+
+            //act.DragAndDrop(From, To).Build().Perform();
+        }
+
+        //**************************************
         [OneTimeTearDown]
         public void KillTests()
         {

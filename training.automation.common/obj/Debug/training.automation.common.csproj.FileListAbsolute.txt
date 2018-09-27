@@ -31,3 +31,4 @@ C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.au
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\Newtonsoft.Json.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\System.ValueTuple.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\Newtonsoft.Json.xml
+C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\System.ValueTuple.xml
