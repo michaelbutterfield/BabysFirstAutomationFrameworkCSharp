@@ -129,22 +129,39 @@ namespace training.automation.selenium
 
         //***************************
         [Test]
-        public void DragAndDropCards()
+        public void DragAndDropCardFromToDoToDoing()
         {
             //click the user board
             DesktopWebsite.boardsPage.userBoardButton.Click();
 
             //click and drag 3 cards
             //Move 0 to Doing
-            IWebElement From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"));
+            IWebElement From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]"));
             IWebElement To = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
             Actions act = new Actions(SeleniumDriverHelper.GetWebDriver());
             act.DragAndDrop(From, To).Build().Perform();
 
-            ////Move 2 to Doing
-            From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]/div[3]/span"));
+            //I click the back to home button
+            Thread.Sleep(2000);
+            DesktopWebsite.header.backToHome.Click();
+        }
 
+        [Test]
+        public void DragAndDropCardFromDoneToDoing()
+        {
+            //click the user board
+            DesktopWebsite.boardsPage.userBoardButton.Click();
+
+            //click and drag 3 cards
+            //Move 0 to Doing
+            IWebElement From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[1]"));
+            IWebElement To = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            Actions act = new Actions(SeleniumDriverHelper.GetWebDriver());
             act.DragAndDrop(From, To).Build().Perform();
+
+            //I click the back to home button
+            Thread.Sleep(2000);
+            DesktopWebsite.header.backToHome.Click();
         }
 
         //**************************************
@@ -169,8 +186,6 @@ namespace training.automation.selenium
             DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
 
             DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
-
-            Thread.Sleep(5000);
 
             DesktopWebsite.header.trelloLogoHome.Click();
 

@@ -1,10 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using training.automation.common.utilities;
 
 namespace training.automation.common.selenium.elements.common
@@ -105,12 +102,6 @@ namespace training.automation.common.selenium.elements.common
             }
         }
 
-        public void JsClick()
-        {
-            IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumDriverHelper.GetWebDriver();
-            executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
-        }
-
         public String GetElementAttribute(String attributeName)
         {
             IWebElement element = GetWebElement(false, true);
@@ -147,6 +138,18 @@ namespace training.automation.common.selenium.elements.common
         public String GetName()
         {
             return name;
+        }
+
+        protected void HandleException(String actionName, Exception ex)
+        {
+            String errorMessage = String.Format("%1$s failed on element \"%2$s\" on page \"%3$s\"", actionName, name, pageName);
+            TestHelper.HandleException(errorMessage, ex, true);
+        }
+
+        public void JsClick()
+        {
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumDriverHelper.GetWebDriver();
+            executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
         }
 
         public void WaitForElementToBeClickable()
@@ -187,21 +190,15 @@ namespace training.automation.common.selenium.elements.common
             return SeleniumDriverHelper.GetWebDriver().FindElement(locator);
         }
 
-        protected void HandleException(String actionName, Exception ex)
-        {
-            String errorMessage = String.Format("%1$s failed on element \"%2$s\" on page \"%3$s\"", actionName, name, pageName);
-            TestHelper.HandleException(errorMessage, ex, true);
-        }
-
         private void WaitUntilElementToBeClickable()
         {
-            WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.m_DEFAULT_TIMEOUT);
+            WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.DEFAULT_TIMEOUT);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
         private void WaitUntilElementToBeVisible()
         {
-            WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.m_DEFAULT_TIMEOUT);
+            WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.DEFAULT_TIMEOUT);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
     }

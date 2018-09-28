@@ -5,10 +5,10 @@ using training.automation.common.Selenium.Elements;
 namespace training.automation.selenium.Application.Pages
 {
     public class LogInPage : Page
-    {
-        public Button logInButton;
+    { 
         public Link createAnAccount;
         public InputBox emailAddress;
+        public Button logInButton;
         public InputBox password;
 
         public LogInPage() : base("LogInPage") { BuildPage(); }
