@@ -28,6 +28,12 @@
 *.log
 *.sql
 *.sqlite
+storage.ide
+storage.ide-shm
+stoarge.ide-wal
+*.nupkg
+*.force
+*.cache
 
 # OS generated files #
 ######################

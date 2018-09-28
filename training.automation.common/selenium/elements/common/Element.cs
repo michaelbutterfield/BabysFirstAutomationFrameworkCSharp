@@ -193,13 +193,13 @@ namespace training.automation.common.selenium.elements.common
         private void WaitUntilElementToBeClickable()
         {
             WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.DEFAULT_TIMEOUT);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
+            wait.Until(ExpectedConditions.ElementToBeClickable(locator));
         }
 
         private void WaitUntilElementToBeVisible()
         {
             WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.DEFAULT_TIMEOUT);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
+            wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
     }
 }

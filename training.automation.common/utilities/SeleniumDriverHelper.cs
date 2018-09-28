@@ -69,13 +69,13 @@ namespace training.automation.common.utilities
         public void WaitForElementToBeClickable(IWebElement element)
         {
             WebDriverWait wait = new WebDriverWait(GetWebDriver(), DEFAULT_TIMEOUT);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+            wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
         public void WaitForElementToBeVisible(IWebElement element)
         {
             WebDriverWait wait = new WebDriverWait(GetWebDriver(), DEFAULT_TIMEOUT);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementSelectionStateToBe(element, true));
+            wait.Until(ExpectedConditions.ElementSelectionStateToBe(element, true));
         }
     }
 }
