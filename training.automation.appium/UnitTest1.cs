@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace training.automation.winium
+namespace training.automation.appium
 {
     [TestClass]
     public class UnitTest1

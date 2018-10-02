@@ -34,7 +34,7 @@ namespace training.automation.common.Utilities
             return Driver.FindElement(locator);
         }
 
-        public static void Initialise(String applicationPath, String winiumPath, int winiumPort)
+        public static void Initialise(String winiumPath, int winiumPort)
         {
             var desiredCapabailities = new DesiredCapabilities();
             desiredCapabailities.SetCapability("app", @"C:\Windows\System32\calc.exe");

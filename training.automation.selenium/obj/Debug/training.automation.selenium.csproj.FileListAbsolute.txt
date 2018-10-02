@@ -12,7 +12,6 @@ C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.au
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\obj\Debug\training.automation.selenium.csproj.CopyComplete
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\obj\Debug\training.automation.selenium.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\obj\Debug\training.automation.selenium.pdb
-C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\SeleniumExtras.WaitHelpers.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\training.automation.common.exe
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\WebDriver.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\training.automation.common.pdb

@@ -5,7 +5,7 @@ using training.automation.common.Utilities;
 
 namespace training.automation.common.Winium.Elements.Common
 {
-    class Element
+    public class Element
     {
         protected By locator;
         protected String name;
@@ -40,25 +40,25 @@ namespace training.automation.common.Winium.Elements.Common
         //    TestHelper.assertThat(exists(), is (false), stepDescription);
         //}
 
-        //public void assertExists()
-        //{
-        //    String stepDescription = "Assert Element Exists '%1$s' on page '%2$s'";
-        //    stepDescription = String.format(stepDescription, name, pageName);
-        //    WebElement element = null;
+        public void AssertExists()
+        {
+            String stepDescription = "Assert Element Exists '%1$s' on page '%2$s'";
+            stepDescription = String.Format(stepDescription, name, pageName);
+            IWebElement element = null;
 
-        //    try
-        //    {
-        //        element = WiniumDriverHelper.getElement(locator);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        handleException(stepDescription, e);
-        //    }
-        //    finally
-        //    {
-        //        TestHelper.assertThat(element, is (notNullValue()), stepDescription);
-        //    }
-        //}
+            try
+            {
+                element = WiniumDriverHelper.GetElement(locator);
+            }
+            catch (Exception e)
+            {
+                HandleException(stepDescription, e);
+            }
+            finally
+            {
+                //TestHelper.assertThat(element, is (notNullValue()), stepDescription);
+            }
+        }
 
         public void AttemptClick(Boolean throwNoSuchElementException)
         {
@@ -123,7 +123,7 @@ namespace training.automation.common.Winium.Elements.Common
         //        if (retries == maxRetry)
         //        {
         //            String message = "";
-        //            TestHelper.handleException(message, new Throwable(message), true);
+        //            TestHelper.HandleException(message, new Exception(message), true);
         //        }
         //    }
         //}

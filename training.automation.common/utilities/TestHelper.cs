@@ -37,7 +37,7 @@ namespace training.automation.common.utilities
             NUnit.Framework.TestContext.Progress.WriteLine(message);
         }
 
-        //public static <T> void AssertThat(T actual, Matcher<? super T> matcher, String stepDescription)
+        //public static void AssertThat(T actual, Matcher<? super T> matcher, String stepDescription)
         //{
         //    AssertThat(actual, matcher, stepDescription, true);
         //}

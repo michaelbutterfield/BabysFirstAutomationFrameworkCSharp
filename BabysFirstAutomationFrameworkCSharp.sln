@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.seleniu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.winium", "training.automation.winium\training.automation.winium.csproj", "{A3BE4AB1-BC1B-42CA-AE97-813AA6336E1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.appium", "training.automation.appium\training.automation.appium.csproj", "{2CF1958C-51CC-48E6-BD25-109FD0A91175}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E01AFCF7-5D39-40C9-9B65-0139992E0C56} = {E01AFCF7-5D39-40C9-9B65-0139992E0C56}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +32,10 @@ Global
 		{A3BE4AB1-BC1B-42CA-AE97-813AA6336E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3BE4AB1-BC1B-42CA-AE97-813AA6336E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3BE4AB1-BC1B-42CA-AE97-813AA6336E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF1958C-51CC-48E6-BD25-109FD0A91175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF1958C-51CC-48E6-BD25-109FD0A91175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF1958C-51CC-48E6-BD25-109FD0A91175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF1958C-51CC-48E6-BD25-109FD0A91175}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

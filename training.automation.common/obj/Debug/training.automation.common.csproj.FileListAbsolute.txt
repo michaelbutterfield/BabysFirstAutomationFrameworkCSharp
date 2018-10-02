@@ -4,7 +4,6 @@ C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.au
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\training.automation.common.exe
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\training.automation.common.pdb
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\NHamcrest.dll
-C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\SeleniumExtras.WaitHelpers.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\WebDriver.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\WebDriver.Support.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\NHamcrest.xml
@@ -32,3 +31,4 @@ C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.au
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\System.ValueTuple.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\Newtonsoft.Json.xml
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\System.ValueTuple.xml
+C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\bin\Debug\Winium.WebDriver.dll

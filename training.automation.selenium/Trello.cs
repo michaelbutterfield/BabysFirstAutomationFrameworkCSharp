@@ -146,6 +146,7 @@ namespace training.automation.selenium
             DesktopWebsite.header.backToHome.Click();
         }
 
+        //*****************************
         [Test]
         public void DragAndDropCardFromDoneToDoing()
         {
@@ -172,21 +173,13 @@ namespace training.automation.selenium
 
             //click home regardless of screen on
             DesktopWebsite.header.backToHome.JsClick();
-
             DesktopWebsite.boardsPage.userBoardButton.Click();
-
             DesktopWebsite.specificBoardsPage.moreSideMenuButton.Click();
-
             DesktopWebsite.specificBoardsPage.closeBoard.Click();
-
             DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
-
             DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
-
             DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
-
             DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
-
             DesktopWebsite.header.trelloLogoHome.Click();
 
             //driver clean up
