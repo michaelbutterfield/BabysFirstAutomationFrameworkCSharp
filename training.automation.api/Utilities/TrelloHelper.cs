@@ -50,6 +50,9 @@ namespace training.automation.api.Utilities
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
 
+            Console.WriteLine(String.Format("Getting ID for board with the name {0}.", boardName));
+            TestHelper.WriteToConsole(String.Format("Getting ID for board with the name {0}.", boardName));
+
             //deserealise data into root object first
             var response = client.Execute<RootObject>(request);
             RootObject board = response.Data;

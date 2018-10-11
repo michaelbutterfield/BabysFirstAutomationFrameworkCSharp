@@ -201,7 +201,7 @@ namespace training.automation.selenium
             DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
             DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
             DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
-            DesktopWebsite.boardsPage.boardNotFound.AssertElementIsDisplayed();
+            DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
             DesktopWebsite.header.trelloLogoHome.Click();
 
             //driver clean up
