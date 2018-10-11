@@ -2,6 +2,7 @@
 using System;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
+using NHamcrest;
 
 namespace training.automation.common.Winium.Elements.Common
 {
@@ -18,37 +19,37 @@ namespace training.automation.common.Winium.Elements.Common
             pageName = passedPageName;
         }
 
-        //public void assertAttributeContains(String attribute, String expectedText)
-        //{
-        //    String stepDescription = String.Format("Assert Element '%1$s' Attribute '%2$s' Contains '%3$s'", name, attribute, expectedText);
+        public void AssertAttributeContains(String attribute, String expectedText)
+        {
+            String stepDescription = String.Format("Assert Element '{0}' Attribute '{1}' Contains '{2}'", name, attribute, expectedText);
 
-        //    String actualText = getAttribute(attribute);
-        //    //TestHelper.assertThat(actualText, containsString(expectedText), stepDescription);
-        //}
+            String actualText = GetAttribute(attribute);
+            TestHelper.AssertThat(actualText, Contains.String(expectedText), stepDescription);
+        }
 
-        //public void assertAttributeEquals(String attributeName, String expectedAttributeValue)
-        //{
-        //    String stepDescription = String.format("Assert Element '%1$s' Attribute '%2$s' Equals '%3$s'", name, attributeName, expectedAttributeValue);
+        public void AssertAttributeEquals(String attributeName, String expectedAttributeValue)
+        {
+            String stepDescription = String.Format("Assert Element '{0}' Attribute '{1}' Equals '{2}'", name, attributeName, expectedAttributeValue);
 
-        //    String actualAttributeValue = getAttribute(attributeName);
-        //    TestHelper.assertThat(actualAttributeValue, is (equalTo(expectedAttributeValue)), stepDescription);
-        //}
+            String actualAttributeValue = GetAttribute(attributeName);
+            TestHelper.AssertThat(actualAttributeValue, Is.EqualTo(expectedAttributeValue), stepDescription);
+        }
 
         //public void assertDoesNotExist()
         //{
         //    String stepDescription = "Assert Element Does Not Exists";
-        //    TestHelper.assertThat(exists(), is (false), stepDescription);
+        //    TestHelper.AssertThat(Exists(), Is.False(), stepDescription);
         //}
 
         public void AssertExists()
         {
-            String stepDescription = "Assert Element Exists '%1$s' on page '%2$s'";
+            String stepDescription = "Assert Element Exists '{0}' on page '{1}'";
             stepDescription = String.Format(stepDescription, name, pageName);
             IWebElement element = null;
 
             try
             {
-                element = WiniumDriverHelper.GetElement(locator);
+                element = WiniumHelper.GetElement(locator);
             }
             catch (Exception e)
             {
@@ -56,7 +57,7 @@ namespace training.automation.common.Winium.Elements.Common
             }
             finally
             {
-                //TestHelper.assertThat(element, is (notNullValue()), stepDescription);
+                TestHelper.AssertThat(element, Is.NotNull(), stepDescription);
             }
         }
 
@@ -67,6 +68,10 @@ namespace training.automation.common.Winium.Elements.Common
 
         public void Click()
         {
+            Console.WriteLine(String.Format("Clicking on Element '{0}' on page '{1}'", name, pageName));
+
+            TestHelper.WriteToConsole(String.Format("Clicking on Element '{0}' on page '{1}'", name, pageName));
+
             Click("Click", 5, false);
         }
 
@@ -83,7 +88,7 @@ namespace training.automation.common.Winium.Elements.Common
 
             try
             {
-                attributeValue = WiniumDriverHelper.GetElement(locator).GetAttribute(attribute);
+                attributeValue = WiniumHelper.GetElement(locator).GetAttribute(attribute);
             }
             catch (Exception e)
             {
@@ -137,7 +142,7 @@ namespace training.automation.common.Winium.Elements.Common
             {
                 try
                 {
-                    WiniumDriverHelper.GetElement(locator);
+                    WiniumHelper.GetElement(locator);
                 }
                 catch (NoSuchElementException e)
                 {
@@ -160,7 +165,7 @@ namespace training.automation.common.Winium.Elements.Common
 
         protected void HandleException(String action, Exception e)
         {
-            String errorMessage = "Action '%1$s' Failed";
+            String errorMessage = "Action '{0}' Failed";
             errorMessage = String.Format(errorMessage, action, name, pageName);
 
             TestHelper.HandleException(errorMessage, e, true);
@@ -174,7 +179,7 @@ namespace training.automation.common.Winium.Elements.Common
             {
                 try
                 {
-                    WiniumDriverHelper.GetElement(locator).Click();
+                    WiniumHelper.GetElement(locator).Click();
                     break;
                 }
                 catch (NoSuchElementException e)

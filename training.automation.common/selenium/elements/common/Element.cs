@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
 using training.automation.common.utilities;
+using NHamcrest;
 
 namespace training.automation.common.selenium.elements.common
 {
@@ -28,7 +29,11 @@ namespace training.automation.common.selenium.elements.common
             if (element != null)
             {
                 string error = String.Format("{0} is still displayed. Whoops.", name);
+
                 Console.WriteLine(error);
+
+                TestHelper.WriteToConsole(error);
+
                 return false;
             }
             else
@@ -41,9 +46,11 @@ namespace training.automation.common.selenium.elements.common
         {
             string assertionDescription = String.Format("Assert Element {0} on page {1} is displayed", name, pageName);
 
+            TestHelper.WriteToConsole(assertionDescription);
+
             IWebElement element = null;
 
-           Console.WriteLine(assertionDescription);
+            Console.WriteLine(assertionDescription);
 
             try
             {
@@ -55,8 +62,7 @@ namespace training.automation.common.selenium.elements.common
             }
             finally
             {
-                //TODO create assert that in test helper
-                //TestHelper.AssertThat(element, is(notNullValue()), assertionDescription);
+                TestHelper.AssertThat(element, Is.NotNull(), assertionDescription);
             }
         }
 
@@ -64,13 +70,11 @@ namespace training.automation.common.selenium.elements.common
         {
             string assertionDescription = String.Format("Assert Element {0} Text Contains {1}", name, containsText);
 
-            Console.WriteLine(assertionDescription);
             try
             {
-                //TODO fix the testhelper assert that class
                 string fullText = GetElementText();
                 Console.WriteLine(fullText);
-                //TestHelper.AssertThat(fullText, containsString(containsText), assertionDescription);
+                TestHelper.AssertThat(fullText, Contains.String(containsText), assertionDescription);
             }
             catch (Exception e)
             {
@@ -80,6 +84,12 @@ namespace training.automation.common.selenium.elements.common
 
         public void Click()
         {
+            String assertionDescription = String.Format("Clicking {0} on page {1}", name, pageName);
+
+            Console.WriteLine(assertionDescription);
+
+            TestHelper.WriteToConsole(assertionDescription);
+
             try
             {
                 GetWebElement(true, true).Click();
@@ -92,6 +102,12 @@ namespace training.automation.common.selenium.elements.common
 
         public void ClickNoWait()
         {
+            String assertionDescription = String.Format("Clicking {0} on page {1}", name, pageName);
+
+            Console.WriteLine(assertionDescription);
+
+            TestHelper.WriteToConsole(assertionDescription);
+
             try
             {
                 GetWebElement(false, false).Click();
@@ -104,13 +120,20 @@ namespace training.automation.common.selenium.elements.common
 
         public String GetElementAttribute(String attributeName)
         {
+            String assertionDescription = String.Format("Getting attribute {0} from element {1} on page {2}", attributeName.ToUpper(), name, pageName);
+
+            Console.WriteLine(assertionDescription);
+
+            TestHelper.WriteToConsole(assertionDescription);
+
             IWebElement element = GetWebElement(false, true);
+
             return element.GetAttribute(attributeName);
         }
 
         public int GetElementCount()
         {
-            return SeleniumDriverHelper.GetWebDriver().FindElements(locator).Count();
+            return SeleniumHelper.GetWebDriver().FindElements(locator).Count();
         }
 
         public String GetElementText()
@@ -132,6 +155,7 @@ namespace training.automation.common.selenium.elements.common
         public String GetElementValue()
         {
             IWebElement element = GetWebElement(false, true);
+
             return element.GetAttribute("value");
         }
 
@@ -142,13 +166,15 @@ namespace training.automation.common.selenium.elements.common
 
         protected void HandleException(String actionName, Exception ex)
         {
-            String errorMessage = String.Format("%1$s failed on element \"%2$s\" on page \"%3$s\"", actionName, name, pageName);
+            String errorMessage = String.Format("{0} failed on element \"{1}\" on page \"{2}\"", actionName, name, pageName);
+
             TestHelper.HandleException(errorMessage, ex, true);
         }
 
         public void JsClick()
         {
-            IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumDriverHelper.GetWebDriver();
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumHelper.GetWebDriver();
+
             executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
         }
 
@@ -187,18 +213,18 @@ namespace training.automation.common.selenium.elements.common
                 WaitUntilElementToBeVisible();
             }
 
-            return SeleniumDriverHelper.GetWebDriver().FindElement(locator);
+            return SeleniumHelper.GetWebDriver().FindElement(locator);
         }
 
         private void WaitUntilElementToBeClickable()
         {
-            WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.DEFAULT_TIMEOUT);
+            WebDriverWait wait = new WebDriverWait(SeleniumHelper.GetWebDriver(), SeleniumHelper.DEFAULT_TIMEOUT);
             wait.Until(ExpectedConditions.ElementToBeClickable(locator));
         }
 
         private void WaitUntilElementToBeVisible()
         {
-            WebDriverWait wait = new WebDriverWait(SeleniumDriverHelper.GetWebDriver(), SeleniumDriverHelper.DEFAULT_TIMEOUT);
+            WebDriverWait wait = new WebDriverWait(SeleniumHelper.GetWebDriver(), SeleniumHelper.DEFAULT_TIMEOUT);
             wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
     }

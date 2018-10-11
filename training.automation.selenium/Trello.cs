@@ -5,8 +5,9 @@ using OpenQA.Selenium.Interactions;
 using training.automation.common.utilities;
 using training.automation.selenium.Application;
 using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
 using System;
+using training.automation.selenium.Application.Data;
+using Is = NHamcrest.Is;
 
 namespace training.automation.selenium
 {
@@ -18,15 +19,18 @@ namespace training.automation.selenium
         public void Initialise()
         {
             //I set up the environment with password and email
-            SeleniumDriverHelper.Initialise("chrome");
-            SeleniumDriverHelper.GoToUrl("http://www.trello.com/login");
+            TrelloWebData.ReadUserPass();
+            SeleniumHelper.Initialise("chrome");
+            SeleniumHelper.GoToUrl("http://www.trello.com/login");
             DesktopWebsite.logInPage.createAnAccount.AssertElementIsDisplayed();
-            DesktopWebsite.logInPage.emailAddress.InputText("michaelbutterf@gmail.com");
-            DesktopWebsite.logInPage.password.InputText("automationtest23");
+            DesktopWebsite.logInPage.emailAddress.InputText(TrelloWebData.getUsername());
+            DesktopWebsite.logInPage.password.InputText(TrelloWebData.getPassword());
             DesktopWebsite.logInPage.logInButton.Click();
             DesktopWebsite.boardsPage.addButton.WaitForElementToBeClickable();
-            NUnit.Framework.Assert.AreEqual(SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello", "Asserting {0} and {1} are same.",
-                                            SeleniumDriverHelper.GetWebDriver().Title, "Boards | Trello");
+
+            string stepDescription = String.Format("Asserting actual: {0} is equal to expected {1}", SeleniumHelper.GetWebDriver().Title, "Boards | Trello");
+            string expected = "Boards | Trello";
+            TestHelper.AssertThat(SeleniumHelper.GetWebDriver().Title, Is.EqualTo(expected), stepDescription);
 
             //Click the add button in the top right
             DesktopWebsite.boardsPage.addButton.Click();
@@ -40,10 +44,11 @@ namespace training.automation.selenium
             DesktopWebsite.boardsPage.createBoardButton.Click();
 
             //I Click back to home button
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             DesktopWebsite.header.backToHome.JsClick();
-            
+
             //I confirm the board is created
+            Thread.Sleep(2000);
             DesktopWebsite.boardsPage.userBoardButton.AssertElementIsDisplayed();
         }
 
@@ -52,20 +57,25 @@ namespace training.automation.selenium
         public void FavouriteABoard()
         {
             //I am on the boards page
-            if (!SeleniumDriverHelper.GetWebDriver().Title.Equals("Boards | Trello"))
+            if (!SeleniumHelper.GetWebDriver().Title.Equals("Boards | Trello"))
             {
                 DesktopWebsite.header.backToHome.Click();
             }
 
             //I Click the favourite board star
-            IWebElement userBoard = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//div[(@title=\"TestBoard\")]"));
-            Actions action = new Actions(SeleniumDriverHelper.GetWebDriver());
+            IWebElement userBoard = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//div[(@title=\"TestBoard\")]"));
+            Actions action = new Actions(SeleniumHelper.GetWebDriver());
             action.MoveToElement(userBoard).Perform();
             DesktopWebsite.boardsPage.favouriteButton.Click();
-            NUnit.Framework.TestContext.Progress.WriteLine("Successfully hovered over the user board and Clicked favourite");
+            TestHelper.WriteToConsole("Successfully hovered over the user board and Clicked favourite");
             Thread.Sleep(3000);
 
             //The board will be favourited
+            Thread.Sleep(2000);
+
+            String boardIsStarred = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"content\"]/div/div[2]/div/div/div/div/div[2]/div/div/div[1]/div/ul/li/a/div/div[2]/span/span")).GetAttribute("class");
+
+            TestHelper.AssertThat(boardIsStarred, Is.EqualTo("icon-sm icon-star is-starred board-tile-options-star-icon"), "Assert that the board has been hovered over and the star clicked - making it a favourite board");
         }
 
         //*******************************
@@ -134,11 +144,17 @@ namespace training.automation.selenium
             //click the user board
             DesktopWebsite.boardsPage.userBoardButton.Click();
 
-            //click and drag 3 cards
             //Move 0 to Doing
-            IWebElement From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]"));
-            IWebElement To = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
-            Actions act = new Actions(SeleniumDriverHelper.GetWebDriver());
+            IWebElement From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"));
+            IWebElement To = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            Actions act = new Actions(SeleniumHelper.GetWebDriver());
+            act.DragAndDrop(From, To).Build().Perform();
+
+            //Move 2 to Doing
+            From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]/div[3]/span"));
+            act.DragAndDrop(From, To).Build().Perform();
+
+            From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[2]"));
             act.DragAndDrop(From, To).Build().Perform();
 
             //I click the back to home button
@@ -153,11 +169,17 @@ namespace training.automation.selenium
             //click the user board
             DesktopWebsite.boardsPage.userBoardButton.Click();
 
-            //click and drag 3 cards
             //Move 0 to Doing
-            IWebElement From = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[1]"));
-            IWebElement To = SeleniumDriverHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
-            Actions act = new Actions(SeleniumDriverHelper.GetWebDriver());
+            IWebElement From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"));
+            IWebElement To = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            Actions act = new Actions(SeleniumHelper.GetWebDriver());
+            act.DragAndDrop(From, To).Build().Perform();
+
+            //Move 2 to Doing
+            From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"));
+            act.DragAndDrop(From, To).Build().Perform();
+
+            From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"));
             act.DragAndDrop(From, To).Build().Perform();
 
             //I click the back to home button
@@ -179,11 +201,11 @@ namespace training.automation.selenium
             DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
             DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
             DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
-            DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
+            DesktopWebsite.boardsPage.boardNotFound.AssertElementIsDisplayed();
             DesktopWebsite.header.trelloLogoHome.Click();
 
             //driver clean up
-            SeleniumDriverHelper.DestroyDriver();
+            SeleniumHelper.DestroyDriver();
         }
     }
 }

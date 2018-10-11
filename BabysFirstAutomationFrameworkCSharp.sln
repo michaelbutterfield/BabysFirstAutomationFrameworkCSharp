@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.appium"
 		{E01AFCF7-5D39-40C9-9B65-0139992E0C56} = {E01AFCF7-5D39-40C9-9B65-0139992E0C56}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.api", "training.automation.api\training.automation.api.csproj", "{ABC29DE0-28C7-4730-8EEA-7D572398C6DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{2CF1958C-51CC-48E6-BD25-109FD0A91175}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CF1958C-51CC-48E6-BD25-109FD0A91175}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CF1958C-51CC-48E6-BD25-109FD0A91175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABC29DE0-28C7-4730-8EEA-7D572398C6DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABC29DE0-28C7-4730-8EEA-7D572398C6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABC29DE0-28C7-4730-8EEA-7D572398C6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABC29DE0-28C7-4730-8EEA-7D572398C6DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

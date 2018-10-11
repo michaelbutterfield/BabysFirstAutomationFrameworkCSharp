@@ -32,3 +32,6 @@ C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.au
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\WebDriver.Support.dll
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\WebDriver.Support.xml
 C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\System.ValueTuple.xml
+C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\NHamcrest.dll
+C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\Winium.WebDriver.dll
+C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.selenium\bin\Debug\NHamcrest.xml
