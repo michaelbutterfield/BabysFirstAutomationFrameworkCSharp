@@ -14,8 +14,8 @@ namespace training.automation.api.Utilities
             var client = new RestClient("https://api.trello.com/1/boards");
 
             var request = new RestRequest("/?name={name}&desc={desc}&key={key}&token={token}", Method.POST, DataFormat.Json);
-            request.AddUrlSegment("name", boardName.ToString());
-            request.AddUrlSegment("desc", boardDesc.ToString());
+            request.AddUrlSegment("name", boardName);
+            request.AddUrlSegment("desc", boardDesc);
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
             request.AddHeader("content-type", "application/json; charset=utf-8");
@@ -27,10 +27,15 @@ namespace training.automation.api.Utilities
 
         public static void DeleteBoard(string boardId)
         {
+            //if (boardId.Equals("More than one board returned. Be more specific."))
+            //{
+            //    throw new Exception("More than one board returned. Be more specific.");
+            //}
+
             var client = new RestClient("https://api.trello.com/1/boards");
 
             var request = new RestRequest("/{id}?key={key}&token={token}", Method.DELETE, DataFormat.Json);
-            request.AddUrlSegment("id", boardId.ToString());
+            request.AddUrlSegment("id", boardId);
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
             request.AddHeader("content-type", "application/json; charset=utf-8");
@@ -57,13 +62,18 @@ namespace training.automation.api.Utilities
             var response = client.Execute<RootObject>(request);
             RootObject board = response.Data;
 
-            //create a new list specifically for the boards contained in the root object
-            IList<Board> myBoard = new List<Board>();
+            ////create a new list specifically for the boards contained in the root object
+            //IList<Board> myBoard = new List<Board>();
 
-            //put the single searched board into the list
-            myBoard = board.boards;
+            ////put the single searched board into the list
+            //myBoard = board.boards;
 
-            return myBoard[0].id;
+            //if (board.boards.Count > 1)
+            //{
+            //    return "More than one board returned. Be more specific.";
+            //}
+
+            return board.boards[0].id;
         }
     }
 }
