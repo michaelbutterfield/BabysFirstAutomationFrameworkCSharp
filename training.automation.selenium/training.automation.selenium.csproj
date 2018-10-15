@@ -89,9 +89,7 @@
       <Name>training.automation.common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="StepDefinitions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe" />
   </ItemGroup>
