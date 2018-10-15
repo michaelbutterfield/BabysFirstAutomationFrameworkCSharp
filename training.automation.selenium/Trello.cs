@@ -26,14 +26,14 @@ namespace training.automation.selenium
             DesktopWebsite.logInPage.emailAddress.InputText(TrelloWebData.getUsername());
             DesktopWebsite.logInPage.password.InputText(TrelloWebData.getPassword());
             DesktopWebsite.logInPage.logInButton.Click();
-            DesktopWebsite.boardsPage.addButton.WaitForElementToBeClickable();
+            DesktopWebsite.header.addButton.WaitForElementToBeClickable();
 
             string stepDescription = String.Format("Asserting actual: {0} is equal to expected {1}", SeleniumHelper.GetWebDriver().Title, "Boards | Trello");
             string expected = "Boards | Trello";
             TestHelper.AssertThat(SeleniumHelper.GetWebDriver().Title, Is.EqualTo(expected), stepDescription);
 
             //Click the add button in the top right
-            DesktopWebsite.boardsPage.addButton.Click();
+            DesktopWebsite.header.addButton.Click();
 
             //Click the create board option
             DesktopWebsite.boardsPage.createNewBoardButton.Click();
@@ -73,7 +73,7 @@ namespace training.automation.selenium
             //The board will be favourited
             Thread.Sleep(2000);
 
-            String boardIsStarred = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"content\"]/div/div[2]/div/div/div/div/div[2]/div/div/div[1]/div/ul/li/a/div/div[2]/span/span")).GetAttribute("class");
+            String boardIsStarred = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"content\"]//span[@class=\"icon-sm icon-star is-starred board-tile-options-star-icon\"]")).GetAttribute("class");
 
             TestHelper.AssertThat(boardIsStarred, Is.EqualTo("icon-sm icon-star is-starred board-tile-options-star-icon"), "Assert that the board has been hovered over and the star clicked - making it a favourite board");
         }
@@ -103,7 +103,7 @@ namespace training.automation.selenium
             //Doing
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Doing");
             DesktopWebsite.specificBoardsPage.addListButton.Click();
-            DesktopWebsite.specificBoardsPage.addCardSecondCol.Click();
+            DesktopWebsite.specificBoardsPage.addACard.Click();
 
             Thread.Sleep(1000);
 
@@ -119,7 +119,7 @@ namespace training.automation.selenium
             //Done
             DesktopWebsite.specificBoardsPage.enterListTitle.InputText("Done");
             DesktopWebsite.specificBoardsPage.addListButton.Click();
-            DesktopWebsite.specificBoardsPage.addCardThirdCol.Click();
+            DesktopWebsite.specificBoardsPage.addACard.Click();
 
             Thread.Sleep(1000);
 
@@ -201,7 +201,7 @@ namespace training.automation.selenium
             DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
             DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
             DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
-            DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
+            //DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
             DesktopWebsite.header.trelloLogoHome.Click();
 
             //driver clean up
