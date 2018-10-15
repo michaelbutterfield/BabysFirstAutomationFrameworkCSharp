@@ -13,8 +13,8 @@ namespace training.automation.selenium.Application.Pages
 
         private void BuildPage()
         {
-            logIn = new Button(By.XPath("/html/body/div[1]/div[2]/a[1]"), "Log In Button", name);
-            signUp = new Button(By.XPath("/html/body/div[1]/div[2]/a[2]"), "Sign Up Button", name);
+            logIn = new Button(By.XPath("//a[@href='/login?returnUrl=%2F']"), "Log In Button", name);
+            signUp = new Button(By.XPath("//a[@href='/signup?returnUrl=%2F']"), "Sign Up Button", name);
         }
     }
 }
