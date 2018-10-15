@@ -26,6 +26,9 @@ namespace training.automation.common.Selenium.Elements
         {
             String stepDescription = String.Format("'Input Text' \"{0}\" into element '{1}' on page '{2}' ", text, name, pageName);
 
+            Console.WriteLine(stepDescription);
+            TestHelper.WriteToConsole(stepDescription);
+
             try
             {
                 IWebElement element = GetWebElement(true, true);
