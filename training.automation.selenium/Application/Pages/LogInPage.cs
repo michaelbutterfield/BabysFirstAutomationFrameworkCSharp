@@ -11,7 +11,7 @@ namespace training.automation.selenium.Application.Pages
         public Button logInButton;
         public InputBox password;
 
-        public LogInPage() : base("LogInPage") { BuildPage(); }
+        public LogInPage() : base("Log In Page") { BuildPage(); }
 
         private void BuildPage()
         {
