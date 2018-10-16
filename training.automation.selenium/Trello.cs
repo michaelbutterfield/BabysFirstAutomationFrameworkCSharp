@@ -23,8 +23,8 @@ namespace training.automation.selenium
             SeleniumHelper.Initialise("chrome");
             SeleniumHelper.GoToUrl("http://www.trello.com/login");
             DesktopWebsite.logInPage.createAnAccount.AssertElementIsDisplayed();
-            DesktopWebsite.logInPage.emailAddress.InputText(TrelloWebData.getUsername());
-            DesktopWebsite.logInPage.password.InputText(TrelloWebData.getPassword());
+            DesktopWebsite.logInPage.emailAddress.InputText(TrelloWebData.GetUsername());
+            DesktopWebsite.logInPage.password.InputText(TrelloWebData.GetPassword());
             DesktopWebsite.logInPage.logInButton.Click();
             DesktopWebsite.header.addButton.WaitForElementToBeClickable();
 
@@ -39,9 +39,9 @@ namespace training.automation.selenium
             DesktopWebsite.boardsPage.createNewBoardButton.Click();
 
             //Create a new board with name and background
-            DesktopWebsite.boardsPage.nameInput.InputText("TestBoard");
-            DesktopWebsite.boardsPage.backgroundSelectionButton.Click();
-            DesktopWebsite.boardsPage.createBoardButton.Click();
+            DesktopWebsite.createBoardPage.nameInput.InputText("TestBoard");
+            DesktopWebsite.createBoardPage.backgroundSelectionButton.Click();
+            DesktopWebsite.createBoardPage.createBoardButton.Click();
 
             //I Click back to home button
             Thread.Sleep(2000);
@@ -188,24 +188,24 @@ namespace training.automation.selenium
         }
 
         //**************************************
-        [OneTimeTearDown]
-        public void KillTests()
-        {
-            //delete the board
+        //[OneTimeTearDown]
+        //public void KillTests()
+        //{
+        //    //delete the board
 
-            //click home regardless of screen on
-            DesktopWebsite.header.backToHome.JsClick();
-            DesktopWebsite.boardsPage.userBoardButton.Click();
-            DesktopWebsite.specificBoardsPage.moreSideMenuButton.Click();
-            DesktopWebsite.specificBoardsPage.closeBoard.Click();
-            DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
-            DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
-            DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
-            //DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
-            DesktopWebsite.header.trelloLogoHome.Click();
+        //    //click home regardless of screen on
+        //    DesktopWebsite.header.backToHome.JsClick();
+        //    DesktopWebsite.boardsPage.userBoardButton.Click();
+        //    DesktopWebsite.specificBoardsPage.moreSideMenuButton.Click();
+        //    DesktopWebsite.specificBoardsPage.closeBoard.Click();
+        //    DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
+        //    DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
+        //    DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
+        //    //DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
+        //    DesktopWebsite.header.trelloLogoHome.Click();
 
-            //driver clean up
-            SeleniumHelper.DestroyDriver();
-        }
+        //    //driver clean up
+        //    SeleniumHelper.DestroyDriver();
+        //}
     }
 }
