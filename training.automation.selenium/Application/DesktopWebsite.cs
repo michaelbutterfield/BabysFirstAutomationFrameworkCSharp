@@ -6,11 +6,12 @@ namespace training.automation.selenium.Application
 {
     public sealed class DesktopWebsite
     {
-        public static HomePage homePage;
-        public static LogInPage logInPage;
         public static BoardsPage boardsPage;
-        public static SpecificBoardsPage specificBoardsPage;
+        public static CreateBoardPage createBoardPage;
         public static Header header;
+        public static LogInPage logInPage;
+        public static SpecificBoardsPage specificBoardsPage;
+        public static SplashPage splashPage;
 
         static DesktopWebsite()
         {
@@ -20,10 +21,11 @@ namespace training.automation.selenium.Application
 
         private static void BuildPages()
         {
-            homePage = new HomePage();
-            logInPage = new LogInPage();
             boardsPage = new BoardsPage();
+            createBoardPage = new CreateBoardPage();
+            logInPage = new LogInPage();
             specificBoardsPage = new SpecificBoardsPage();
+            splashPage = new SplashPage();
         }
 
         private static void BuildSections()
