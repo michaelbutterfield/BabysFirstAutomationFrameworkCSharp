@@ -26,6 +26,14 @@ namespace training.automation.api.Data
         public object idOrganization { get; set; }
     }
 
+    public class List
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public bool closed { get; set; }
+        public int pos { get; set; }
+    }
+
     public class RootObject
     {
         public Options options { get; set; }
@@ -33,5 +41,6 @@ namespace training.automation.api.Data
         public List<object> cards { get; set; }
         public List<object> organizations { get; set; }
         public List<object> members { get; set; }
+        public List<List> lists { get; set; }
     }
 }
