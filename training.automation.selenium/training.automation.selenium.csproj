@@ -72,7 +72,8 @@
     <Compile Include="Application\Data\TrelloWebData.cs" />
     <Compile Include="Application\DesktopWebsite.cs" />
     <Compile Include="Application\Pages\BoardsPage.cs" />
-    <Compile Include="Application\Pages\HomePage.cs" />
+    <Compile Include="Application\Pages\CreateBoardPage.cs" />
+    <Compile Include="Application\Pages\SplashPage.cs" />
     <Compile Include="Application\Pages\LogInPage.cs" />
     <Compile Include="Application\Pages\SpecificBoardsPage.cs" />
     <Compile Include="Application\Sections\Header.cs" />
