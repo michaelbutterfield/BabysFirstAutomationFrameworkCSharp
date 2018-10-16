@@ -21,7 +21,7 @@ namespace training.automation.api.Utilities
             request.AddHeader("content-type", "application/json; charset=utf-8");
 
             IRestResponse response = client.Execute(request);
-            
+
             TestHelper.AssertThat(response.StatusCode.ToString(), Is.EqualTo("OK"), String.Format("Asserting that actual: {0} is equal to expected: {1} -- Create Board", response.StatusCode.ToString(), "OK"));
         }
 
@@ -74,6 +74,24 @@ namespace training.automation.api.Utilities
             //}
 
             return board.boards[0].id;
+        }
+
+        public static RootObject GetTrelloBoardData(string boardId)
+        {
+            var client = new RestClient("http://api.trello.com");
+
+            var request = new RestRequest("/1/boards/{boardId}?lists=open&list_fields=id,name,closed,pos&key={key}&token={token}", Method.GET, DataFormat.Json);
+            request.AddHeader("content-type", "application/json; charset=utf-8");
+            request.AddUrlSegment("boardId", boardId);
+            request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+            request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+           
+
+            //deserealise data into root object first
+            var response = client.Execute<RootObject>(request);
+            RootObject board = response.Data;
+
+            return board;
         }
     }
 }
