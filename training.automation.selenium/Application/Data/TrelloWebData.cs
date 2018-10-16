@@ -14,12 +14,12 @@ namespace training.automation.selenium.Application.Data
 
         public TrelloWebData() { }
 
-        public static String getUsername()
+        public static String GetUsername()
         {
             return username;
         }
 
-        public static String getPassword()
+        public static String GetPassword()
         {
             return password;
         }
