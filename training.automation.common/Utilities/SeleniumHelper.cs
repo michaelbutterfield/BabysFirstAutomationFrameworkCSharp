@@ -64,6 +64,8 @@ namespace training.automation.common.utilities
             }
 
             Driver.Manage().Window.Maximize();
+
+            GoToUrl("http://trello.com");
         }
 
         public void WaitForElementToBeClickable(IWebElement element)
