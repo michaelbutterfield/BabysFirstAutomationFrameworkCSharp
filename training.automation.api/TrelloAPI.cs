@@ -52,14 +52,14 @@ namespace training.automation.api
         [Test]
         public void GetLists()
         {
-            RootObject boardData = new RootObject();
-            boardData = TrelloHelper.GetTrelloBoardData(TrelloHelper.GetTrelloBoardId("TestBoard"));
+            //RootObject boardData = new RootObject();
+            //boardData = TrelloHelper.GetTrelloBoardData(TrelloHelper.GetTrelloBoardId("TestBoard"));
 
-            TestHelper.WriteToConsole(boardData.lists[0].id);
-            TestHelper.WriteToConsole(boardData.lists[0].name);
+            //TestHelper.WriteToConsole(boardData.lists[0].id);
+            //TestHelper.WriteToConsole(boardData.lists[0].name);
 
-            TestHelper.WriteToConsole(boardData.lists[1].id);
-            TestHelper.WriteToConsole(boardData.lists[1].name);
+            //TestHelper.WriteToConsole(boardData.lists[1].id);
+            //TestHelper.WriteToConsole(boardData.lists[1].name);
         }
     }
 }
