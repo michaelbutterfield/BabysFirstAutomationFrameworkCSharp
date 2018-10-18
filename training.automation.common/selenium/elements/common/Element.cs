@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using training.automation.common.utilities;
 using NHamcrest;
+using training.automation.common.Tests;
 
 namespace training.automation.common.selenium.elements.common
 {
@@ -44,13 +45,11 @@ namespace training.automation.common.selenium.elements.common
 
         public void AssertElementIsDisplayed()
         {
+            TestLogger.CreateTestStep("Assert Element is Displayed", name, pageName);
+
             string assertionDescription = String.Format("Assert Element {0} on page {1} is displayed", name, pageName);
 
-            TestHelper.WriteToConsole(assertionDescription);
-
             IWebElement element = null;
-
-            Console.WriteLine(assertionDescription);
 
             try
             {
@@ -70,6 +69,10 @@ namespace training.automation.common.selenium.elements.common
         {
             string assertionDescription = String.Format("Assert Element {0} Text Contains {1}", name, containsText);
 
+            string testLogDesc = string.Format("Assert Element Text Contains '{0}'", containsText);
+
+            TestLogger.CreateTestStep(testLogDesc, name, pageName);
+
             try
             {
                 string fullText = GetElementText();
@@ -84,12 +87,8 @@ namespace training.automation.common.selenium.elements.common
 
         public void Click()
         {
-            String assertionDescription = String.Format("Clicking {0} on page {1}", name, pageName);
-
-            Console.WriteLine(assertionDescription);
-
-            TestHelper.WriteToConsole(assertionDescription);
-
+            TestLogger.CreateTestStep("Click", name, pageName);
+            
             try
             {
                 GetWebElement(true, true).Click();
@@ -122,9 +121,9 @@ namespace training.automation.common.selenium.elements.common
         {
             String assertionDescription = String.Format("Getting attribute {0} from element {1} on page {2}", attributeName.ToUpper(), name, pageName);
 
-            Console.WriteLine(assertionDescription);
+            string action = string.Format("Getting attribute '%1$s' from", attributeName.ToUpper());
 
-            TestHelper.WriteToConsole(assertionDescription);
+            TestLogger.CreateTestStep(action, name, pageName);
 
             IWebElement element = GetWebElement(false, true);
 
