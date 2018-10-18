@@ -102,6 +102,7 @@
     <Compile Include="Selenium\Elements\InputBox.cs" />
     <Compile Include="Selenium\Elements\Label.cs" />
     <Compile Include="Selenium\Elements\Link.cs" />
+    <Compile Include="Tests\TestLogger.cs" />
     <Compile Include="Utilities\ApiHelper.cs" />
     <Compile Include="Utilities\SeleniumHelper.cs" />
     <Compile Include="Selenium\Elements\Common\Element.cs" />
