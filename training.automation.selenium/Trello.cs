@@ -8,6 +8,8 @@ using NUnit.Framework;
 using System;
 using training.automation.selenium.Application.Data;
 using Is = NHamcrest.Is;
+using training.automation.common.Tests;
+using TestContext = NUnit.Framework.TestContext;
 
 namespace training.automation.selenium
 {
@@ -18,10 +20,14 @@ namespace training.automation.selenium
         [OneTimeSetUp]
         public void Initialise()
         {
+            TestLogger.Initialise();
+
+            TestLogger.LogSuiteSetupStart();
+
             //I set up the environment with password and email
             TrelloWebData.ReadUserPass();
             SeleniumHelper.Initialise("chrome");
-            SeleniumHelper.GoToUrl("http://www.trello.com/login");
+            DesktopWebsite.splashPage.logIn.Click();
             DesktopWebsite.logInPage.createAnAccount.AssertElementIsDisplayed();
             DesktopWebsite.logInPage.emailAddress.InputText(TrelloWebData.GetUsername());
             DesktopWebsite.logInPage.password.InputText(TrelloWebData.GetPassword());
@@ -40,7 +46,7 @@ namespace training.automation.selenium
 
             //Create a new board with name and background
             DesktopWebsite.createBoardPage.nameInput.InputText("TestBoard");
-            DesktopWebsite.createBoardPage.backgroundSelectionButton.Click();
+            //DesktopWebsite.createBoardPage.backgroundSelectionButton.Click();
             DesktopWebsite.createBoardPage.createBoardButton.Click();
 
             //I Click back to home button
@@ -50,12 +56,16 @@ namespace training.automation.selenium
             //I confirm the board is created
             Thread.Sleep(2000);
             DesktopWebsite.boardsPage.userBoardButton.AssertElementIsDisplayed();
+
+            TestLogger.LogSuiteSetupEnd();
         }
 
         //******************************
         [Test, Order(1)]
         public void FavouriteABoard()
         {
+            TestLogger.LogScenarioStart();
+
             //I am on the boards page
             if (!SeleniumHelper.GetWebDriver().Title.Equals("Boards | Trello"))
             {
@@ -76,12 +86,18 @@ namespace training.automation.selenium
             String boardIsStarred = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"content\"]//span[@class=\"icon-sm icon-star is-starred board-tile-options-star-icon\"]")).GetAttribute("class");
 
             TestHelper.AssertThat(boardIsStarred, Is.EqualTo("icon-sm icon-star is-starred board-tile-options-star-icon"), "Assert that the board has been hovered over and the star clicked - making it a favourite board");
+
+
+            TestLogger.LogTestResult();
+            TestLogger.LogScenarioEnd();
         }
 
         //*******************************
         [Test]
         public void AddingListsAndCards()
         {
+            TestLogger.LogScenarioStart();
+
             //i Click on the user created board
             DesktopWebsite.boardsPage.userBoardButton.Click();
 
@@ -135,12 +151,17 @@ namespace training.automation.selenium
             //I click the back to home button
             Thread.Sleep(2000);
             DesktopWebsite.header.backToHome.Click();
+
+            TestLogger.LogTestResult();
+            TestLogger.LogScenarioEnd();
         }
 
         //***************************
         [Test]
         public void DragAndDropCardFromToDoToDoing()
         {
+            TestLogger.LogScenarioStart();
+
             //click the user board
             DesktopWebsite.boardsPage.userBoardButton.Click();
 
@@ -160,12 +181,17 @@ namespace training.automation.selenium
             //I click the back to home button
             Thread.Sleep(2000);
             DesktopWebsite.header.backToHome.Click();
+
+            TestLogger.LogTestResult();
+            TestLogger.LogScenarioEnd();
         }
 
         //*****************************
         [Test]
         public void DragAndDropCardFromDoneToDoing()
         {
+            TestLogger.LogScenarioStart();
+
             //click the user board
             DesktopWebsite.boardsPage.userBoardButton.Click();
 
@@ -185,27 +211,36 @@ namespace training.automation.selenium
             //I click the back to home button
             Thread.Sleep(2000);
             DesktopWebsite.header.backToHome.Click();
+
+            TestLogger.LogTestResult();
+            TestLogger.LogScenarioEnd();
         }
 
         //**************************************
-        //[OneTimeTearDown]
-        //public void KillTests()
-        //{
-        //    //delete the board
+        [OneTimeTearDown]
+        public void KillTests()
+        {
+            TestLogger.LogSuiteTeardownStart();
 
-        //    //click home regardless of screen on
-        //    DesktopWebsite.header.backToHome.JsClick();
-        //    DesktopWebsite.boardsPage.userBoardButton.Click();
-        //    DesktopWebsite.specificBoardsPage.moreSideMenuButton.Click();
-        //    DesktopWebsite.specificBoardsPage.closeBoard.Click();
-        //    DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
-        //    DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
-        //    DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
-        //    //DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
-        //    DesktopWebsite.header.trelloLogoHome.Click();
+            //delete the board
 
-        //    //driver clean up
-        //    SeleniumHelper.DestroyDriver();
-        //}
+            //click home regardless of screen on
+            DesktopWebsite.header.backToHome.JsClick();
+            DesktopWebsite.boardsPage.userBoardButton.Click();
+            DesktopWebsite.specificBoardsPage.moreSideMenuButton.Click();
+            DesktopWebsite.specificBoardsPage.closeBoard.Click();
+            DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
+            DesktopWebsite.specificBoardsPage.permDeleteBoard.Click();
+            DesktopWebsite.specificBoardsPage.permDeleteBoardConfirm.Click();
+            //DesktopWebsite.boardsPage.boardNotFound.AssertElementTextContains("Board not found.");
+            DesktopWebsite.header.trelloLogoHome.Click();
+
+            //driver clean up
+            SeleniumHelper.DestroyDriver();
+
+            TestLogger.LogSuiteTeardownEnd();
+
+            TestLogger.Close();
+        }
     }
 }
