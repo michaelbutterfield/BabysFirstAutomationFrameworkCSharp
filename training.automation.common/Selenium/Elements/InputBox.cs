@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using training.automation.common.selenium.elements.common;
+using training.automation.common.Tests;
 using training.automation.common.utilities;
 
 namespace training.automation.common.Selenium.Elements
@@ -24,10 +25,9 @@ namespace training.automation.common.Selenium.Elements
 
         public void InputText(String text)
         {
-            String stepDescription = String.Format("'Input Text' \"{0}\" into element '{1}' on page '{2}' ", text, name, pageName);
+            String stepDescription = String.Format("Input Text '{0}' into", text);
 
-            Console.WriteLine(stepDescription);
-            TestHelper.WriteToConsole(stepDescription);
+            TestLogger.CreateTestStep(stepDescription, name, pageName);
 
             try
             {
