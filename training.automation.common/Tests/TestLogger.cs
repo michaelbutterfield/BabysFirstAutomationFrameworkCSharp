@@ -8,7 +8,7 @@ namespace training.automation.common.Tests
     {
         private static StreamWriter writer = null;
         private static string testRunDirectory = null;
-        private static string logDateTimeFormat = "dd/MM/yy HH:mm:ss";
+        private static string logDateTimeFormat = "dd/MM/yy HH.mm";
         private static DateTime suiteRunStart;
 
         public static void Close()
@@ -25,8 +25,8 @@ namespace training.automation.common.Tests
 
         private static void CreateTestRunDirectory()
         {
-            //testRunDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime(logDateTimeFormat);
-            testRunDirectory = "C:\\Users\\michael.butterfield\\Desktop\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime("dd-MM-yy HH.mm");
+            testRunDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime(logDateTimeFormat);
+            //testRunDirectory = "C:\\Users\\michael.butterfield\\Desktop\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime("dd-MM-yy HH.mm");
 
             if (!Directory.Exists(testRunDirectory))
             {
