@@ -25,8 +25,8 @@ namespace training.automation.common.Tests
 
         private static void CreateTestRunDirectory()
         {
-            testRunDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime("dd-MM-yy HH.mm");
-            //testRunDirectory = "C:\\Users\\michael.butterfield\\Desktop" + "\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime("dd-MM-yy HH.mm");
+            //testRunDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime(logDateTimeFormat);
+            testRunDirectory = "C:\\Users\\michael.butterfield\\Desktop\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime("dd-MM-yy HH.mm");
 
             if (!Directory.Exists(testRunDirectory))
             {
