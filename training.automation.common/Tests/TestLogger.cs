@@ -8,7 +8,7 @@ namespace training.automation.common.Tests
     {
         private static StreamWriter writer = null;
         private static string testRunDirectory = null;
-        private static string logDateTimeFormat = "dd/MM/yy HH.mm";
+        private static string logDateTimeFormat = "dd-MM-yy HH.mm";
         private static DateTime suiteRunStart;
 
         public static void Close()
