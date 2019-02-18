@@ -9,6 +9,7 @@
 *.o
 *.so
 *.lock
+*.html
 
 # Packages #
 ############
