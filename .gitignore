@@ -14,7 +14,9 @@
 *.xml
 *.CopyComplete
 *.tmp
-Debug/
+Debug
+bin
+obj
 
 # Packages #
 ############
