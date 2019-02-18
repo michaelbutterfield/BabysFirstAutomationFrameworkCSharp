@@ -88,7 +88,7 @@ namespace training.automation.common.selenium.elements.common
         public void Click()
         {
             TestLogger.CreateTestStep("Click", name, pageName);
-            
+           
             try
             {
                 GetWebElement(true, true).Click();
@@ -115,6 +115,11 @@ namespace training.automation.common.selenium.elements.common
             {
                 HandleException("Click", e);
             }
+        }
+
+        public bool Exists()
+        {
+            return SeleniumHelper.GetElements(locator).Count() > 0;
         }
 
         public String GetElementAttribute(String attributeName)
@@ -168,6 +173,22 @@ namespace training.automation.common.selenium.elements.common
             String errorMessage = String.Format("{0} failed on element \"{1}\" on page \"{2}\"", actionName, name, pageName);
 
             TestHelper.HandleException(errorMessage, ex, true);
+        }
+
+        public bool IsEnabled()
+        {
+            IWebElement element = null;
+
+            element = GetWebElement(true, false);
+
+            if (element != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void JsClick()
