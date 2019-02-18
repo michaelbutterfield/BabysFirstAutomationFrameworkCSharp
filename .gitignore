@@ -14,6 +14,7 @@
 *.xml
 *.CopyComplete
 *.tmp
+Debug/
 
 # Packages #
 ############
