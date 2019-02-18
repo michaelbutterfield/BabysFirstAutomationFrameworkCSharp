@@ -6,18 +6,18 @@ namespace training.automation.selenium.Application.Pages
 {
     public class LogInPage : Page
     { 
-        public Link createAnAccount;
         public InputBox emailAddress;
-        public Button logInButton;
+        public Link forgotPassword;
+        public Button logIn;
         public InputBox password;
 
         public LogInPage() : base("Log In Page") { BuildPage(); }
 
         private void BuildPage()
         {
-            createAnAccount = new Link(By.XPath("//*[@id=\"signup\"]"), "Create An Account Link", name);
             emailAddress = new InputBox(By.XPath("//*[@id=\"user\"]"), "Email Address Input Box", name);
-            logInButton = new Button(By.XPath("//*[@id=\"login\"]"), "Log In Button", name);
+            forgotPassword = new Link(By.XPath("//a[@href='/forgot']"), "Forgot Password", name);
+            logIn = new Button(By.XPath("//*[@id=\"login\"]"), "Log In Button", name);
             password = new InputBox(By.XPath("//*[@id=\"password\"]"), "Password Input Box", name);
         }
     }
