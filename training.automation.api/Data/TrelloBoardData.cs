@@ -26,7 +26,7 @@ namespace training.automation.api.Data
         public object idOrganization { get; set; }
     }
 
-    public class List
+    public class BoardIdList
     {
         public string id { get; set; }
         public string name { get; set; }
@@ -34,7 +34,7 @@ namespace training.automation.api.Data
         public int pos { get; set; }
     }
 
-    public class RootObject
+    public class BoardIdRootObject
     {
         public Options options { get; set; }
         public List<Board> boards { get; set; }
