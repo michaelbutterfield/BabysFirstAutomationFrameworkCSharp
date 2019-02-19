@@ -28,26 +28,26 @@ namespace training.automation.selenium
             TrelloWebData.ReadUserPass();
             SeleniumHelper.Initialise("chrome");
             DesktopWebsite.splashPage.logIn.Click();
-            //DesktopWebsite.logInPage.createAnAccount.AssertElementIsDisplayed();
+            DesktopWebsite.logInPage.createAnAccount.AssertElementIsDisplayed();
             DesktopWebsite.logInPage.emailAddress.InputText(TrelloWebData.GetUsername());
             DesktopWebsite.logInPage.password.InputText(TrelloWebData.GetPassword());
-            DesktopWebsite.logInPage.logIn.Click();
-            DesktopWebsite.header.add.WaitForElementToBeClickable();
+            DesktopWebsite.logInPage.logInButton.Click();
+            DesktopWebsite.header.addButton.WaitForElementToBeClickable();
 
             string stepDescription = String.Format("Asserting actual: {0} is equal to expected {1}", SeleniumHelper.GetWebDriver().Title, "Boards | Trello");
             string expected = "Boards | Trello";
             TestHelper.AssertThat(SeleniumHelper.GetWebDriver().Title, Is.EqualTo(expected), stepDescription);
 
             //Click the add button in the top right
-            DesktopWebsite.header.add.Click();
+            DesktopWebsite.header.addButton.Click();
 
             //Click the create board option
-            DesktopWebsite.boardsPage.createNewBoard.Click();
+            DesktopWebsite.boardsPage.createNewBoardButton.Click();
 
             //Create a new board with name and background
             DesktopWebsite.createBoardPage.nameInput.InputText("TestBoard");
             //DesktopWebsite.createBoardPage.backgroundSelectionButton.Click();
-            DesktopWebsite.createBoardPage.createBoard.Click();
+            DesktopWebsite.createBoardPage.createBoardButton.Click();
 
             //I Click back to home button
             Thread.Sleep(2000);
@@ -55,7 +55,7 @@ namespace training.automation.selenium
 
             //I confirm the board is created
             Thread.Sleep(2000);
-            DesktopWebsite.boardsPage.userBoard.AssertElementIsDisplayed();
+            DesktopWebsite.boardsPage.userBoardButton.AssertElementIsDisplayed();
 
             TestLogger.LogSuiteSetupEnd();
         }
@@ -76,7 +76,7 @@ namespace training.automation.selenium
             IWebElement userBoard = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//div[(@title=\"TestBoard\")]"));
             Actions action = new Actions(SeleniumHelper.GetWebDriver());
             action.MoveToElement(userBoard).Perform();
-            DesktopWebsite.boardsPage.favourite.Click();
+            DesktopWebsite.boardsPage.favouriteButton.Click();
             TestHelper.WriteToConsole("Successfully hovered over the user board and Clicked favourite");
             Thread.Sleep(3000);
 
@@ -99,7 +99,7 @@ namespace training.automation.selenium
             TestLogger.LogScenarioStart();
 
             //i Click on the user created board
-            DesktopWebsite.boardsPage.userBoard.Click();
+            DesktopWebsite.boardsPage.userBoardButton.Click();
 
             //I create three new lists
             DesktopWebsite.specificBoardsPage.addAList.Click();
@@ -111,7 +111,7 @@ namespace training.automation.selenium
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
                 DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
-                DesktopWebsite.specificBoardsPage.addCard.Click();
+                DesktopWebsite.specificBoardsPage.addCardButton.Click();
             }
 
             Console.WriteLine("Successfully created To Do and tasks 0-4");
@@ -127,7 +127,7 @@ namespace training.automation.selenium
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
                 DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
-                DesktopWebsite.specificBoardsPage.addCard.Click();
+                DesktopWebsite.specificBoardsPage.addCardButton.Click();
             }
 
             Console.WriteLine("Successfully created 'Doing' and tasks 5-9");
@@ -143,7 +143,7 @@ namespace training.automation.selenium
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
                 DesktopWebsite.specificBoardsPage.enterCardTitle.InputText(testText);
-                DesktopWebsite.specificBoardsPage.addCard.Click();
+                DesktopWebsite.specificBoardsPage.addCardButton.Click();
             }
 
             Console.WriteLine("Successfully created Done and tasks 10-14");
@@ -163,7 +163,7 @@ namespace training.automation.selenium
             TestLogger.LogScenarioStart();
 
             //click the user board
-            DesktopWebsite.boardsPage.userBoard.Click();
+            DesktopWebsite.boardsPage.userBoardButton.Click();
 
             //Move 0 to Doing
             IWebElement From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"));
@@ -193,8 +193,8 @@ namespace training.automation.selenium
             TestLogger.LogScenarioStart();
 
             //click the user board
-            DesktopWebsite.boardsPage.userBoard.Click();
-        
+            DesktopWebsite.boardsPage.userBoardButton.Click();
+
             //Move 0 to Doing
             IWebElement From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"));
             IWebElement To = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
@@ -226,7 +226,7 @@ namespace training.automation.selenium
 
             //click home regardless of screen on
             DesktopWebsite.header.backToHome.JsClick();
-            DesktopWebsite.boardsPage.userBoard.Click();
+            DesktopWebsite.boardsPage.userBoardButton.Click();
             DesktopWebsite.specificBoardsPage.moreSideMenuButton.Click();
             DesktopWebsite.specificBoardsPage.closeBoard.Click();
             DesktopWebsite.specificBoardsPage.closeBoardConfirmation.Click();
