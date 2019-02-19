@@ -62,3 +62,5 @@ Thumbs.db
 /training.automation.api/obj/Debug
 /training.automation.appium/obj
 /training.automation.common/obj/Debug
+/TestResults
+/training.automation.selenium.specflow/bin/Debug
