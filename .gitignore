@@ -10,10 +10,6 @@
 *.so
 *.lock
 *.html
-*.pdb
-*.xml
-*.CopyComplete
-*.tmp
 
 # Packages #
 ############
