@@ -58,3 +58,7 @@ Thumbs.db
 *.xml
 *.pdb
 
+/packages
+/training.automation.api/obj/Debug
+/training.automation.appium/obj
+/training.automation.common/obj/Debug
