@@ -99,7 +99,7 @@ namespace training.automation.common.utilities
             {
                 case "chrome":
                     {
-                        Driver = new ChromeDriver();
+                        Driver = new ChromeDriver(@"C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\Drivers");
                         break;
                     }
                 case "firefox":
