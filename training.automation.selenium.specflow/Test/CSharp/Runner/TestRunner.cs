@@ -16,7 +16,7 @@ namespace training.automation.specflow.Test.CSharp.Runner
             TestLogger.Initialise();
             TestLogger.LogSuiteSetupStart();
             TrelloWebData.ReadUserPass();
-            TrelloApiData.ReadApiKeyToken();
+            //TrelloApiData.ReadApiKeyToken();
         }
 
         [BeforeScenario]

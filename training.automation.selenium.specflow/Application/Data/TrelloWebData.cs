@@ -24,7 +24,8 @@ namespace training.automation.specflow.Data
         {
             try
             {
-                string sourceFile = "C:\\Users\\michael.butterfield\\Desktop\\trellouserpass.txt";
+                //string sourceFile = "C:\\Users\\michael.butterfield\\Desktop\\trellouserpass.txt";
+                string sourceFile = "C:\\Users\\M\\Desktop\\trellouserpass.txt";
 
                 string line = System.IO.File.ReadAllText(@sourceFile);
 

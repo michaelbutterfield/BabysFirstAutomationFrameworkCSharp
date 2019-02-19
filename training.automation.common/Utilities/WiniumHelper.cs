@@ -14,7 +14,8 @@ namespace training.automation.common.Utilities
     public class WiniumHelper
     {
         private static DesktopOptions Options = new DesktopOptions { ApplicationPath = @"C:\\Windows\\System32\\calc.exe" };
-        private static WiniumDriverService Service = WiniumDriverService.CreateDesktopService(@"C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\Drivers");
+        //TODO: need to loosely couple this
+        //private static WiniumDriverService Service = WiniumDriverService.CreateDesktopService(@"C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\Drivers");
         private static WiniumDriver Driver = null;
 
         private WiniumHelper() { }
@@ -40,7 +41,7 @@ namespace training.automation.common.Utilities
         {
             try
             {
-                Driver = new WiniumDriver(Service, Options);
+                //Driver = new WiniumDriver(Service, Options);
                 TestHelper.WriteToConsole("Winium Driver Started");
             }
             catch (Exception e)
