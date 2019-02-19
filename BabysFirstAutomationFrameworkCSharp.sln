@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.common", "training.automation.common\training.automation.common.csproj", "{E01AFCF7-5D39-40C9-9B65-0139992E0C56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.nunit", "training.automation.selenium\training.automation.nunit.csproj", "{B715A3C0-855E-4E01-85B3-487B4175EAA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.selenium", "training.automation.selenium\training.automation.selenium.csproj", "{B715A3C0-855E-4E01-85B3-487B4175EAA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.winium", "training.automation.winium\training.automation.winium.csproj", "{A3BE4AB1-BC1B-42CA-AE97-813AA6336E1A}"
 EndProject
@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.appium"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.api", "training.automation.api\training.automation.api.csproj", "{ABC29DE0-28C7-4730-8EEA-7D572398C6DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.selenium", "training.automation.selenium.specflow\training.automation.selenium.csproj", "{873F793A-2215-4C26-9317-FD1BDCC4F85F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "training.automation.specflow", "training.automation.selenium.specflow\training.automation.specflow.csproj", "{873F793A-2215-4C26-9317-FD1BDCC4F85F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
