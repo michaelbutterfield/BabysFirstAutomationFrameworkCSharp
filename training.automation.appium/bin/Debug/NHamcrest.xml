@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NHamcrest</name>
+    </assembly>
+    <members>
+        <member name="T:NHamcrest.Core.CustomMatcher`1">
+            <summary>
+            Utility class for writing one off matchers.
+            <example>
+            var aNonEmptyString = new CustomMatcher&lt;string&gt;("a non empty string", s => string.IsNullOrEmpty(s) == false);
+            </example>
+            </summary>
+        </member>
+        <member name="T:NHamcrest.Core.DescribedAs`1">
+            <summary>
+            Provides a custom description to another matcher.
+            </summary>
+        </member>
+        <member name="F:NHamcrest.Core.Description.None">
+            <summary>
+            A description that consumes input but does nothing.
+            </summary>
+        </member>
+        <member name="M:NHamcrest.Core.Description.Append(System.String)">
+            <summary>
+            Append a string to the description.  
+            The default implementation passes every character to Append(char).
+            Override in subclasses to provide an efficient implementation.
+            </summary>
+            <param name="str">The string to append.</param>
+        </member>
+        <member name="M:NHamcrest.Core.Matcher`1.DescribedAs(System.String,System.Object[])">
+            <summary>
+            Wraps an existing matcher and overrides the description when it fails.
+            </summary>
+        </member>
+        <member name="M:NHamcrest.Core.NonNullDiagnosingMatcher`1.MatchesSafely(`0,NHamcrest.IDescription)">
+            <summary>
+            Subclasses should implement this. The item will already have been checked
+            for the specific type and will never be null.
+            </summary>
+            <param name="collection"></param>
+            <param name="mismatchDescription"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHamcrest.Core.NonNullMatcher`1.MatchesSafely(`0)">
+            <summary>
+            Subclasses should implement this. The item will never be null.
+            </summary>
+        </member>
+        <member name="M:NHamcrest.Core.NonNullMatcher`1.DescribeMismatchSafely(`0,NHamcrest.IDescription)">
+            <summary>
+            Subclasses should override this. The item will already have been checked for
+            the specific type and will never be null.
+            </summary>
+        </member>
+        <member name="M:NHamcrest.Core.NonNullMatcher`1.Matches(`0)">
+            <summary>
+            Sealed to prevent accidental override.
+            If you need to override this, there's no point in extending NonNullMatcher.
+            Instead, extend Matcher.
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHamcrest.Core.StringDescription.ToString(NHamcrest.ISelfDescribing)">
+            <summary>
+            Return the description of an <see cref="T:NHamcrest.ISelfDescribing"/> object as a string.
+            </summary>
+            <param name="selfDescribing">The object to be described.</param>
+            <returns>The description of the object.</returns>
+        </member>
+        <member name="M:NHamcrest.Core.StringDescription.AsString(NHamcrest.ISelfDescribing)">
+            <summary>
+            Alias for ToString(ISelfDescribing).
+            </summary>
+        </member>
+        <member name="M:NHamcrest.Every.Item``1(NHamcrest.IMatcher{``0})">
+            <summary>
+            A collection matcher that returns true if every item matches.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="itemMatcher">A matcher to apply to every element in a collection.</param>
+            <returns>True if every item matches.</returns>
+        </member>
+        <member name="M:NHamcrest.NotEvery.Item``1(NHamcrest.IMatcher{``0})">
+            <summary>
+            A collection matcher that returns true if every item matches.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="itemMatcher">A matcher to apply to every element in a collection.</param>
+            <returns>True if every item matches.</returns>
+        </member>
+        <member name="T:NHamcrest.IDescription">
+            <summary>
+            A description of a Matcher. A Matcher will describe itself to a description
+            which can later be used for reporting.
+            </summary>
+        </member>
+        <member name="M:NHamcrest.IDescription.AppendText(System.String)">
+            <summary>
+            Appends some plain text to the description.
+            </summary>
+            <param name="text">The text to append.</param>
+            <returns>The description.</returns>
+        </member>
+        <member name="M:NHamcrest.IDescription.AppendText(System.String,System.Object[])">
+            <summary>
+            Appends some plain text to the description.
+            </summary>
+            <param name="format">A format string.</param>
+            <param name="args">The values to use.</param>
+            <returns>The description.</returns>
+        </member>
+        <member name="M:NHamcrest.IDescription.AppendDescriptionOf(NHamcrest.ISelfDescribing)">
+            <summary>
+            Appends the description of an <see cref="T:NHamcrest.ISelfDescribing"/> value to this description.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHamcrest.IDescription.AppendValue(System.Object)">
+            <summary>
+            Appends an arbitary value to the description.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHamcrest.IDescription.AppendNewLine">
+            <summary>
+            Appends a new line to the description.
+            </summary>
+            <returns>The current description.</returns>
+        </member>
+        <member name="M:NHamcrest.IDescription.AppendValueList``1(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Appends a list of values to the description.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="start"></param>
+            <param name="separator"></param>
+            <param name="end"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHamcrest.IDescription.AppendList(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{NHamcrest.ISelfDescribing})">
+            <summary>
+            Appends a list of <see cref="T:NHamcrest.ISelfDescribing" /> objects to the description.
+            </summary>
+            <param name="start"></param>
+            <param name="separator"></param>
+            <param name="end"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NHamcrest.IMatcher`1">
+            <summary>
+            A matcher over acceptable values.
+            A matcher is able to describe itself to give feedback when it fails.
+            Matcher implementations should NOT directly implement this interface.
+            Instead, extend the <see cref="T:NHamcrest.Core.Matcher`1" /> abstract class,
+            which will ensure that the Matcher API can grow to support
+            new features and remain compatible with all Matcher implementations.
+            For easy access to common Matcher implementations, use the static factory
+            methods in CoreMatchers.
+            </summary>
+            <typeparam name="T">The type of object to match against.</typeparam>
+        </member>
+        <member name="M:NHamcrest.IMatcher`1.Matches(`0)">
+            <summary>
+            Evaluates the matcher.
+            </summary>
+            <param name="item">The item to match against.</param>
+            <returns>True if the item matches, otherwise false.</returns>
+        </member>
+        <member name="M:NHamcrest.IMatcher`1.DescribeMismatch(`0,NHamcrest.IDescription)">
+            <summary>
+            Generate a description of why the matcher has not accepted the item.
+            The description will be part of a larger description of why a matching
+            failed, so it should be concise. 
+            This method assumes that <code>Matches(item)</code> is false, but 
+            will not check this.
+            </summary>
+            <param name="item">The item.</param>
+            <param name="mismatchDescription">A description of the mismatch.</param>
+        </member>
+        <member name="M:NHamcrest.Is.InstanceOf``1">
+            Is the value an instance of a particular type? 
+            This version assumes no relationship between the required type and
+            the signature of the method that sets it up, for example in
+            <code>Assert.That(anObject, Is.InstanceOf(typeof(Thing)));</code>
+        </member>
+        <member name="M:NHamcrest.Is.Any``1">
+            Is the value an instance of a particular type? 
+            Use this version to make generics conform, for example in 
+            the JMock clause <code>with(any(Thing.class))</code> 
+        </member>
+        <member name="M:NHamcrest.Is.Anything(System.String)">
+            <summary>
+            This matcher always evaluates to true.
+            </summary>
+            <param name="description">A meaningful string used when describing itself.</param>
+            <returns>A matcher.</returns>
+        </member>
+        <member name="T:NHamcrest.ISelfDescribing">
+            <summary>
+            The ability of an object to describe itself.
+            </summary>
+        </member>
+        <member name="M:NHamcrest.ISelfDescribing.DescribeTo(NHamcrest.IDescription)">
+            <summary>
+            Generates a description of the object.  The description may be part of a
+            a description of a larger object of which this is just a component, so it 
+            should be worded appropriately.
+            </summary>
+            <param name="description">The description to be built or appended to.</param>
+        </member>
+        <member name="M:NHamcrest.Matches.Both``1(NHamcrest.IMatcher{``0})">
+            <summary>
+            This is useful for fluently combining matchers that must both pass.  For example:
+            <pre>
+            Assert.That("ab", Matches.Both(Contains.String("a")).And(Contains.String("b")));
+            </pre>
+            </summary>
+        </member>
+        <member name="M:NHamcrest.Matches.Either``1(NHamcrest.IMatcher{``0})">
+            <summary>
+            This is useful for fluently combining matchers where either may pass, for example:
+            <pre>
+            Assert.That("ac", Matches.Either(Contains.String("a")).Or(Contains.String("b")));
+            </pre>
+            </summary>
+        </member>
+    </members>
+</doc>
