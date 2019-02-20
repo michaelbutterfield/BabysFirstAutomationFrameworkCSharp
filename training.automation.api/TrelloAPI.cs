@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using training.automation.api.Data;
 using training.automation.api.Utilities;
-using training.automation.common.utilities;
 
 namespace training.automation.api
 {
