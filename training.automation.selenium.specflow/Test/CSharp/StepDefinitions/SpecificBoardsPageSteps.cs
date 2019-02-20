@@ -19,14 +19,10 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
                 if (DesktopWebsite.SpecificBoardsPage.AddACard.Exists())
                 {
                     DesktopWebsite.SpecificBoardsPage.AddACard.Click();
-                    DesktopWebsite.SpecificBoardsPage.EnterCardTitle.InputText(RandomGen.RandomString(8));
-                    DesktopWebsite.SpecificBoardsPage.AddCard.Click();
                 }
-                else
-                {
-                    DesktopWebsite.SpecificBoardsPage.EnterCardTitle.InputText(RandomGen.RandomString(8));
-                    DesktopWebsite.SpecificBoardsPage.AddCard.Click();
-                }
+
+                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.InputText(RandomGen.RandomString(8));
+                DesktopWebsite.SpecificBoardsPage.AddCard.Click();
             }
         }
 
@@ -50,14 +46,10 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             if (DesktopWebsite.SpecificBoardsPage.AddAList.Exists())
             {
                 DesktopWebsite.SpecificBoardsPage.AddAList.Click();
-                DesktopWebsite.SpecificBoardsPage.EnterListTitle.InputText(p0);
-                DesktopWebsite.SpecificBoardsPage.AddList.Click();
             }
-            else
-            {
-                DesktopWebsite.SpecificBoardsPage.EnterListTitle.InputText(p0);
-                DesktopWebsite.SpecificBoardsPage.AddList.Click();
-            }
+
+            DesktopWebsite.SpecificBoardsPage.EnterListTitle.InputText(p0);
+            DesktopWebsite.SpecificBoardsPage.AddList.Click();
         }
 
             
