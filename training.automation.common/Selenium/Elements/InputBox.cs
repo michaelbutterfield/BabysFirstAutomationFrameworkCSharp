@@ -29,10 +29,32 @@ namespace training.automation.common.Selenium.Elements
 
             TestLogger.CreateTestStep(stepDescription, name, pageName);
 
+            int retries = 0;
+            int maxRetries = 10;
+            bool sentKeysSuccess = false;
             try
-            {
-                IWebElement element = GetWebElement(true, true);
-                element.SendKeys(text);
+            { 
+                while (!sentKeysSuccess)
+                {
+                    if (retries >= 10)
+                    {
+                        throw new Exception("Tried to input text too many times");
+                    }
+
+                    IWebElement element = GetWebElement(true, true);
+                    element.SendKeys(text);
+
+                    if (element.GetAttribute("value").Equals(""))
+                    {
+                        sentKeysSuccess = false;
+                        retries++;
+                        break;
+                    }
+                    else
+                    {
+                        sentKeysSuccess = true;
+                    }
+                }
             }
             catch (Exception e)
             {
