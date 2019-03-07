@@ -247,5 +247,24 @@ namespace training.automation.common.selenium.elements.common
             WebDriverWait wait = new WebDriverWait(SeleniumHelper.GetWebDriver(), SeleniumHelper.DEFAULT_TIMEOUT);
             wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
+
+        public void WaitUntilExists()
+        {
+            int maxRetries = 20;
+            int retries = 0;
+
+            while (Exists() == false && retries < maxRetries)
+            {
+                TestHelper.SleepInSeconds(1);
+                retries++;
+            }
+
+            if (Exists() == false)
+            {
+                string ErrorMessage = string.Format("Failed waiting for element to exist. Element: {0} -- Element Page: {1}", name, pageName);
+
+                TestHelper.HandleException(ErrorMessage, new SystemException(ErrorMessage), true);
+            }
+        }
     }
 }
