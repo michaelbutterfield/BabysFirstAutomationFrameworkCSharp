@@ -5,6 +5,7 @@ using training.automation.common.Utilities;
 using System;
 using training.automation.specflow.Application.Data;
 using training.automation.api.Utilities;
+using OpenQA.Selenium;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
@@ -29,15 +30,15 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When(@"I click and drag two cards from Done to Doing")]
         public void IClickAndDragTwoCardsFromDoneToDoing()
         {
-            SeleniumHelper.BuildAndPerformAction("donedoing");
-            SeleniumHelper.BuildAndPerformAction("donedoing");
+            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
         }
 
         [When(@"I click and drag two cards from To Do to Doing")]
         public void IClickAndDragTwoCardsFromToDoToDoing()
         {
-            SeleniumHelper.BuildAndPerformAction("tododoing");
-            SeleniumHelper.BuildAndPerformAction("tododoing");
+            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
         }
 
         [When(@"I create a new list called (.*)")]
