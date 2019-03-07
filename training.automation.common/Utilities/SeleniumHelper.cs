@@ -20,42 +20,21 @@ namespace training.automation.common.utilities
             //
         }
 
-        public static void BuildAndPerformAction(string ActionToPerform)
+        public static void DragAndDropAction(By startLocation, By endLocation)
         {
             Actions act = new Actions(SeleniumHelper.GetWebDriver());
 
-            if (ActionToPerform.ToLower().Equals("tododoing"))
-            {
-                IWebElement From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"));
-                IWebElement To = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            IWebElement From = GetWebDriver().FindElement(startLocation);
+            IWebElement To = GetWebDriver().FindElement(endLocation);
 
-                try
-                {
-                    act.DragAndDrop(From, To).Build().Perform();
-                    Counter.CardsMoved++;
-                }
-                catch (Exception e)
-                {
-                    Counter.CardsMoved--;
-                    TestHelper.HandleException("Couldn't move card from 'To Do' to 'Doing'", e, true);
-                }
+            try
+            {
+                act.DragAndDrop(From, To).Build().Perform();
             }
-            else if (ActionToPerform.ToLower().Equals("donedoing"))
+            catch (Exception e)
             {
-                IWebElement From = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"));
-                IWebElement To = SeleniumHelper.GetWebDriver().FindElement(By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
-
-                try
-                {
-                    act.DragAndDrop(From, To).Build().Perform();
-                    Counter.CardsMoved++;
-                }
-                catch (Exception e)
-                {
-                    Counter.CardsMoved--;
-                    TestHelper.HandleException("Couldn't move card from 'To Do' to 'Doing'", e, true);
-                }
-            }           
+                TestHelper.HandleException("Failed to perform Drag and Drop action. Stack trace: " + e, e, true);
+            }
         }
 
         public static void DestroyDriver()
@@ -82,6 +61,11 @@ namespace training.automation.common.utilities
         public static void GoToUrl(string Url)
         {
             Driver.Navigate().GoToUrl(Url);
+        }
+
+        public void Refresh()
+        {
+            Driver.Navigate().Refresh();
         }
 
         public static void HoverOverElement(string ElementXPath)
@@ -117,8 +101,6 @@ namespace training.automation.common.utilities
             }
 
             Driver.Manage().Window.Maximize();
-
-            GoToUrl("http://trello.com");
         }
 
         public void WaitForElementToBeClickable(IWebElement element)
