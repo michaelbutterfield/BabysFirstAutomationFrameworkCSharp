@@ -1,4 +1,5 @@
 ﻿using TechTalk.SpecFlow;
+using training.automation.common.utilities;
 using training.automation.specflow.Application;
 using training.automation.specflow.Data;
 
@@ -10,6 +11,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Given(@"I am on the splash page")]
         public void IAmOnTheSplashPage()
         {
+            SeleniumHelper.GetWebDriver().Navigate().GoToUrl("http://trello.com/");
+            DesktopWebsite.SplashPage.LogIn.WaitUntilExists();
             DesktopWebsite.SplashPage.LogIn.AssertElementIsDisplayed();
         }
 
