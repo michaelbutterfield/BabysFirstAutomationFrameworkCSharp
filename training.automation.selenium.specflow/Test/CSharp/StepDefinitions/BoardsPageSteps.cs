@@ -15,7 +15,6 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             DesktopWebsite.Header.Add.WaitForElementToBeClickable();
             Assert.AreEqual("Boards | Trello", SeleniumHelper.GetWebDriver().Title);
-            //TestHelper.AssertThat(SeleniumDriverHelper.getWebDriver().getTitle(), is("Boards | Trello"), "Assert that the title of the web page '" + SeleniumDriverHelper.getWebDriver().getTitle() + "'" + " is equal to what is expected: 'Boards | Trello'");
         }
 
         [Given(@"I click on the user created board")]
