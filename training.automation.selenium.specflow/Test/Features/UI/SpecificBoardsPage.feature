@@ -2,9 +2,7 @@
 Feature: Specific Boards Page
 
 Background: Set up the environment ready for the scenarios to take place
-	Given I am on the splash page
-	  And I log in
-	  And I am on the boards page
+	Given I log in
 	When I create the user board
 	Then the environment will be set up
 

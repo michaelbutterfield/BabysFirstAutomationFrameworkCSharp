@@ -8,7 +8,9 @@ When I click the log in button
 
 @LogInCorrect
 Scenario: Log In with Correct Details
-Given I log in
+Given I am on the log in page
+When I enter the user details
+  And I click log in
 Then I will be logged in successfully
 
 
@@ -16,11 +18,13 @@ Then I will be logged in successfully
 Scenario: Log in with no email
 Given I enter the user details
   But I clear the "Email Address"
-Then the error "Missing Email" will be shown
+When I click log in
+Then the error "Missing email" will be shown
 
 
 @LogInNoPassword
 Scenario: Log in with no password
 Given I enter the user details
   But I clear the "Password"
-Then the error "Invalid Password" will be shown
+When I click log in
+Then the error "Invalid password" will be shown

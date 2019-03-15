@@ -74,127 +74,123 @@ namespace training.automation.selenium.specflow.Test.Features.UI
         {
 #line 4
 #line 5
- testRunner.Given("I am on the splash page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
-   testRunner.And("I log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
-   testRunner.And("I am on the boards page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 8
  testRunner.When("I create the user board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 7
  testRunner.Then("the environment will be set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Clicking on the user board, adding several lists", new string[] {
-                "AddingLists"}, SourceLine=12)]
+                "AddingLists"}, SourceLine=10)]
         public virtual void ClickingOnTheUserBoardAddingSeveralLists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clicking on the user board, adding several lists", null, new string[] {
                         "AddingLists"});
-#line 13
+#line 11
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 14
+#line 12
  testRunner.Given("I click on the user created board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
+#line 13
  testRunner.When("I create a new list called To Do", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 14
    testRunner.And("I create a new list called Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 15
    testRunner.And("I create a new list called Done", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
+#line 16
  testRunner.Then("the three boards lists will be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Adding several cards to three lists", new string[] {
-                "AddingCards"}, SourceLine=21)]
+                "AddingCards"}, SourceLine=19)]
         public virtual void AddingSeveralCardsToThreeLists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding several cards to three lists", null, new string[] {
                         "AddingCards"});
-#line 22
+#line 20
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 23
+#line 21
  testRunner.Given("I click on the user created board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 24
+#line 22
  testRunner.When("I create a new list called To Do", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+   testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+   testRunner.And("I create a new list called Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
    testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
-   testRunner.And("I create a new list called Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("I create a new list called Done", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
    testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-   testRunner.And("I create a new list called Done", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
-   testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
  testRunner.Then("the three lists will contain five cards each", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Dragging two cards from \'To Do\' & \'Done\' to \'Doing\'", new string[] {
-                "DragAndDropCards"}, SourceLine=33)]
+                "DragAndDropCards"}, SourceLine=31)]
         public virtual void DraggingTwoCardsFromToDoDoneToDoing()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dragging two cards from \'To Do\' & \'Done\' to \'Doing\'", null, new string[] {
                         "DragAndDropCards"});
-#line 34
+#line 32
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 35
+#line 33
  testRunner.Given("I click on the user created board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 36
+#line 34
  testRunner.When("I create a new list called To Do", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 35
+   testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+   testRunner.And("I create a new list called Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
    testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
-   testRunner.And("I create a new list called Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("I create a new list called Done", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
    testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
-   testRunner.And("I create a new list called Done", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
-   testRunner.And("I add five cards to the new list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
  testRunner.When("I click and drag two cards from To Do to Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 43
+#line 41
    testRunner.And("I click and drag two cards from Done to Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 42
  testRunner.Then("the \'To Do\' cards are in \'Doing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 45
+#line 43
    testRunner.And("the \'Done\' cards are in \'Doing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Favourite a board", new string[] {
-                "FavouriteBoard"}, SourceLine=48)]
+                "FavouriteBoard"}, SourceLine=46)]
         public virtual void FavouriteABoard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Favourite a board", null, new string[] {
                         "FavouriteBoard"});
-#line 49
+#line 47
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 50
+#line 48
  testRunner.Given("I am on the boards page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 51
+#line 49
  testRunner.When("I click the favourite board star", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 52
+#line 50
  testRunner.Then("The board will be favourited", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

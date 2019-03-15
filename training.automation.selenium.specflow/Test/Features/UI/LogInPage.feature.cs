@@ -92,51 +92,59 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 11
-testRunner.Given("I log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("I am on the log in page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
+testRunner.When("I enter the user details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+  testRunner.And("I click log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
 testRunner.Then("I will be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Log in with no email", new string[] {
-                "LogInNoEmail"}, SourceLine=15)]
+                "LogInNoEmail"}, SourceLine=17)]
         public virtual void LogInWithNoEmail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with no email", null, new string[] {
                         "LogInNoEmail"});
-#line 16
+#line 18
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 17
-testRunner.Given("I enter the user details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
-  testRunner.But("I clear the \"Email Address\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line 19
-testRunner.Then("the error \"Missing Email\" will be shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Given("I enter the user details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 20
+  testRunner.But("I clear the \"Email Address\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 21
+testRunner.When("I click log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+testRunner.Then("the error \"Missing email\" will be shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Log in with no password", new string[] {
-                "LogInNoPassword"}, SourceLine=22)]
+                "LogInNoPassword"}, SourceLine=25)]
         public virtual void LogInWithNoPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with no password", null, new string[] {
                         "LogInNoPassword"});
-#line 23
+#line 26
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 24
+#line 27
 testRunner.Given("I enter the user details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 25
+#line 28
   testRunner.But("I clear the \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
-#line 26
-testRunner.Then("the error \"Invalid Password\" will be shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+testRunner.When("I click log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+testRunner.Then("the error \"Invalid password\" will be shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
