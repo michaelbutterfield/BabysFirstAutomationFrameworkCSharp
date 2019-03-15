@@ -3,6 +3,7 @@ using System.Threading;
 using NHamcrest;
 using NHamcrest.Core;
 using NUnit.Framework;
+using training.automation.common.Tests;
 
 namespace training.automation.common.utilities
 {
@@ -43,13 +44,13 @@ namespace training.automation.common.utilities
             return scenario;
         }
 
-        public static void HandleException(String errorMessage, Exception e, Boolean takeScreenshot)
+        public static void HandleException(string ErrorMessage, Exception e, bool takeScreenshot)
         {
-            String exception = String.Format("{0} : {1} : ", errorMessage, e);
-
-            Console.WriteLine(exception);
+            String exception = String.Format("{0} : {1} : ", ErrorMessage, e);
 
             TestHelper.WriteToConsole(exception);
+
+            TestLogger.LogActionFailure(exception, e);
 
             throw new System.ArgumentException(e.Message, e);
         }
