@@ -35,7 +35,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             DesktopWebsite.Header.Add.Click();
             DesktopWebsite.BoardsPage.CreateNewBoard.Click();
-            DesktopWebsite.CreateBoardPage.NameInput.InputText("TestBoard");
+            DesktopWebsite.CreateBoardPage.NameInput.SendKeys("TestBoard");
             DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
             DesktopWebsite.CreateBoardPage.CreateBoard.Click();
         }
