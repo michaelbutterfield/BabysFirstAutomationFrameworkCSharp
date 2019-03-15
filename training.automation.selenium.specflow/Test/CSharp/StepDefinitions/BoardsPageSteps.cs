@@ -1,9 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 using training.automation.api.Utilities;
 using training.automation.common.utilities;
+using training.automation.common.Utilities;
 using training.automation.specflow.Application;
+using Random = training.automation.common.Utilities.Random;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
@@ -20,13 +23,13 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Given(@"I click on the user created board")]
         public void IClickOnTheUserCreatedBoard()
         {
-            DesktopWebsite.BoardsPage.UserBoard.Click();
+            SeleniumHelper.GetElement(By.XPath(string.Format("//div[@title='{0}'", RuntimeTestData.GetAsString("BoardName")))).Click(); ;
         }
 
         [When(@"I click the favourite board star")]
         public void IClickTheFavouriteBoardStar()
         {
-            SeleniumHelper.HoverOverElement("//div[contains(text(),'TestBoard')]");
+            SeleniumHelper.HoverOverElement(string.Format("//div[contains(text(),'{0}')]", RuntimeTestData.GetAsString("BoardName")));
             DesktopWebsite.BoardsPage.Unstarred.Click();
         }
 
@@ -35,7 +38,11 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             DesktopWebsite.Header.Add.Click();
             DesktopWebsite.BoardsPage.CreateNewBoard.Click();
-            DesktopWebsite.CreateBoardPage.NameInput.SendKeys("TestBoard");
+
+            string BoardName = Random.RandomAlphanumericString(10);
+            RuntimeTestData.Add("BoardName", BoardName);
+
+            DesktopWebsite.CreateBoardPage.NameInput.SendKeys(BoardName);
             DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
             DesktopWebsite.CreateBoardPage.CreateBoard.Click();
         }
@@ -45,7 +52,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             try
             {
-                if (!TrelloHelper.GetBoardStarredStatus(TrelloHelper.GetTrelloBoardId("TestBoard")))
+                if (!TrelloHelper.GetBoardStarredStatus(TrelloHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName"))))
                 {
                     string ErrorMessage = "Board not successfully starred or got false get from API";
                     throw new Exception(ErrorMessage);
@@ -61,9 +68,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then(@"the environment will be set up")]
         public void TheEnvironmentWillBeSetUp()
         {
-            TestHelper.SleepInSeconds(3);
+            DesktopWebsite.Header.BackToHome.WaitUntilExists();
             DesktopWebsite.Header.BackToHome.JsClick();
-            DesktopWebsite.BoardsPage.UserBoard.AssertElementIsDisplayed();
         }
     }
 }
