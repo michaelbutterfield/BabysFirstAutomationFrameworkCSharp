@@ -105,7 +105,8 @@
     <Compile Include="Tests\TestLogger.cs" />
     <Compile Include="Utilities\ApiHelper.cs" />
     <Compile Include="Utilities\Counter.cs" />
-    <Compile Include="Utilities\RandomGen.cs" />
+    <Compile Include="Utilities\Random.cs" />
+    <Compile Include="Utilities\RuntimeTestData.cs" />
     <Compile Include="Utilities\SeleniumHelper.cs" />
     <Compile Include="Selenium\Elements\Common\Element.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
