@@ -10,7 +10,7 @@ namespace training.automation.common.Selenium.Elements
     {
         public InputBox(By locator, String elementName, String pageName) : base(locator, elementName, pageName) { }
 
-        public void ClearText()
+        public void Clear()
         {
             try
             {
@@ -23,7 +23,7 @@ namespace training.automation.common.Selenium.Elements
             }
         }
 
-        public void InputText(String text)
+        public void SendKeys(String text)
         {
             String stepDescription = String.Format("Input Text '{0}' into", text);
 
