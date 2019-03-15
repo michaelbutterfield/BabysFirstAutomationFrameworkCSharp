@@ -19,12 +19,6 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.LogInPage.LogIn.Click();
         }
 
-        [When]
-        public void I_click_the_log_in_button()
-        {
-            DesktopWebsite.LogInPage.LogIn.Click();
-        }
-
         [Given]
         public void I_enter_the_user_details()
         {
@@ -35,7 +29,7 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void I_will_be_logged_in_successfully()
         {
-            ScenarioContext.Current.Pending();
+            DesktopWebsite.BoardsPage.CreateNewBoard.
         }
 
         [Given][When]

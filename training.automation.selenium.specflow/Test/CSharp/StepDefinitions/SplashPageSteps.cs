@@ -14,5 +14,11 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.SplashPage.LogIn.WaitUntilExists();
             DesktopWebsite.SplashPage.LogIn.AssertElementIsDisplayed();
         }
+
+        [When]
+        public void I_click_the_log_in_button()
+        {
+            DesktopWebsite.SplashPage.LogIn.Click();
+        }
     }
 }
