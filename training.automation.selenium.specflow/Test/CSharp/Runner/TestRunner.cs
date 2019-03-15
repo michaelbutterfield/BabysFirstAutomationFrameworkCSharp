@@ -2,6 +2,7 @@
 using training.automation.api.Data;
 using training.automation.common.Tests;
 using training.automation.common.utilities;
+using training.automation.common.Utilities;
 using training.automation.specflow.Application;
 using training.automation.specflow.Data;
 
@@ -29,7 +30,7 @@ namespace training.automation.specflow.Test.CSharp.Runner
         static void AfterScenario()
         {
             DesktopWebsite.Header.BackToHome.JsClick();
-            TestHelper.SleepInSeconds(2);
+            DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
             DesktopWebsite.BoardsPage.UserBoard.Click();
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
             DesktopWebsite.SpecificBoardsPage.CloseBoard.Click();
@@ -40,6 +41,7 @@ namespace training.automation.specflow.Test.CSharp.Runner
             DesktopWebsite.Header.TrelloLogoHome.Click();
 
             SeleniumHelper.DestroyDriver();
+            RuntimeTestData.Destroy();
         }
     }
 }
