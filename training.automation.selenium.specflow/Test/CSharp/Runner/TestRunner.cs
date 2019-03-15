@@ -29,16 +29,16 @@ namespace training.automation.specflow.Test.CSharp.Runner
         [AfterScenario]
         static void AfterScenario()
         {
-            DesktopWebsite.Header.BackToHome.JsClick();
-            DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
-            DesktopWebsite.BoardsPage.UserBoard.Click();
-            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
-            DesktopWebsite.SpecificBoardsPage.CloseBoard.Click();
-            DesktopWebsite.SpecificBoardsPage.CloseBoardConfirmation.Click();
-            DesktopWebsite.SpecificBoardsPage.PermDeleteBoard.Click();
-            DesktopWebsite.SpecificBoardsPage.PermDeleteBoardConfirm.Click();
-            //DesktopWebsite.SpecificBoardsPage.BoardNotFound.AssertElementTextContains("Board not found.");
-            DesktopWebsite.Header.TrelloLogoHome.Click();
+            //DesktopWebsite.Header.BackToHome.JsClick();
+            //DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
+            //DesktopWebsite.BoardsPage.UserBoard.Click();
+            //DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
+            //DesktopWebsite.SpecificBoardsPage.CloseBoard.Click();
+            //DesktopWebsite.SpecificBoardsPage.CloseBoardConfirmation.Click();
+            //DesktopWebsite.SpecificBoardsPage.PermDeleteBoard.Click();
+            //DesktopWebsite.SpecificBoardsPage.PermDeleteBoardConfirm.Click();
+            ////DesktopWebsite.SpecificBoardsPage.BoardNotFound.AssertElementTextContains("Board not found.");
+            //DesktopWebsite.Header.TrelloLogoHome.Click();
 
             SeleniumHelper.DestroyDriver();
             RuntimeTestData.Destroy();
