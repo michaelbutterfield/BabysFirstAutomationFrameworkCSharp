@@ -21,7 +21,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
                     DesktopWebsite.SpecificBoardsPage.AddACard.Click();
                 }
 
-                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.InputText(Random.RandomString(8));
+                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.SendKeys(Random.RandomString(8));
                 DesktopWebsite.SpecificBoardsPage.AddCard.Click();
             }
         }
@@ -48,7 +48,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
                 DesktopWebsite.SpecificBoardsPage.AddAList.Click();
             }
 
-            DesktopWebsite.SpecificBoardsPage.EnterListTitle.InputText(p0);
+            DesktopWebsite.SpecificBoardsPage.EnterListTitle.SendKeys(p0);
             DesktopWebsite.SpecificBoardsPage.AddList.Click();
         }
 
