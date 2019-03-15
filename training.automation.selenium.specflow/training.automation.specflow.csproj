@@ -50,6 +50,9 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NHamcrest, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHamcrest.2.0.1\lib\net451\NHamcrest.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -89,8 +92,14 @@
     <Compile Include="Test\CSharp\Runner\TestRunner.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\APISteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\BoardsPageSteps.cs" />
+    <Compile Include="Test\CSharp\StepDefinitions\LogInPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SpecificBoardsPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SplashPageSteps.cs" />
+    <Compile Include="Test\Features\UI\LogInPage.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogInPage.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test\Features\UI\SpecificBoardsPage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,6 +110,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Default.srprofile" />
+    <None Include="Test\Features\UI\LogInPage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LogInPage.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test\Features\UI\SpecificBoardsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SpecificBoardsPage.feature.cs</LastGenOutput>
@@ -114,7 +127,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Test\Features\API\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\training.automation.api\training.automation.api.csproj">
       <Project>{ABC29DE0-28C7-4730-8EEA-7D572398C6DC}</Project>
