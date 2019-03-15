@@ -29,7 +29,8 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void I_will_be_logged_in_successfully()
         {
-            DesktopWebsite.BoardsPage.CreateNewBoard.
+            DesktopWebsite.BoardsPage.CreateNewBoard.WaitUntilExists();
+            DesktopWebsite.BoardsPage.CreateNewBoard.AssertExists();
         }
 
         [Given][When]
