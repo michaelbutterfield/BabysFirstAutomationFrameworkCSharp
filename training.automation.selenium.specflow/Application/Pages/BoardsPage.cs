@@ -10,7 +10,6 @@ namespace training.automation.specflow.Application.Pages
         public Button CreateNewBoard;
         public Button Unstarred;
         public Button Starred;
-        public Button UserBoard;
 
         public BoardsPage() : base("Boards") { BuildPage(); }
 
@@ -20,8 +19,6 @@ namespace training.automation.specflow.Application.Pages
             CreateNewBoard = new Button(By.XPath("//a[@class=\"js-new-board\"]"), "Create Board... Button", name);
             Unstarred = new Button(By.XPath("//span[@class='icon-sm icon-star board-tile-options-star-icon']"), "Unstarred Board Button", name);
             Starred = new Button(By.XPath("//span[@class='icon-sm icon-star is-starred board-tile-options-star-icon']"), "Starred Board Button", name);
-            UserBoard = new Button(By.XPath("//div[@title='TestBoard']"), "User Created Board", name);
         }
-
     }
 }
