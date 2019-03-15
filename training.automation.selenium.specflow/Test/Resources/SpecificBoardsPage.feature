@@ -1,4 +1,4 @@
-﻿@SpecificBoardsFeature
+﻿@SpecificBoardsFeature @UI
 Feature: Specific Boards Page
 
 Background: Set up the environment ready for the scenarios to take place
