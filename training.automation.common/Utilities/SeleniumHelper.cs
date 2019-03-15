@@ -48,6 +48,11 @@ namespace training.automation.common.utilities
             return Driver.Url;
         }
 
+        public static IWebElement GetElement(By locator)
+        {
+            return Driver.FindElement(locator);
+        }
+
         public static IReadOnlyCollection<IWebElement> GetElements(By locator)
         {
             return Driver.FindElements(locator);
