@@ -6,7 +6,7 @@ namespace training.automation.common.Utilities
     {
         private static System.Random random = new System.Random();
 
-        public static string RandomString(int length)
+        public static string RandomAlphanumericString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)
