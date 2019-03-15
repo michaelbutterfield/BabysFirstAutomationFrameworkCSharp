@@ -8,6 +8,7 @@ namespace training.automation.specflow.Application.Pages
     { 
         public InputBox EmailAddress;
         public Link ForgotPassword;
+        public Text ErrorMessage;
         public Button LogIn;
         public InputBox Password;
 
@@ -17,6 +18,7 @@ namespace training.automation.specflow.Application.Pages
         {
             EmailAddress = new InputBox(By.XPath("//*[@id=\"user\"]"), "Email Address Input Box", name);
             ForgotPassword = new Link(By.XPath("//a[@href='/forgot']"), "Forgot Password", name);
+            ErrorMessage = new Text(By.XPath("//p[@class=\"error-message\"]"), "Error Message", name);
             LogIn = new Button(By.XPath("//*[@id=\"login\"]"), "Log In Button", name);
             Password = new InputBox(By.XPath("//*[@id=\"password\"]"), "Password Input Box", name);
         }
