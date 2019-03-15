@@ -24,9 +24,9 @@ namespace training.automation.specflow.Data
         {
             try
             {
-                string sourceFile = "C:\\Users\\michael.butterfield\\Desktop\\trellouserpass.txt";
+                string SourceFile = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\trellouserpass.txt";
 
-                string line = System.IO.File.ReadAllText(@sourceFile);
+                string line = System.IO.File.ReadAllText(@SourceFile);
 
                 String[] lines = line.Split('\t');
 
