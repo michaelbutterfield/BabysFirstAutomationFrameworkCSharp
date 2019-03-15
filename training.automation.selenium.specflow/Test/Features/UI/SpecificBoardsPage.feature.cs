@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace training.automation.selenium.specflow.Test.Resources
+namespace training.automation.selenium.specflow.Test.Features.UI
 {
     using TechTalk.SpecFlow;
     
@@ -19,7 +19,7 @@ namespace training.automation.selenium.specflow.Test.Resources
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [TechTalk.SpecRun.FeatureAttribute("Specific Boards Page", new string[] {
             "SpecificBoardsFeature",
-            "UI"}, SourceFile="Test\\Resources\\SpecificBoardsPage.feature", SourceLine=1)]
+            "UI"}, SourceFile="Test\\Features\\UI\\SpecificBoardsPage.feature", SourceLine=1)]
     public partial class SpecificBoardsPageFeature
     {
         

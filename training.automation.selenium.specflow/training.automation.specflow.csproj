@@ -91,7 +91,7 @@
     <Compile Include="Test\CSharp\StepDefinitions\BoardsPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SpecificBoardsPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SplashPageSteps.cs" />
-    <Compile Include="Test\Resources\SpecificBoardsPage.feature.cs">
+    <Compile Include="Test\Features\UI\SpecificBoardsPage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SpecificBoardsPage.feature</DependentUpon>
@@ -101,7 +101,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Default.srprofile" />
-    <None Include="Test\Resources\SpecificBoardsPage.feature">
+    <None Include="Test\Features\UI\SpecificBoardsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SpecificBoardsPage.feature.cs</LastGenOutput>
     </None>
