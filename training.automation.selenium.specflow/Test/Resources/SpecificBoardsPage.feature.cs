@@ -18,7 +18,8 @@ namespace training.automation.selenium.specflow.Test.Resources
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [TechTalk.SpecRun.FeatureAttribute("Specific Boards Page", new string[] {
-            "SpecificBoardsFeature"}, SourceFile="Test\\Resources\\SpecificBoardsPage.feature", SourceLine=1)]
+            "SpecificBoardsFeature",
+            "UI"}, SourceFile="Test\\Resources\\SpecificBoardsPage.feature", SourceLine=1)]
     public partial class SpecificBoardsPageFeature
     {
         
@@ -32,7 +33,8 @@ namespace training.automation.selenium.specflow.Test.Resources
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Specific Boards Page", null, ProgrammingLanguage.CSharp, new string[] {
-                        "SpecificBoardsFeature"});
+                        "SpecificBoardsFeature",
+                        "UI"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
