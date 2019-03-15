@@ -8,7 +8,7 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
         [Given]
         public void I_create_a_board_through_the_API()
         {
-            RuntimeTestData.Add("BoardName", Random.RandomString(10));
+            RuntimeTestData.Add("BoardName", Random.RandomAlphanumericString(10));
         }
 
     }

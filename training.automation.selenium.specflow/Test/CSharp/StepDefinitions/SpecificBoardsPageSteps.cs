@@ -21,7 +21,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
                     DesktopWebsite.SpecificBoardsPage.AddACard.Click();
                 }
 
-                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.SendKeys(Random.RandomString(8));
+                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.SendKeys(Random.RandomAlphanumericString(8));
                 DesktopWebsite.SpecificBoardsPage.AddCard.Click();
             }
         }
