@@ -17,6 +17,7 @@ Scenario: Clicking on the user board, adding several lists
 	  And I create a new list called Done
 	Then the three boards lists will be created
 
+
 @AddingCards
 Scenario: Adding several cards to three lists
 	Given I click on the user created board
@@ -27,6 +28,7 @@ Scenario: Adding several cards to three lists
 	  And I create a new list called Done
 	  And I add five cards to the new list
 	Then the three lists will contain five cards each
+
 
 @DragAndDropCards
 Scenario: Dragging two cards from 'To Do' & 'Done' to 'Doing'
@@ -42,8 +44,10 @@ Scenario: Dragging two cards from 'To Do' & 'Done' to 'Doing'
 	Then the 'To Do' cards are in 'Doing'
 	  And the 'Done' cards are in 'Doing'
 
+
 @FavouriteBoard
 Scenario: Favourite a board
 	Given I am on the boards page
 	When I click the favourite board star
 	Then The board will be favourited
+
