@@ -21,11 +21,35 @@ namespace training.automation.common.selenium.elements.common
             pageName = myPageName;
         }
 
-        public bool AssertElementIsNotDisplayed()
+        public void AssertExists()
         {
+            String stepDescription = string.Format("Assert Element '{0}' Exists on page '{1}'", name, pageName);
             IWebElement element = null;
 
-            element = GetWebElement(false, false);
+            try
+            {
+                element = SeleniumHelper.GetElement(locator);
+            }
+            catch (Exception e)
+            {
+                HandleException(stepDescription, e);
+            }
+            finally
+            {
+                TestHelper.AssertThat(element, Is.NotNull(), stepDescription);
+            }
+        }
+
+
+        //TODO: Need to implement this and isdisplayed()
+        //public bool AssertElementIsClickable()
+        //{
+
+        //}
+
+        public bool AssertElementIsNotDisplayed()
+        {
+            IWebElement element = GetWebElement(false, false);
 
             if (element != null)
             {
