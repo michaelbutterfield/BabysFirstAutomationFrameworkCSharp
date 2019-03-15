@@ -28,8 +28,8 @@ namespace training.automation.selenium
             SeleniumHelper.Initialise("chrome");
             DesktopWebsite.splashPage.LogIn.Click();
 
-            DesktopWebsite.logInPage.EmailAddress.InputText(TrelloWebData.GetUsername());
-            DesktopWebsite.logInPage.Password.InputText(TrelloWebData.GetPassword());
+            DesktopWebsite.logInPage.EmailAddress.SendKeys(TrelloWebData.GetUsername());
+            DesktopWebsite.logInPage.Password.SendKeys(TrelloWebData.GetPassword());
             DesktopWebsite.logInPage.LogIn.Click();
             DesktopWebsite.header.add.WaitForElementToBeClickable();
 
@@ -44,7 +44,7 @@ namespace training.automation.selenium
             DesktopWebsite.boardsPage.CreateNewBoard.Click();
 
             //Create a new board with name and background
-            DesktopWebsite.createBoardPage.NameInput.InputText("TestBoard");
+            DesktopWebsite.createBoardPage.NameInput.SendKeys("TestBoard");
             //DesktopWebsite.createBoardPage.backgroundSelectionButton.Click();
             DesktopWebsite.createBoardPage.CreateBoard.Click();
 
@@ -102,21 +102,21 @@ namespace training.automation.selenium
 
             //I create three new lists
             DesktopWebsite.specificBoardsPage.AddAList.Click();
-            DesktopWebsite.specificBoardsPage.EnterListTitle.InputText("To Do");
+            DesktopWebsite.specificBoardsPage.EnterListTitle.SendKeys("To Do");
             DesktopWebsite.specificBoardsPage.AddListButton.Click();
             DesktopWebsite.specificBoardsPage.AddACard.Click();
 
             for (int i = 0; i < 5; i++)
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
-                DesktopWebsite.specificBoardsPage.EnterCardTitle.InputText(testText);
+                DesktopWebsite.specificBoardsPage.EnterCardTitle.SendKeys(testText);
                 DesktopWebsite.specificBoardsPage.AddCard.Click();
             }
 
             Console.WriteLine("Successfully created To Do and tasks 0-4");
 
             //Doing
-            DesktopWebsite.specificBoardsPage.EnterListTitle.InputText("Doing");
+            DesktopWebsite.specificBoardsPage.EnterListTitle.SendKeys("Doing");
             DesktopWebsite.specificBoardsPage.AddListButton.Click();
             DesktopWebsite.specificBoardsPage.AddACard.Click();
 
@@ -125,14 +125,14 @@ namespace training.automation.selenium
             for (int i = 5; i < 10; i++)
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
-                DesktopWebsite.specificBoardsPage.EnterCardTitle.InputText(testText);
+                DesktopWebsite.specificBoardsPage.EnterCardTitle.SendKeys(testText);
                 DesktopWebsite.specificBoardsPage.AddCard.Click();
             }
 
             Console.WriteLine("Successfully created 'Doing' and tasks 5-9");
 
             //Done
-            DesktopWebsite.specificBoardsPage.EnterListTitle.InputText("Done");
+            DesktopWebsite.specificBoardsPage.EnterListTitle.SendKeys("Done");
             DesktopWebsite.specificBoardsPage.AddListButton.Click();
             DesktopWebsite.specificBoardsPage.AddACard.Click();
 
@@ -141,7 +141,7 @@ namespace training.automation.selenium
             for (int i = 10; i < 15; i++)
             {
                 String testText = String.Format("Test Text Placeholder {0}", i);
-                DesktopWebsite.specificBoardsPage.EnterCardTitle.InputText(testText);
+                DesktopWebsite.specificBoardsPage.EnterCardTitle.SendKeys(testText);
                 DesktopWebsite.specificBoardsPage.AddCard.Click();
             }
 
