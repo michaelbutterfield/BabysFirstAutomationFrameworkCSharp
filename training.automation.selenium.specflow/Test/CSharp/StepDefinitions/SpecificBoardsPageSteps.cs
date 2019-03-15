@@ -1,11 +1,10 @@
 ﻿using TechTalk.SpecFlow;
 using training.automation.common.utilities;
 using training.automation.specflow.Application;
-using training.automation.common.Utilities;
 using System;
-using training.automation.specflow.Application.Data;
 using training.automation.api.Utilities;
 using OpenQA.Selenium;
+using Random = training.automation.common.Utilities.Random;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
@@ -22,7 +21,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
                     DesktopWebsite.SpecificBoardsPage.AddACard.Click();
                 }
 
-                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.InputText(RandomGen.RandomString(8));
+                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.InputText(Random.RandomString(8));
                 DesktopWebsite.SpecificBoardsPage.AddCard.Click();
             }
         }
