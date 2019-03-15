@@ -87,6 +87,7 @@
     <Compile Include="Application\Pages\SpecificBoardsPage.cs" />
     <Compile Include="Application\Pages\SplashPage.cs" />
     <Compile Include="Test\CSharp\Runner\TestRunner.cs" />
+    <Compile Include="Test\CSharp\StepDefinitions\APISteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\BoardsPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SpecificBoardsPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SplashPageSteps.cs" />
