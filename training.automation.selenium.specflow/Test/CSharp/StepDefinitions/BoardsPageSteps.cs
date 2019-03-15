@@ -45,7 +45,11 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             try
             {
-                TrelloHelper.GetBoardStarredStatus(TrelloHelper.GetTrelloBoardId("TestBoard"));
+                if (!TrelloHelper.GetBoardStarredStatus(TrelloHelper.GetTrelloBoardId("TestBoard")))
+                {
+                    string ErrorMessage = "Board not successfully starred or got false get from API";
+                    throw new Exception(ErrorMessage);
+                }
             }
             catch(Exception e)
             {
