@@ -21,6 +21,12 @@ namespace training.automation.common.selenium.elements.common
             pageName = myPageName;
         }
 
+        public void AssertDoesNotExist()
+        {
+            string assertionDescription = string.Format("Assert Element '{0}' does not exist on {1}", name, pageName);
+            TestHelper.AssertThat(Exists(), Is.False(), assertionDescription);
+        }
+
         public void AssertExists()
         {
             String stepDescription = string.Format("Assert Element '{0}' Exists on page '{1}'", name, pageName);
