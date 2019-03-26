@@ -16,6 +16,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             for (int i = 0; i < 5; i++)
             {
+                TestHelper.SleepInSeconds(1);
+
                 if (DesktopWebsite.SpecificBoardsPage.AddACard.Exists())
                 {
                     DesktopWebsite.SpecificBoardsPage.AddACard.Click();
