@@ -104,7 +104,6 @@
     <Compile Include="Selenium\Elements\Link.cs" />
     <Compile Include="Selenium\Elements\Text.cs" />
     <Compile Include="Tests\TestLogger.cs" />
-    <Compile Include="Utilities\ApiHelper.cs" />
     <Compile Include="Utilities\Counter.cs" />
     <Compile Include="Utilities\Random.cs" />
     <Compile Include="Utilities\RuntimeTestData.cs" />
