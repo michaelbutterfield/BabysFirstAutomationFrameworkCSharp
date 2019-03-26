@@ -75,9 +75,9 @@ namespace training.automation.common.utilities
 
         public static void HoverOverElement(string ElementXPath)
         {
-            IWebElement userBoard = SeleniumHelper.GetWebDriver().FindElement(By.XPath(ElementXPath)); //TODO Create hover method with all this shit
+            IWebElement UserBoard = SeleniumHelper.GetWebDriver().FindElement(By.XPath(ElementXPath)); //TODO Create hover method with all this shit
             Actions action = new Actions(SeleniumHelper.GetWebDriver());
-            action.MoveToElement(userBoard).Perform();
+            action.MoveToElement(UserBoard).Perform();
         }
 
         public static void Initialise(string browser)
