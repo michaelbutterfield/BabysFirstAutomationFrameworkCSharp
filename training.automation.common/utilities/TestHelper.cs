@@ -18,9 +18,7 @@ namespace training.automation.common.utilities
 
         public static void AssertThat<T>(T actual, IMatcher<T> matcher, String stepDescription, Boolean takeScreenshot)
         {
-            Console.WriteLine(stepDescription);
-
-            TestHelper.WriteToConsole(stepDescription);
+            TestLogger.CreateTestStep(stepDescription);
 
             if (!matcher.Matches(actual))
             {
