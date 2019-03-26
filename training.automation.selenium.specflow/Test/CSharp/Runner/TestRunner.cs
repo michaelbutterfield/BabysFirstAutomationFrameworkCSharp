@@ -1,10 +1,12 @@
-﻿using TechTalk.SpecFlow;
+﻿using RestSharp;
+using TechTalk.SpecFlow;
 using training.automation.api.Data;
 using training.automation.common.Tests;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using training.automation.specflow.Application;
 using training.automation.specflow.Data;
+using training.automation.specflow.Test.CSharp.StepDefinitions;
 
 namespace training.automation.specflow.Test.CSharp.Runner
 {
@@ -29,17 +31,20 @@ namespace training.automation.specflow.Test.CSharp.Runner
         [AfterScenario]
         static void AfterScenario()
         {
-            //DesktopWebsite.Header.BackToHome.JsClick();
-            //DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
-            //DesktopWebsite.BoardsPage.UserBoard.Click();
-            //DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
-            //DesktopWebsite.SpecificBoardsPage.CloseBoard.Click();
-            //DesktopWebsite.SpecificBoardsPage.CloseBoardConfirmation.Click();
-            //DesktopWebsite.SpecificBoardsPage.PermDeleteBoard.Click();
-            //DesktopWebsite.SpecificBoardsPage.PermDeleteBoardConfirm.Click();
-            ////DesktopWebsite.SpecificBoardsPage.BoardNotFound.AssertElementTextContains("Board not found.");
-            //DesktopWebsite.Header.TrelloLogoHome.Click();
+            if (DesktopWebsite.BoardsPage.UserBoard != null)
+            {
+                DesktopWebsite.Header.BackToHome.WaitUntilExists();
+                DesktopWebsite.Header.BackToHome.JsClick();
 
+                if (DesktopWebsite.BoardsPage.UserBoard.Exists())
+                {
+                    BoardsPageSteps.IClickOnTheUserCreatedBoard();
+                    BoardsPageSteps.go_through_all_the_delete_prompts();
+                    BoardsPageSteps.the_user_board_will_be_deleted();
+                }
+            }
+
+            TestLogger.Close();
             SeleniumHelper.DestroyDriver();
             RuntimeTestData.Destroy();
         }
