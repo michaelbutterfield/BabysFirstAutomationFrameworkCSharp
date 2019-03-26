@@ -1,8 +1,11 @@
 ﻿using RestSharp;
 using System;
 using training.automation.api.Data;
+using training.automation.common.Tests;
 using training.automation.common.utilities;
+using training.automation.common.Utilities;
 using Is = NHamcrest.Is;
+using Random = training.automation.common.Utilities.Random;
 
 namespace training.automation.api.Utilities
 {
@@ -10,9 +13,9 @@ namespace training.automation.api.Utilities
     {
         public static void CreateBoard(string boardName, string boardDesc)
         {
-            var client = new RestClient("https://api.trello.com/1/boards");
+            var client = new RestClient("https://api.trello.com/");
 
-            var request = new RestRequest("/?name={name}&desc={desc}&key={key}&token={token}", Method.POST, DataFormat.Json);
+            var request = new RestRequest("1/boards/?name={name}&desc={desc}&defaultLists=false&key={key}&token={token}", Method.POST, DataFormat.Json);
             request.AddUrlSegment("name", boardName);
             request.AddUrlSegment("desc", boardDesc);
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
@@ -21,19 +24,17 @@ namespace training.automation.api.Utilities
 
             IRestResponse response = client.Execute(request);
 
-            TestHelper.AssertThat(response.StatusCode.ToString(), Is.EqualTo("OK"), String.Format("Asserting that actual: {0} is equal to expected: {1} -- Create Board", response.StatusCode.ToString(), "OK"));
+            string statusCode = response.StatusCode.ToString();
+            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+            TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
         }
 
         public static void DeleteBoard(string boardId)
         {
-            //if (boardId.Equals("More than one board returned. Be more specific."))
-            //{
-            //    throw new Exception("More than one board returned. Be more specific.");
-            //}
+            var client = new RestClient("https://api.trello.com/");
 
-            var client = new RestClient("https://api.trello.com/1/boards");
-
-            var request = new RestRequest("/{id}?key={key}&token={token}", Method.DELETE, DataFormat.Json);
+            var request = new RestRequest("1/boards/{id}?key={key}&token={token}", Method.DELETE, DataFormat.Json);
             request.AddUrlSegment("id", boardId);
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
@@ -41,7 +42,169 @@ namespace training.automation.api.Utilities
 
             IRestResponse response = client.Execute(request);
 
-            TestHelper.AssertThat(response.StatusCode.ToString(), Is.EqualTo("OK"), String.Format("Asserting that actual: {0} is equal to expected: {1} -- Delete Board", response.StatusCode.ToString(), "OK"));
+            string statusCode = response.StatusCode.ToString();
+            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+            TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+        }
+
+        public static void CreateCard(int listNum)
+        {
+            var client = new RestClient("https://api.trello.com");
+
+            var request = new RestRequest("/1/cards?name={name}&idList={idList}&key={key}&token={token}", Method.POST, DataFormat.Json);
+
+            string cardName = Random.RandomAlphanumericString(5);
+            RuntimeTestData.Add("cardName", cardName);
+
+            request.AddUrlSegment("name", cardName);
+            request.AddUrlSegment("idList", RuntimeTestData.GetAsString("listId_" + listNum));
+            request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+            request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+            request.AddHeader("content-type", "application/json; charset=utf-8");
+
+            var response = client.Execute<TrelloCreateCardResponse.RootObject>(request);
+            TrelloCreateCardResponse.RootObject Data = response.Data;
+
+            RuntimeTestData.Add("cardId", Data.id);
+
+            string statusCode = response.StatusCode.ToString();
+            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+            TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+
+        }
+
+        public static void CreateCards(int numOfCards, int listNum)
+        {
+            var client = new RestClient("https://api.trello.com");
+            int cardNum = 1;
+
+            if (numOfCards > 0)
+            {
+                for (int i = 0; i < numOfCards; i++)
+                {
+                    var request = new RestRequest("/1/cards?name={name}&idList={idList}&key={key}&token={token}", Method.POST, DataFormat.Json);
+
+                    string cardName = Random.RandomAlphanumericString(5);
+                    RuntimeTestData.Add("card_" + cardNum, cardName);
+
+                    request.AddUrlSegment("name", cardName);
+                    request.AddUrlSegment("idList", RuntimeTestData.GetAsString("listId_" + listNum));
+                    request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+                    request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+                    request.AddHeader("content-type", "application/json; charset=utf-8");
+
+                    var response = client.Execute<TrelloCreateCardResponse.RootObject>(request);
+                    TrelloCreateCardResponse.RootObject Data = response.Data;
+
+                    RuntimeTestData.Add("cardId_" + cardNum, Data.id);
+
+                    string statusCode = response.StatusCode.ToString();
+                    string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+                    TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+
+                    cardNum++;
+                }
+            }
+        }
+
+        public static void DeleteCard(string cardId)
+        {
+            var client = new RestClient("https://api.trello.com/");
+
+            var request = new RestRequest("1/cards/{id}?key={key}&token={token}", Method.DELETE, DataFormat.Json);
+
+            request.AddUrlSegment("id", cardId);
+            request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+            request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+            request.AddHeader("content-type", "application/json; charset=utf-8");
+
+            IRestResponse response = client.Execute(request);
+
+            string statusCode = response.StatusCode.ToString();
+            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+            TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+        }
+
+        public static void ArchiveList(string listId)
+        {
+            var client = new RestClient("https://api.trello.com");
+
+            var request = new RestRequest("1/lists/{listId}/closed?value=true&key={key}&token={token}", Method.PUT, DataFormat.Json);
+
+            request.AddUrlSegment("listId", RuntimeTestData.GetAsString(listId));
+            request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+            request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+            request.AddHeader("content-type", "application/json; charset=utf-8");
+
+            IRestResponse response = client.Execute(request);
+
+            string statusCode = response.StatusCode.ToString();
+            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+            TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+        }
+
+        public static void CreateList(string boardId)
+        {
+            var client = new RestClient("https://api.trello.com");
+
+            var request = new RestRequest("/1/lists?name={name}&idBoard={idBoard}&key={key}&token={token}", Method.POST, DataFormat.Json);
+
+            string listName = Random.RandomAlphanumericString(5);
+            RuntimeTestData.Add("listName", listName);
+
+            request.AddUrlSegment("name", listName);
+            request.AddUrlSegment("idBoard", GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
+            request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+            request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+            request.AddHeader("content-type", "application/json; charset=utf-8");
+
+            var response = client.Execute<TrelloListResponseData>(request);
+            TrelloListResponseData Data = response.Data;
+
+            RuntimeTestData.Add("listId", Data.id);
+
+            string statusCode = response.StatusCode.ToString();
+            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+            TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+        }
+
+        public static void CreateLists(string boardId, int numOfLists)
+        {
+            var client = new RestClient("https://api.trello.com");
+
+            int listCount = numOfLists;
+
+            for (int i = 0; i < numOfLists; i++)
+            {
+                var request = new RestRequest("/1/lists?name={name}&idBoard={idBoard}&key={key}&token={token}", Method.POST, DataFormat.Json);
+
+                string listName = Random.RandomAlphanumericString(5);
+                RuntimeTestData.Add("list_" + i, listName);
+
+                request.AddUrlSegment("name", listName);
+                request.AddUrlSegment("idBoard", GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
+                request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+                request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+                request.AddHeader("content-type", "application/json; charset=utf-8");
+
+                var response = client.Execute<TrelloListResponseData>(request);
+                TrelloListResponseData Data = response.Data;
+
+                RuntimeTestData.Add("listId_" + listCount, Data.id);
+
+                string statusCode = response.StatusCode.ToString();
+                string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+                TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+
+                listCount--;
+            }
         }
 
         //Won't work if multiple boards with the same name -- will always return first board
@@ -54,44 +217,11 @@ namespace training.automation.api.Utilities
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
 
-            Console.WriteLine(String.Format("Getting ID for board with the name {0}.", boardName));
-            TestHelper.WriteToConsole(String.Format("Getting ID for board with the name {0}.", boardName));
-
-            //deserealise data into root object first
-            var response = client.Execute<BoardIdRootObject>(request);
-            BoardIdRootObject board = response.Data;
-
-            ////create a new list specifically for the boards contained in the root object
-            //IList<Board> myBoard = new List<Board>();
-
-            ////put the single searched board into the list
-            //myBoard = board.boards;
-
-            //if (board.boards.Count > 1)
-            //{
-            //    return "More than one board returned. Be more specific.";
-            //}
+            var response = client.Execute<TrelloQueryResponseData.RootObject>(request);
+            TrelloQueryResponseData.RootObject board = response.Data;
 
             return board.boards[0].id;
         }
-
-        //public static RootBoardObject GetTrelloBoardData(string boardId)
-        //{
-        //    var client = new RestClient("http://api.trello.com");
-
-        //    var request = new RestRequest("/1/boards/{boardId}?lists=open&list_fields=id,name,closed,pos&key={key}&token={token}", Method.GET, DataFormat.Json);
-        //    request.AddHeader("content-type", "application/json; charset=utf-8");
-        //    request.AddUrlSegment("boardId", boardId);
-        //    request.AddUrlSegment("key", TrelloApiData.GetApiKey());
-        //    request.AddUrlSegment("token", TrelloApiData.GetApiToken());
-           
-
-        //    //deserealise data into root object first
-        //    var response = client.Execute<RootBoardObject>(request);
-        //    RootBoardObject board = response.Data;
-
-        //    return board;
-        //}
 
         public static int GetListLength(string boardId)
         {
@@ -139,8 +269,8 @@ namespace training.automation.api.Utilities
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
 
-            var response = client.Execute<TrelloBoardStarredData.Rootobject>(request);
-
+            var response = client.Execute<TrelloBoardStarredData>(request);
+            
             return response.Data.starred;
         }
     }
