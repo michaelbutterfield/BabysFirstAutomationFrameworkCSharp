@@ -12,6 +12,7 @@ namespace training.automation.specflow.Application.Pages
         public Button AddCard;
         public Button AddCardCancel;
         public Button AddList;
+        public Text BoardNotFound;
         public Button CloseBoard;
         public Button CloseBoardConfirmation;
         public Label Doing;
@@ -33,6 +34,7 @@ namespace training.automation.specflow.Application.Pages
             AddCard = new Button(By.XPath("//input[@class='primary confirm mod-compact js-add-card'][@type='submit']"), "Add Card Button", name);
             AddCardCancel = new Button(By.XPath("//a[@class='icon-lg icon-close dark-hover js-cancel']"), "Add a card cancel", name);
             AddList = new Button(By.XPath("//input[@class='primary mod-list-add-button js-save-edit']"), "Add List Confirmation Button", name);
+            BoardNotFound = new Text(By.XPath("//h1[text()=\"Board not found.\"]"), "Board not found.", name);
             CloseBoard = new Button(By.XPath("//a[@class='board-menu-navigation-item-link js-close-board']"), "Close Board...", name);
             CloseBoardConfirmation = new Button(By.XPath("//input[@class='js-confirm full negate']"), "Confirm Close Board", name);
             EnterCardTitle = new InputBox(By.XPath("//textarea[@class='list-card-composer-textarea js-card-title']"), "Entering card title", name);
