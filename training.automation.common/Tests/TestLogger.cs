@@ -162,11 +162,11 @@ namespace training.automation.common.Tests
             suiteRunStart = new DateTime();
         }
 
-        private static void LogEntry(String entryText)
+        private static void LogEntry(string entryText)
         {
             try
             {
-                String textToLog = TestHelper.GetTodaysDateTime(logDateTimeFormat) + " " + entryText;
+                string textToLog = TestHelper.GetTodaysDateTime(logDateTimeFormat) + " " + entryText;
                 writer.WriteLine(textToLog);
             }
             catch (Exception e)
