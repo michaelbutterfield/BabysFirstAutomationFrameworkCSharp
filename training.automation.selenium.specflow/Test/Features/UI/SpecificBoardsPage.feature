@@ -48,4 +48,3 @@ Scenario: Favourite a board
 	Given I am on the boards page
 	When I click the favourite board star
 	Then The board will be favourited
-

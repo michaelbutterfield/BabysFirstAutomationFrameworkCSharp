@@ -17,9 +17,10 @@ namespace training.automation.selenium.specflow.Test.Features.UI
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("Specific Boards Page", new string[] {
-            "SpecificBoardsFeature",
-            "UI"}, SourceFile="Test\\Features\\UI\\SpecificBoardsPage.feature", SourceLine=1)]
+    [NUnit.Framework.TestFixtureAttribute()]
+    [NUnit.Framework.DescriptionAttribute("Specific Boards Page")]
+    [NUnit.Framework.CategoryAttribute("SpecificBoardsFeature")]
+    [NUnit.Framework.CategoryAttribute("UI")]
     public partial class SpecificBoardsPageFeature
     {
         
@@ -28,7 +29,7 @@ namespace training.automation.selenium.specflow.Test.Features.UI
 #line 1 "SpecificBoardsPage.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
+        [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -38,18 +39,19 @@ namespace training.automation.selenium.specflow.Test.Features.UI
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
+        [NUnit.Framework.OneTimeTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
+        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
+        [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -58,6 +60,7 @@ namespace training.automation.selenium.specflow.Test.Features.UI
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
         public virtual void ScenarioStart()
@@ -82,8 +85,9 @@ namespace training.automation.selenium.specflow.Test.Features.UI
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Clicking on the user board, adding several lists", new string[] {
-                "AddingLists"}, SourceLine=10)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Clicking on the user board, adding several lists")]
+        [NUnit.Framework.CategoryAttribute("AddingLists")]
         public virtual void ClickingOnTheUserBoardAddingSeveralLists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clicking on the user board, adding several lists", null, new string[] {
@@ -107,8 +111,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Adding several cards to three lists", new string[] {
-                "AddingCards"}, SourceLine=19)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Adding several cards to three lists")]
+        [NUnit.Framework.CategoryAttribute("AddingCards")]
         public virtual void AddingSeveralCardsToThreeLists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding several cards to three lists", null, new string[] {
@@ -138,8 +143,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Dragging two cards from \'To Do\' & \'Done\' to \'Doing\'", new string[] {
-                "DragAndDropCards"}, SourceLine=31)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Dragging two cards from \'To Do\' & \'Done\' to \'Doing\'")]
+        [NUnit.Framework.CategoryAttribute("DragAndDropCards")]
         public virtual void DraggingTwoCardsFromToDoDoneToDoing()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dragging two cards from \'To Do\' & \'Done\' to \'Doing\'", null, new string[] {
@@ -175,8 +181,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Favourite a board", new string[] {
-                "FavouriteBoard"}, SourceLine=46)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Favourite a board")]
+        [NUnit.Framework.CategoryAttribute("FavouriteBoard")]
         public virtual void FavouriteABoard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Favourite a board", null, new string[] {
@@ -194,12 +201,6 @@ this.FeatureBackground();
  testRunner.Then("The board will be favourited", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
-        {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }
