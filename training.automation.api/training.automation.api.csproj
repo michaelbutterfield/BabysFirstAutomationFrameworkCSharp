@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\TrelloApiData.cs" />
+    <Compile Include="Data\TrelloBoardApiData.cs" />
     <Compile Include="Data\TrelloResponseData.cs" />
     <Compile Include="TrelloAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -235,7 +235,7 @@ namespace training.automation.api.Utilities
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
 
-            var response = client.Execute<RootObject>(request);
+            var response = client.Execute<TrelloEntireBoardApiData.RootObject>(request);
 
             return response.Data.lists.Count;
         }
@@ -253,7 +253,7 @@ namespace training.automation.api.Utilities
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
 
-            var response = client.Execute<RootObject>(request);
+            var response = client.Execute<TrelloEntireBoardApiData.RootObject>(request);
 
             return response.Data.cards.Count;
         }
