@@ -2,11 +2,6 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Winium;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using training.automation.common.utilities;
 
 namespace training.automation.common.Utilities
@@ -14,7 +9,7 @@ namespace training.automation.common.Utilities
     public class WiniumHelper
     {
         private static DesktopOptions Options = new DesktopOptions { ApplicationPath = @"C:\\Windows\\System32\\calc.exe" };
-        private static WiniumDriverService Service = WiniumDriverService.CreateDesktopService(@"C:\Users\michael.butterfield\git\BabysFirstAutomationFrameworkCSharp\training.automation.common\Drivers");
+        private static WiniumDriverService Service = WiniumDriverService.CreateDesktopService(@"C:\Users\michael.butterfield\Desktop\bbtest\BabysFirstAutomationFrameworkCSharp\packages\Winium\");
         private static WiniumDriver Driver = null;
 
         private WiniumHelper() { }

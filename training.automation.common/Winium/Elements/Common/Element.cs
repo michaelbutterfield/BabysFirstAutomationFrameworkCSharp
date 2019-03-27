@@ -3,6 +3,7 @@ using System;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using NHamcrest;
+using training.automation.common.Tests;
 
 namespace training.automation.common.Winium.Elements.Common
 {
@@ -23,6 +24,8 @@ namespace training.automation.common.Winium.Elements.Common
         {
             String stepDescription = String.Format("Assert Element '{0}' Attribute '{1}' Contains '{2}'", name, attribute, expectedText);
 
+            TestLogger.CreateTestStep(stepDescription);
+
             String actualText = GetAttribute(attribute);
             TestHelper.AssertThat(actualText, Contains.String(expectedText), stepDescription);
         }
@@ -30,6 +33,8 @@ namespace training.automation.common.Winium.Elements.Common
         public void AssertAttributeEquals(String attributeName, String expectedAttributeValue)
         {
             String stepDescription = String.Format("Assert Element '{0}' Attribute '{1}' Equals '{2}'", name, attributeName, expectedAttributeValue);
+
+            TestLogger.CreateTestStep(stepDescription);
 
             String actualAttributeValue = GetAttribute(attributeName);
             TestHelper.AssertThat(actualAttributeValue, Is.EqualTo(expectedAttributeValue), stepDescription);
@@ -45,6 +50,7 @@ namespace training.automation.common.Winium.Elements.Common
         {
             String stepDescription = "Assert Element Exists '{0}' on page '{1}'";
             stepDescription = String.Format(stepDescription, name, pageName);
+            TestLogger.CreateTestStep(stepDescription);
             IWebElement element = null;
 
             try
@@ -68,9 +74,9 @@ namespace training.automation.common.Winium.Elements.Common
 
         public void Click()
         {
-            Console.WriteLine(String.Format("Clicking on Element '{0}' on page '{1}'", name, pageName));
+            string stepDef = String.Format("Clicking on Element '{0}' on page '{1}'", name, pageName);
 
-            TestHelper.WriteToConsole(String.Format("Clicking on Element '{0}' on page '{1}'", name, pageName));
+            TestLogger.CreateTestStep(stepDef);
 
             Click("Click", 5, false);
         }
@@ -84,7 +90,11 @@ namespace training.automation.common.Winium.Elements.Common
         {
             //String actionName = "Get Attribute' '" + attribute;
 
-            String attributeValue = "";
+            string stepDef = string.Format("Getting Attribute {0}", attribute);
+
+            TestLogger.CreateTestStep(stepDef);
+
+            string attributeValue = "";
 
             try
             {

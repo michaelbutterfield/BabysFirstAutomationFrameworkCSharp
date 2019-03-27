@@ -46,13 +46,6 @@ namespace training.automation.common.selenium.elements.common
             }
         }
 
-
-        //TODO: Need to implement this and isdisplayed()
-        //public bool AssertElementIsClickable()
-        //{
-
-        //}
-
         public bool AssertElementIsNotDisplayed()
         {
             IWebElement element = GetWebElement(false, false);
@@ -61,9 +54,7 @@ namespace training.automation.common.selenium.elements.common
             {
                 string error = String.Format("{0} is still displayed. Whoops.", name);
 
-                Console.WriteLine(error);
-
-                TestHelper.WriteToConsole(error);
+                TestLogger.CreateTestStep(error);
 
                 return false;
             }
@@ -75,8 +66,6 @@ namespace training.automation.common.selenium.elements.common
 
         public void AssertElementIsDisplayed()
         {
-            TestLogger.CreateTestStep("Assert Element is Displayed", name, pageName);
-
             string assertionDescription = String.Format("Assert Element {0} on page {1} is displayed", name, pageName);
 
             IWebElement element = null;
@@ -98,10 +87,6 @@ namespace training.automation.common.selenium.elements.common
         public void AssertElementTextContains(string containsText)
         {
             string assertionDescription = String.Format("Assert Element {0} Text Contains {1}", name, containsText);
-
-            string testLogDesc = string.Format("Assert Element Text Contains '{0}'", containsText);
-
-            TestLogger.CreateTestStep(testLogDesc, name, pageName);
 
             try
             {
@@ -133,9 +118,7 @@ namespace training.automation.common.selenium.elements.common
         {
             String assertionDescription = String.Format("Clicking {0} on page {1}", name, pageName);
 
-            Console.WriteLine(assertionDescription);
-
-            TestHelper.WriteToConsole(assertionDescription);
+            TestLogger.CreateTestStep(assertionDescription);
 
             try
             {
@@ -149,16 +132,19 @@ namespace training.automation.common.selenium.elements.common
 
         public bool Exists()
         {
+            string stepDef = string.Format("Making sure element '{0}' exists on page {1}", name, pageName);
+
+            TestLogger.CreateTestStep(stepDef);
+
             return SeleniumHelper.GetElements(locator).Count() > 0;
         }
 
         public String GetElementAttribute(String attributeName)
         {
-            String assertionDescription = String.Format("Getting attribute {0} from element {1} on page {2}", attributeName.ToUpper(), name, pageName);
+            String assertionDescription = String.Format("Getting attribute {0} from element {1} on page {2}", attributeName, name, pageName);
 
-            string action = string.Format("Getting attribute '%1$s' from", attributeName.ToUpper());
 
-            TestLogger.CreateTestStep(action, name, pageName);
+            TestLogger.CreateTestStep(assertionDescription);
 
             IWebElement element = GetWebElement(false, true);
 
@@ -172,6 +158,8 @@ namespace training.automation.common.selenium.elements.common
 
         public String GetElementText()
         {
+            string assertionDesc = string.Format("Getting element text from element {0} on page {1}", name, pageName);
+
             String elementText = null;
 
             try
@@ -223,6 +211,8 @@ namespace training.automation.common.selenium.elements.common
 
         public void JsClick()
         {
+            string assertionDesc = string.Format("Javascript click element {0} on page {1}", name, pageName);
+
             IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumHelper.GetWebDriver();
 
             executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
@@ -280,6 +270,9 @@ namespace training.automation.common.selenium.elements.common
 
         public void WaitUntilExists()
         {
+            string assertionDesc = string.Format("Wait until element {0} exists on page {1}", name, pageName);
+            TestLogger.CreateTestStep(assertionDesc);
+
             int maxRetries = 20;
             int retries = 0;
 

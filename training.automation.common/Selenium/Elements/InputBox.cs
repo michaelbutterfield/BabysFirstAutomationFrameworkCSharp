@@ -25,9 +25,9 @@ namespace training.automation.common.Selenium.Elements
 
         public void SendKeys(String text)
         {
-            String stepDescription = String.Format("Input Text '{0}' into", text);
+            String stepDescription = String.Format("Input Text '{0}' into element {1} on page {2}", text, name, pageName);
 
-            TestLogger.CreateTestStep(stepDescription, name, pageName);
+            TestLogger.CreateTestStep(stepDescription);
 
             int retries = 0;
             bool sentKeysSuccess = false;
