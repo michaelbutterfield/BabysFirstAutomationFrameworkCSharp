@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NHamcrest;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             }
 
             DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
-            DesktopWebsite.BoardsPage.UserBoard.JsClick();
+            DesktopWebsite.BoardsPage.UserBoard.Click();
         }
 
         [When(@"I click the favourite board star")]
@@ -68,7 +69,15 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             //DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
             //DesktopWebsite.CreateBoardPage.CreateBoard.Click();
 
-            TrelloAPIHelper.CreateBoard(Random.RandomAlphanumericString(8), Random.RandomAlphanumericString(20));
+            string BoardName = Random.RandomAlphabetString(8);
+            RuntimeTestData.Add("BoardName", BoardName);
+
+            string BoardDesc = Random.RandomSentence(40);
+            RuntimeTestData.Add("BoardDesc", BoardDesc);
+
+            TrelloAPIHelper.CreateBoard(BoardName, BoardDesc);
+
+            SeleniumHelper.GetWebDriver().Navigate().Refresh();
         }
 
         [Then(@"The board will be favourited")]
@@ -92,8 +101,6 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then(@"the environment will be set up")]
         public void TheEnvironmentWillBeSetUp()
         {
-            DesktopWebsite.SpecificBoardsPage.AddList.WaitUntilExists();
-            DesktopWebsite.Header.BackToHome.JsClick();
             DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
             DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
             DesktopWebsite.BoardsPage.UserBoard.AssertExists();
@@ -120,14 +127,12 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void the_user_board_will_be_created()
         {
-            //if (DesktopWebsite.BoardsPage.PersonalBoards.Exists())
-            //{
-            //    DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-            //    DesktopWebsite.BoardsPage.UserBoard.JsClick();
-            //}
-            TestHelper.SleepInSeconds(10);
-            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
-            DesktopWebsite.Header.BackToHome.JsClick();
+            while (!DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Exists())
+            {
+                DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
+            }
+            
+            DesktopWebsite.Header.TrelloLogoHome.JsClick();
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
             DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
             DesktopWebsite.BoardsPage.UserBoard.AssertExists();
@@ -136,6 +141,13 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When]
         public static void go_through_all_the_delete_prompts()
         {
+            //TestHelper.SleepInSeconds(3);
+
+            //if (!DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Exists())
+            //{
+            //    DesktopWebsite.BoardsPage.UserBoard.Click();
+            //}
+
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
             DesktopWebsite.SpecificBoardsPage.CloseBoard.Click();
@@ -178,12 +190,18 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
 
                 boardCount--;
             }
+
+            RuntimeTestData.Add("BoardCount", boardCount);
         }
 
         [Then]
         public void no_boards_will_be_left()
         {
-            
+            int BoardCount = (int)RuntimeTestData.Get("BoardCount");
+
+            string stepDesc = string.Format("Assert no boards are left on the boards page");
+
+            //TestHelper.AssertThat(BoardCount, Is.Equals(0), stepDesc);
         }
     }
 }
