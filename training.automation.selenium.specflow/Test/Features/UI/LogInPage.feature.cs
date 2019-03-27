@@ -17,9 +17,10 @@ namespace training.automation.selenium.specflow.Test.Features.UI
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("LogInPage", new string[] {
-            "LogInPage",
-            "UI"}, SourceFile="Test\\Features\\UI\\LogInPage.feature", SourceLine=1)]
+    [NUnit.Framework.TestFixtureAttribute()]
+    [NUnit.Framework.DescriptionAttribute("LogInPage")]
+    [NUnit.Framework.CategoryAttribute("LogInPage")]
+    [NUnit.Framework.CategoryAttribute("UI")]
     public partial class LogInPageFeature
     {
         
@@ -28,7 +29,7 @@ namespace training.automation.selenium.specflow.Test.Features.UI
 #line 1 "LogInPage.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
+        [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -38,18 +39,19 @@ namespace training.automation.selenium.specflow.Test.Features.UI
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
+        [NUnit.Framework.OneTimeTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
+        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
+        [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -58,6 +60,7 @@ namespace training.automation.selenium.specflow.Test.Features.UI
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
         public virtual void ScenarioStart()
@@ -80,8 +83,9 @@ testRunner.When("I click the log in button", ((string)(null)), ((TechTalk.SpecFl
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Log In with Correct Details", new string[] {
-                "LogInCorrect"}, SourceLine=9)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Log In with Correct Details")]
+        [NUnit.Framework.CategoryAttribute("LogInCorrect")]
         public virtual void LogInWithCorrectDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log In with Correct Details", null, new string[] {
@@ -103,8 +107,9 @@ testRunner.Then("I will be logged in successfully", ((string)(null)), ((TechTalk
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Log in with no email", new string[] {
-                "LogInNoEmail"}, SourceLine=17)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Log in with no email")]
+        [NUnit.Framework.CategoryAttribute("LogInNoEmail")]
         public virtual void LogInWithNoEmail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with no email", null, new string[] {
@@ -126,8 +131,9 @@ testRunner.Then("the error \"Missing email\" will be shown", ((string)(null)), (
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Log in with no password", new string[] {
-                "LogInNoPassword"}, SourceLine=25)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Log in with no password")]
+        [NUnit.Framework.CategoryAttribute("LogInNoPassword")]
         public virtual void LogInWithNoPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with no password", null, new string[] {
@@ -147,12 +153,6 @@ testRunner.When("I click log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(n
 testRunner.Then("the error \"Invalid password\" will be shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
-        {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }
