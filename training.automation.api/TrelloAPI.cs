@@ -22,13 +22,13 @@ namespace training.automation.api
         [Test, Order(1)]
         public void CreateBoard()
         {
-            TrelloHelper.CreateBoard("my api test board from c sharp", "haha");
+            TrelloAPIHelper.CreateBoard("my api test board from c sharp", "haha");
         }
 
         [Test]
         public void DeleteBoard()
         {
-            TrelloHelper.DeleteBoard(TrelloHelper.GetTrelloBoardId("my api test board from c sharp"));
+            TrelloAPIHelper.DeleteBoard(TrelloAPIHelper.GetTrelloBoardId("my api test board from c sharp"));
         }
     }
 
