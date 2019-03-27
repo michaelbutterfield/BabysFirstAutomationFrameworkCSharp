@@ -18,6 +18,6 @@ When I click on the user created board
 Then the user board will be deleted
 
 
-Scenario: Delete board
+Scenario: Delete all boards
 Given I delete all the boards
 Then no boards will be left

@@ -17,7 +17,8 @@ namespace training.automation.selenium.specflow.Test.Features.UI
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("BoardsPage", SourceFile="Test\\Features\\UI\\BoardsPage.feature", SourceLine=0)]
+    [NUnit.Framework.TestFixtureAttribute()]
+    [NUnit.Framework.DescriptionAttribute("BoardsPage")]
     public partial class BoardsPageFeature
     {
         
@@ -26,7 +27,7 @@ namespace training.automation.selenium.specflow.Test.Features.UI
 #line 1 "BoardsPage.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
+        [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -34,18 +35,19 @@ namespace training.automation.selenium.specflow.Test.Features.UI
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
+        [NUnit.Framework.OneTimeTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
+        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
+        [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -54,6 +56,7 @@ namespace training.automation.selenium.specflow.Test.Features.UI
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
         public virtual void ScenarioStart()
@@ -74,7 +77,8 @@ testRunner.Given("I log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null))
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Create a user test board", SourceLine=5)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create a user test board")]
         public virtual void CreateAUserTestBoard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a user test board", null, ((string[])(null)));
@@ -95,7 +99,8 @@ testRunner.Then("the user board will be created", ((string)(null)), ((TechTalk.S
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Delete a user test board", SourceLine=12)]
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete a user test board")]
         public virtual void DeleteAUserTestBoard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a user test board", null, ((string[])(null)));
@@ -118,10 +123,11 @@ testRunner.Then("the user board will be deleted", ((string)(null)), ((TechTalk.S
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Delete board", SourceLine=20)]
-        public virtual void DeleteBoard()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete all boards")]
+        public virtual void DeleteAllBoards()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete board", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete all boards", null, ((string[])(null)));
 #line 21
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -133,12 +139,6 @@ testRunner.Given("I delete all the boards", ((string)(null)), ((TechTalk.SpecFlo
 testRunner.Then("no boards will be left", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
-        {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }
