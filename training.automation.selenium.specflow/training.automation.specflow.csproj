@@ -94,16 +94,10 @@
     <Compile Include="Application\Pages\SpecificBoardsPage.cs" />
     <Compile Include="Application\Pages\SplashPage.cs" />
     <Compile Include="Test\CSharp\Runner\TestRunner.cs" />
-    <Compile Include="Test\CSharp\StepDefinitions\APISteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\BoardsPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\LogInPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SpecificBoardsPageSteps.cs" />
     <Compile Include="Test\CSharp\StepDefinitions\SplashPageSteps.cs" />
-    <Compile Include="Test\Features\API\Placeholder.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Placeholder.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test\Features\UI\BoardsPage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,12 +116,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Default.srprofile" />
-    <None Include="Test\Features\API\Placeholder.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Placeholder.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test\Features\UI\BoardsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BoardsPage.feature.cs</LastGenOutput>
@@ -139,14 +127,6 @@
     <None Include="Test\Features\UI\SpecificBoardsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SpecificBoardsPage.feature.cs</LastGenOutput>
-    </None>
-    <None Include="packages.config" />
-    <None Include="runtests.cmd" />
-    <None Include="SpecRunTestProfile.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SpecRunTestProfile_2011_09.xsd">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup />

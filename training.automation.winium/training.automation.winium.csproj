@@ -80,9 +80,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\training.automation.common\training.automation.common.csproj">
       <Project>{E01AFCF7-5D39-40C9-9B65-0139992E0C56}</Project>
       <Name>training.automation.common</Name>
