@@ -58,7 +58,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then(@"the three boards lists will be created")]
         public void TheThreeBoardsListsWillBeCreated()
         {
-            int listLength = TrelloHelper.GetListLength(TrelloHelper.GetTrelloBoardId("TestBoard"));
+            int listLength = TrelloAPIHelper.GetListLength(TrelloAPIHelper.GetTrelloBoardId("TestBoard"));
 
             if (!listLength.Equals(3))
             {
@@ -69,7 +69,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then(@"the three lists will contain five cards each")]
         public void TheThreeListsWillContainFiveCardsEach()
         {
-            int cardAmount = TrelloHelper.GetNumOfCards(TrelloHelper.GetTrelloBoardId("TestBoard"));
+            int cardAmount = TrelloAPIHelper.GetNumOfCards(TrelloAPIHelper.GetTrelloBoardId("TestBoard"));
 
             if (!cardAmount.Equals(15))
             {
