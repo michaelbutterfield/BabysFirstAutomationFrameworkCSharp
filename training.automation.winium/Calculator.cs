@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
-using OpenQA.Selenium;
+using training.automation.common.Tests;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using training.automation.winium.Application;
@@ -16,6 +16,14 @@ namespace training.automation.winium
         public void Initialise()
         {
             WiniumHelper.Initialise();
+            TestLogger.Initialise();
+        }
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            WiniumHelper.DestroyDriver();
+            TestLogger.Close();
         }
 
         [SetUp]
