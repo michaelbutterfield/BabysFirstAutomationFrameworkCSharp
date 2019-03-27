@@ -213,9 +213,16 @@ namespace training.automation.common.selenium.elements.common
         {
             string assertionDesc = string.Format("Javascript click element {0} on page {1}", name, pageName);
 
-            IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumHelper.GetWebDriver();
+            try
+            {
+                IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumHelper.GetWebDriver();
 
-            executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
+                executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
+            }
+            catch (Exception e)
+            {
+                HandleException(assertionDesc, e);
+            }
         }
 
         public void WaitForElementToBeClickable()
