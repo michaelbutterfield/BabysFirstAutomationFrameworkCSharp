@@ -85,7 +85,8 @@ namespace training.automation.api.Utilities
                     var request = new RestRequest("/1/cards?name={name}&idList={idList}&key={key}&token={token}", Method.POST, DataFormat.Json);
 
                     string cardName = Random.RandomAlphanumericString(5);
-                    RuntimeTestData.Add("card_" + cardNum, cardName);
+                    string dataAdd = string.Format("list_{0} cardName_{1}", listNum, cardNum);
+                    RuntimeTestData.Add(dataAdd, cardName);
 
                     request.AddUrlSegment("name", cardName);
                     request.AddUrlSegment("idList", RuntimeTestData.GetAsString("listId_" + listNum));
@@ -96,7 +97,8 @@ namespace training.automation.api.Utilities
                     var response = client.Execute<TrelloCreateCardResponse.RootObject>(request);
                     TrelloCreateCardResponse.RootObject Data = response.Data;
 
-                    RuntimeTestData.Add("cardId_" + cardNum, Data.id);
+                    dataAdd = string.Format("list_{0} cardId_{1}", listNum, cardNum); 
+                    RuntimeTestData.Add(dataAdd, Data.id);
 
                     string statusCode = response.StatusCode.ToString();
                     string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
@@ -183,7 +185,7 @@ namespace training.automation.api.Utilities
                 var request = new RestRequest("/1/lists?name={name}&idBoard={idBoard}&key={key}&token={token}", Method.POST, DataFormat.Json);
 
                 string listName = Random.RandomAlphanumericString(5);
-                RuntimeTestData.Add("list_" + i, listName);
+                RuntimeTestData.Add("list_" + listCount, listName);
 
                 request.AddUrlSegment("name", listName);
                 request.AddUrlSegment("idBoard", GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
