@@ -5,6 +5,7 @@ using System;
 using training.automation.api.Utilities;
 using OpenQA.Selenium;
 using Random = training.automation.common.Utilities.Random;
+using training.automation.common.Utilities;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
@@ -28,6 +29,18 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             }
         }
 
+        [Given]
+        public void Given_I_add_P0_lists_and_P1_cards_to_each_list(int p0, int p1)
+        {
+            DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
+            DesktopWebsite.BoardsPage.UserBoard.Click();
+            TrelloAPIHelper.CreateLists(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")), p0);
+            TrelloAPIHelper.CreateCards(p1, 1);
+            TrelloAPIHelper.CreateCards(p1, 2);
+            TrelloAPIHelper.CreateCards(p1, 3);
+        }
+
+
         [When(@"I click and drag two cards from Done to Doing")]
         public void IClickAndDragTwoCardsFromDoneToDoing()
         {
@@ -45,6 +58,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When(@"I create a new list called (.*)")]
         public void ICreateANewListCalled(string p0)
         {
+            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
+
             if (DesktopWebsite.SpecificBoardsPage.AddAList.Exists())
             {
                 DesktopWebsite.SpecificBoardsPage.AddAList.Click();
@@ -58,7 +73,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then(@"the three boards lists will be created")]
         public void TheThreeBoardsListsWillBeCreated()
         {
-            int listLength = TrelloAPIHelper.GetListLength(TrelloAPIHelper.GetTrelloBoardId("TestBoard"));
+            int listLength = TrelloAPIHelper.GetListLength(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
 
             if (!listLength.Equals(3))
             {
@@ -69,7 +84,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then(@"the three lists will contain five cards each")]
         public void TheThreeListsWillContainFiveCardsEach()
         {
-            int cardAmount = TrelloAPIHelper.GetNumOfCards(TrelloAPIHelper.GetTrelloBoardId("TestBoard"));
+            int cardAmount = TrelloAPIHelper.GetNumOfCards(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
 
             if (!cardAmount.Equals(15))
             {
