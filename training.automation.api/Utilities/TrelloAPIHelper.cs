@@ -1,7 +1,5 @@
 ﻿using RestSharp;
-using System;
 using training.automation.api.Data;
-using training.automation.common.Tests;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using Is = NHamcrest.Is;
@@ -9,7 +7,7 @@ using Random = training.automation.common.Utilities.Random;
 
 namespace training.automation.api.Utilities
 {
-    public class TrelloHelper
+    public class TrelloAPIHelper
     {
         public static void CreateBoard(string boardName, string boardDesc)
         {
