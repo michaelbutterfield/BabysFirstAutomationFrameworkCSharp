@@ -44,7 +44,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             }
 
             DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
-            DesktopWebsite.BoardsPage.UserBoard.Click();
+            DesktopWebsite.BoardsPage.UserBoard.JsClick();
         }
 
         [When(@"I click the favourite board star")]
@@ -57,15 +57,18 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Given, When(@"I create the user board")]
         public void ICreateTheUserBoard()
         {
-            DesktopWebsite.Header.Add.Click();
-            DesktopWebsite.BoardsPage.CreateNewBoard.Click();
+            //Old UI way of doing it
+            //DesktopWebsite.Header.Add.Click();
+            //DesktopWebsite.BoardsPage.CreateNewBoard.Click();
 
-            string BoardName = Random.RandomAlphanumericString(10);
-            RuntimeTestData.Add("BoardName", BoardName);
+            //string BoardName = Random.RandomAlphanumericString(10);
+            //RuntimeTestData.Add("BoardName", BoardName);
 
-            DesktopWebsite.CreateBoardPage.NameInput.SendKeys(BoardName);
-            DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
-            DesktopWebsite.CreateBoardPage.CreateBoard.Click();
+            //DesktopWebsite.CreateBoardPage.NameInput.SendKeys(BoardName);
+            //DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
+            //DesktopWebsite.CreateBoardPage.CreateBoard.Click();
+
+            TrelloAPIHelper.CreateBoard(Random.RandomAlphanumericString(8), Random.RandomAlphanumericString(20));
         }
 
         [Then(@"The board will be favourited")]
@@ -73,7 +76,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             try
             {
-                if (!TrelloHelper.GetBoardStarredStatus(TrelloHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName"))))
+                if (!TrelloAPIHelper.GetBoardStarredStatus(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName"))))
                 {
                     string ErrorMessage = "Board not successfully starred or got false get from API";
                     throw new Exception(ErrorMessage);
@@ -117,6 +120,12 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void the_user_board_will_be_created()
         {
+            //if (DesktopWebsite.BoardsPage.PersonalBoards.Exists())
+            //{
+            //    DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
+            //    DesktopWebsite.BoardsPage.UserBoard.JsClick();
+            //}
+            TestHelper.SleepInSeconds(10);
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
             DesktopWebsite.Header.BackToHome.JsClick();
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
