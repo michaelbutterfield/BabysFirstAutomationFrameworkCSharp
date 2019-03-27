@@ -74,16 +74,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\TrelloApiData.cs" />
-    <Compile Include="Data\TrelloBoardApiData.cs" />
     <Compile Include="Data\TrelloResponseData.cs" />
     <Compile Include="TrelloAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\TrelloHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <Compile Include="Utilities\TrelloAPIHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\training.automation.common\training.automation.common.csproj">
