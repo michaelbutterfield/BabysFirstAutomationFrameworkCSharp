@@ -23,6 +23,11 @@ namespace training.automation.specflow.Test.CSharp.Runner
             TrelloApiData.ReadApiKeyToken();
         }
 
+        static void AfterTestRun()
+        {
+            TestLogger.Close();
+        }
+
         [BeforeScenario]
         static void BeforeScenario()
         {
@@ -34,10 +39,15 @@ namespace training.automation.specflow.Test.CSharp.Runner
         {
             if (RuntimeTestData.ContainsKey("BoardName"))
             {
-                TrelloAPIHelper.DeleteBoard(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
+                DesktopWebsite.Header.BackToHome.JsClick();
+                DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
+
+                if (DesktopWebsite.BoardsPage.UserBoard.Exists())
+                {
+                    TrelloAPIHelper.DeleteBoard(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
+                }
             }
 
-            TestLogger.Close();
             SeleniumHelper.DestroyDriver();
             RuntimeTestData.Destroy();
         }
