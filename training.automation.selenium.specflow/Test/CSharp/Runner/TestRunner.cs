@@ -31,10 +31,13 @@ namespace training.automation.specflow.Test.CSharp.Runner
         [AfterScenario]
         static void AfterScenario()
         {
-            if (DesktopWebsite.BoardsPage.UserBoard != null)
+            if (RuntimeTestData.ContainsKey("BoardName"))
             {
-                DesktopWebsite.Header.BackToHome.WaitUntilExists();
-                DesktopWebsite.Header.BackToHome.JsClick();
+                if (!DesktopWebsite.BoardsPage.UserBoard.Exists())
+                {
+                    DesktopWebsite.Header.BackToHome.WaitUntilExists();
+                    DesktopWebsite.Header.BackToHome.JsClick();
+                }
 
                 if (DesktopWebsite.BoardsPage.UserBoard.Exists())
                 {
