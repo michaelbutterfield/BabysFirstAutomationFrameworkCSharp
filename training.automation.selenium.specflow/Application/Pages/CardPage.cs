@@ -1,12 +1,13 @@
 ﻿using OpenQA.Selenium;
 using training.automation.common.Pages;
 using training.automation.common.Selenium.Elements;
+using training.automation.selenium.specflow.Application.Pop_ups;
 
 namespace training.automation.selenium.specflow.Application.Pages
 {
     public class CardPage : Page
     {
-        public CardPage() : base("Cards") { BuildPage(); }
+        public CardPage() : base("Cards") { BuildPage(); BuildElements(); }
 
         public Button Checklist;
         public Text ChecklistHeader;
@@ -14,7 +15,14 @@ namespace training.automation.selenium.specflow.Application.Pages
         public InputBox ChecklistItemTitle;
         public Button ChecklistItemAdd;
 
+        public AddChecklist AddChecklist;
+
         private void BuildPage()
+        {
+            AddChecklist = new AddChecklist();
+        }
+
+        private void BuildElements()
         {
             Checklist = new Button(By.XPath("//a[@title='Checklist']"), "Checklist", name);
             ChecklistItemTitle = new InputBox(By.XPath("//textarea[@class='edit field checklist-new-item-text js-new-checklist-item-input']"), "Checklist Item Title", name);
@@ -31,7 +39,9 @@ namespace training.automation.selenium.specflow.Application.Pages
         {
             string xpath = string.Format("//h3[text()='{0}']", ChecklistHeaderName);
             ChecklistHeader = new Text(By.XPath(xpath), "Checklist Header", name);
-
         }
+
+
+
     }
 }
