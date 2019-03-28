@@ -16,6 +16,16 @@ namespace training.automation.common.Utilities
             TestData.Add(Key, Value);
         }
 
+        public static bool ContainsKey(string Key)
+        {
+            return TestData.ContainsKey(Key);
+        }
+
+        public static bool ContainsValue(string Value)
+        {
+            return TestData.ContainsValue(Value);
+        }
+
         public static object Get(string Key)
         {
             return TestData[Key];
