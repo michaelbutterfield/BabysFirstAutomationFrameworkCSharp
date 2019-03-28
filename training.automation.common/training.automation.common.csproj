@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\Page.cs" />
+    <Compile Include="Pop-up\Pop-up.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Sections\Section.cs" />
     <Compile Include="Selenium\Elements\Button.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="Selenium\Elements\Text.cs" />
     <Compile Include="Tests\TestLogger.cs" />
     <Compile Include="Utilities\Counter.cs" />
-    <Compile Include="Utilities\Random.cs" />
+    <Compile Include="Utilities\RandomGen.cs" />
     <Compile Include="Utilities\RuntimeTestData.cs" />
     <Compile Include="Utilities\SeleniumHelper.cs" />
     <Compile Include="Selenium\Elements\Common\Element.cs" />
