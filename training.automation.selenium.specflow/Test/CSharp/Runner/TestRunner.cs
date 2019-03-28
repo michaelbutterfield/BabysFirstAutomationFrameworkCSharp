@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using TechTalk.SpecFlow;
 using training.automation.api.Data;
+using training.automation.api.Utilities;
 using training.automation.common.Tests;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
@@ -33,18 +34,7 @@ namespace training.automation.specflow.Test.CSharp.Runner
         {
             if (RuntimeTestData.ContainsKey("BoardName"))
             {
-                if (!DesktopWebsite.BoardsPage.UserBoard.Exists())
-                {
-                    DesktopWebsite.Header.BackToHome.WaitUntilExists();
-                    DesktopWebsite.Header.BackToHome.JsClick();
-                }
-
-                if (DesktopWebsite.BoardsPage.UserBoard.Exists())
-                {
-                    BoardsPageSteps.IClickOnTheUserCreatedBoard();
-                    BoardsPageSteps.go_through_all_the_delete_prompts();
-                    BoardsPageSteps.the_user_board_will_be_deleted();
-                }
+                TrelloAPIHelper.DeleteBoard(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
             }
 
             TestLogger.Close();
