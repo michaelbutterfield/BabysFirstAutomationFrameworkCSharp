@@ -8,7 +8,7 @@ Background: Set up the environment ready for the scenarios to take place
 
 
 @AddingLists
-Scenario: Clicking on the user board, adding several lists
+Scenario: Adding several lists
 	Given I click on the user created board
 	When I create a new list called To Do
 	  And I create a new list called Doing

@@ -86,11 +86,11 @@ namespace training.automation.selenium.specflow.Test.Features.UI
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Clicking on the user board, adding several lists")]
+        [NUnit.Framework.DescriptionAttribute("Adding several lists")]
         [NUnit.Framework.CategoryAttribute("AddingLists")]
-        public virtual void ClickingOnTheUserBoardAddingSeveralLists()
+        public virtual void AddingSeveralLists()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clicking on the user board, adding several lists", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding several lists", null, new string[] {
                         "AddingLists"});
 #line 11
 this.ScenarioInitialize(scenarioInfo);
