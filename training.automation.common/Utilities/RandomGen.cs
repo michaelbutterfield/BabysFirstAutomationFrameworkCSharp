@@ -3,7 +3,7 @@ using System.Text;
 
 namespace training.automation.common.Utilities
 {
-    public class Random
+    public class RandomGen
     {
         private static System.Random random = new System.Random();
 
@@ -20,7 +20,6 @@ namespace training.automation.common.Utilities
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-
 
         public static string RandomSentence(int WordCount)
         {
@@ -45,6 +44,16 @@ namespace training.automation.common.Utilities
             builder.Append(sentence);
 
             return builder.ToString();
+        }
+
+        public static int RandomNumber(int max)
+        {
+            return random.Next(max);
+        }
+
+        public static int RandomNumber(int min, int max)
+        {
+            return random.Next(min, max);
         }
     }
 }
