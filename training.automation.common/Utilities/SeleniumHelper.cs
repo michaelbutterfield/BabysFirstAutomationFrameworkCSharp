@@ -6,7 +6,6 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using training.automation.specflow.Application.Data;
 
 namespace training.automation.common.utilities
 {
@@ -75,7 +74,7 @@ namespace training.automation.common.utilities
 
         public static void HoverOverElement(string ElementXPath)
         {
-            IWebElement UserBoard = SeleniumHelper.GetWebDriver().FindElement(By.XPath(ElementXPath)); //TODO Create hover method with all this shit
+            IWebElement UserBoard = SeleniumHelper.GetWebDriver().FindElement(By.XPath(ElementXPath));
             Actions action = new Actions(SeleniumHelper.GetWebDriver());
             action.MoveToElement(UserBoard).Perform();
         }
