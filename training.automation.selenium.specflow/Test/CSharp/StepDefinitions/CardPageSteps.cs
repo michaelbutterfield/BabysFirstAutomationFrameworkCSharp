@@ -20,13 +20,13 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
         public void I_add_a_checklist()
         {
             DesktopWebsite.CardPage.Checklist.Click();
-            DesktopWebsite.AddChecklist.ChecklistTitle.WaitUntilExists();
+            DesktopWebsite.CardPage.AddChecklist.ChecklistTitle.WaitUntilExists();
 
             string ChecklistTitle = RandomGen.RandomAlphabetString(10);
             RuntimeTestData.Add("ChecklistTitle", ChecklistTitle);
 
-            DesktopWebsite.AddChecklist.ChecklistTitle.SendKeys(ChecklistTitle);
-            DesktopWebsite.AddChecklist.Add.Click();
+            DesktopWebsite.CardPage.AddChecklist.ChecklistTitle.SendKeys(ChecklistTitle);
+            DesktopWebsite.CardPage.AddChecklist.Add.Click();
         }
 
         [When]
