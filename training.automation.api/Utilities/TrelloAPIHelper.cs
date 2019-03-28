@@ -3,7 +3,7 @@ using training.automation.api.Data;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using Is = NHamcrest.Is;
-using Random = training.automation.common.Utilities.Random;
+using RandomGen = training.automation.common.Utilities.RandomGen;
 
 namespace training.automation.api.Utilities
 {
@@ -52,7 +52,7 @@ namespace training.automation.api.Utilities
 
             var request = new RestRequest("/1/cards?name={name}&idList={idList}&key={key}&token={token}", Method.POST, DataFormat.Json);
 
-            string cardName = Random.RandomAlphanumericString(5);
+            string cardName = RandomGen.RandomAlphanumericString(5);
             RuntimeTestData.Add("cardName", cardName);
 
             request.AddUrlSegment("name", cardName);
@@ -84,7 +84,7 @@ namespace training.automation.api.Utilities
                 {
                     var request = new RestRequest("/1/cards?name={name}&idList={idList}&key={key}&token={token}", Method.POST, DataFormat.Json);
 
-                    string cardName = Random.RandomAlphanumericString(5);
+                    string cardName = RandomGen.RandomAlphanumericString(5);
                     string dataAdd = string.Format("list_{0} cardName_{1}", listNum, cardNum);
                     RuntimeTestData.Add(dataAdd, cardName);
 
@@ -154,7 +154,7 @@ namespace training.automation.api.Utilities
 
             var request = new RestRequest("/1/lists?name={name}&idBoard={idBoard}&key={key}&token={token}", Method.POST, DataFormat.Json);
 
-            string listName = Random.RandomAlphanumericString(5);
+            string listName = RandomGen.RandomAlphanumericString(5);
             RuntimeTestData.Add("listName", listName);
 
             request.AddUrlSegment("name", listName);
@@ -166,7 +166,7 @@ namespace training.automation.api.Utilities
             var response = client.Execute<TrelloListResponseData>(request);
             TrelloListResponseData Data = response.Data;
 
-            RuntimeTestData.Add("listId", Data.id);
+            RuntimeTestData.Add("listId_1", Data.id);
 
             string statusCode = response.StatusCode.ToString();
             string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
@@ -184,7 +184,7 @@ namespace training.automation.api.Utilities
             {
                 var request = new RestRequest("/1/lists?name={name}&idBoard={idBoard}&key={key}&token={token}", Method.POST, DataFormat.Json);
 
-                string listName = Random.RandomAlphanumericString(5);
+                string listName = RandomGen.RandomAlphanumericString(5);
                 RuntimeTestData.Add("list_" + listCount, listName);
 
                 request.AddUrlSegment("name", listName);
