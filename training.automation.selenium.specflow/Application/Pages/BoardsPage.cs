@@ -20,13 +20,18 @@ namespace training.automation.specflow.Application.Pages
             BoardNotFound = new Label(By.XPath("//h1[contains(text(),'Board not found.')]"), "Board not found. message", name);
             CreateNewBoard = new Button(By.XPath("//a[@class=\"js-new-board\"]"), "Create Board... Button", name);
             PersonalBoards = new Text(By.XPath("//h3[text()='Personal Boards']"), "Personal Boards", name);
-            Unstarred = new Button(By.XPath("//span[@class='icon-sm icon-star board-tile-options-star-icon']"), "Unstarred Board Button", name);
             Starred = new Button(By.XPath("//span[@class='icon-sm icon-star is-starred board-tile-options-star-icon']"), "Starred Board Button", name);
         }
 
         public void AssignUserBoard(string BoardName)
         {
             UserBoard = new Button(By.XPath(string.Format("//div[@title='{0}']", BoardName)), "UserBoard", name);
+        }
+
+        public void AssignBoardToStar(string BoardName)
+        {
+            string xpath = string.Format("//div[@title='{0}']/..//span[@class='icon-sm icon-star board-tile-options-star-icon']", BoardName);
+            Unstarred = new Button(By.XPath(xpath), "Unstarred Board Button", name);
         }
     }
 }
