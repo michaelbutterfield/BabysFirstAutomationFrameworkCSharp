@@ -9,7 +9,7 @@ using training.automation.common.Selenium.Elements;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using training.automation.specflow.Application;
-using Random = training.automation.common.Utilities.Random;
+using RandomGen = training.automation.common.Utilities.RandomGen;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
@@ -51,7 +51,9 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When(@"I click the favourite board star")]
         public void IClickTheFavouriteBoardStar()
         {
-            SeleniumHelper.HoverOverElement(string.Format("//div[contains(text(),'{0}')]", RuntimeTestData.GetAsString("BoardName")));
+            string userBoard = RuntimeTestData.GetAsString("BoardName");
+            DesktopWebsite.BoardsPage.AssignBoardToStar(userBoard);
+            SeleniumHelper.HoverOverElement(string.Format("//div[text()='{0}']", userBoard));
             DesktopWebsite.BoardsPage.Unstarred.Click();
         }
 
@@ -69,15 +71,13 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             //DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
             //DesktopWebsite.CreateBoardPage.CreateBoard.Click();
 
-            string BoardName = Random.RandomAlphabetString(8);
+            string BoardName = RandomGen.RandomAlphabetString(8);
             RuntimeTestData.Add("BoardName", BoardName);
 
-            string BoardDesc = Random.RandomSentence(40);
+            string BoardDesc = RandomGen.RandomSentence(40);
             RuntimeTestData.Add("BoardDesc", BoardDesc);
 
             TrelloAPIHelper.CreateBoard(BoardName, BoardDesc);
-
-            SeleniumHelper.GetWebDriver().Navigate().Refresh();
         }
 
         [Then(@"The board will be favourited")]
@@ -116,7 +116,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When]
         public void I_fill_in_the_user_board_details()
         {
-            string BoardName = Random.RandomAlphanumericString(10);
+            string BoardName = RandomGen.RandomAlphabetString(10);
             RuntimeTestData.Add("BoardName", BoardName);
 
             DesktopWebsite.CreateBoardPage.NameInput.SendKeys(BoardName);
@@ -141,12 +141,12 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When]
         public static void go_through_all_the_delete_prompts()
         {
-            //TestHelper.SleepInSeconds(3);
+            TestHelper.SleepInSeconds(1);
 
-            //if (!DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Exists())
-            //{
-            //    DesktopWebsite.BoardsPage.UserBoard.Click();
-            //}
+            if (!DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Exists())
+            {
+                DesktopWebsite.BoardsPage.UserBoard.Click();
+            }
 
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
