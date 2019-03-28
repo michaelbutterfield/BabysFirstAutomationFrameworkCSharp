@@ -4,8 +4,9 @@ using training.automation.specflow.Application;
 using System;
 using training.automation.api.Utilities;
 using OpenQA.Selenium;
-using Random = training.automation.common.Utilities.Random;
+using RandomGen = training.automation.common.Utilities.RandomGen;
 using training.automation.common.Utilities;
+using training.automation.common.Selenium.Elements;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
@@ -24,7 +25,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
                     DesktopWebsite.SpecificBoardsPage.AddACard.Click();
                 }
 
-                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.SendKeys(Random.RandomAlphanumericString(8));
+                DesktopWebsite.SpecificBoardsPage.EnterCardTitle.SendKeys(RandomGen.RandomAlphanumericString(8));
                 DesktopWebsite.SpecificBoardsPage.AddCard.Click();
             }
         }
@@ -44,15 +45,19 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When(@"I click and drag two cards from Done to Doing")]
         public void IClickAndDragTwoCardsFromDoneToDoing()
         {
-            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
-            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            By StartLocation = By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span");
+            By EndLocation = By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]");
+            SeleniumHelper.DragAndDropAction(StartLocation, EndLocation);
+            SeleniumHelper.DragAndDropAction(StartLocation, EndLocation);
         }
 
         [When(@"I click and drag two cards from To Do to Doing")]
         public void IClickAndDragTwoCardsFromToDoToDoing()
         {
-            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
-            SeleniumHelper.DragAndDropAction(By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span"), By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]"));
+            By StartLocation = By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span");
+            By EndLocation = By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]");
+            SeleniumHelper.DragAndDropAction(StartLocation, EndLocation);
+            SeleniumHelper.DragAndDropAction(StartLocation, EndLocation);
         }
 
         [When(@"I create a new list called (.*)")]
@@ -96,6 +101,16 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         public void TheCardsAreIn(string p0, string p1)
         {
 
+        }
+
+        [Given]
+        public void I_click_on_a_card()
+        {
+            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
+            string genericCardXpath = "//a[@class='list-card js-member-droppable ui-droppable']";
+            int cardCount = SeleniumHelper.GetElements(By.XPath(genericCardXpath)).Count;
+            string locator = string.Format(genericCardXpath + "[{0}]", RandomGen.RandomNumber(1, cardCount));
+            SeleniumHelper.GetElement(By.XPath(locator)).Click();
         }
     }
 }
