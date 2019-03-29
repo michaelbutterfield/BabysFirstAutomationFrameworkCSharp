@@ -6,6 +6,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using training.automation.common.Tests;
 
 namespace training.automation.common.utilities
 {
@@ -32,12 +33,13 @@ namespace training.automation.common.utilities
             }
             catch (Exception e)
             {
-                TestHelper.HandleException("Failed to perform Drag and Drop action. Stack trace: " + e, e, true);
+                TestHelper.HandleException("Failed to perform Drag and Drop action.", e);
             }
         }
 
         public static void DestroyDriver()
         {
+            TestLogger.CreateTestStep("Selenium Driver Destroyed");
             Driver.Quit();
             Driver = null;
         }
@@ -74,9 +76,17 @@ namespace training.automation.common.utilities
 
         public static void HoverOverElement(string ElementXPath)
         {
-            IWebElement UserBoard = SeleniumHelper.GetWebDriver().FindElement(By.XPath(ElementXPath));
-            Actions action = new Actions(SeleniumHelper.GetWebDriver());
-            action.MoveToElement(UserBoard).Perform();
+            try
+            {
+                IWebElement UserBoard = GetWebDriver().FindElement(By.XPath(ElementXPath));
+                Actions action = new Actions(GetWebDriver());
+                action.MoveToElement(UserBoard).Perform();
+            }
+            catch (Exception e)
+            {
+                string ErrorMessage = string.Format("Failed hovering over element");
+                TestHelper.HandleException(ErrorMessage, e);
+            }
         }
 
         public static void Initialise(string browser)
