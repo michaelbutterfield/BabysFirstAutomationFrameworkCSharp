@@ -38,7 +38,7 @@ namespace training.automation.specflow.Data
             {
                 String errorMessage = String.Format("Could not read username and password from file");
 
-                TestHelper.HandleException(errorMessage, e, false);
+                TestHelper.HandleException(errorMessage, e);
             }
         }
     }
