@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using training.automation.common.Pages;
 using training.automation.common.Selenium.Elements;
+using training.automation.selenium.specflow.Application.Pages;
 
 namespace training.automation.specflow.Application.Pages
 {
@@ -24,9 +25,16 @@ namespace training.automation.specflow.Application.Pages
         public Button PermDeleteBoardConfirm;
         public Label ToDo;
 
-        public SpecificBoardsPage() : base("Specific Boards") { BuildPage(); }
+        public CardPage CardPage;
+
+        public SpecificBoardsPage() : base("Specific Boards") { BuildPage(); BuildElements(); }
 
         private void BuildPage()
+        {
+            CardPage = new CardPage();
+        }
+
+        private void BuildElements()
         {
             AddACard = new Button(By.XPath("//span[@class='js-add-a-card']"), "Add a card", name);
             AddAnotherList = new Button(By.XPath("//span[text()='Add another list']"), "Add another list (used for adding any list after the first one)", name);
