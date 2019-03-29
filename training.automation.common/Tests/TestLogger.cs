@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using training.automation.common.utilities;
+using training.automation.common.Utilities;
 
 namespace training.automation.common.Tests
 {
@@ -19,7 +20,7 @@ namespace training.automation.common.Tests
             }
             catch (Exception e)
             {
-                TestHelper.HandleException("Unable to close writer", e, false);
+                TestHelper.HandleException("Unable to close writer", e);
             }
         }
 
@@ -28,6 +29,7 @@ namespace training.automation.common.Tests
             try
             {
                 testRunDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime(logDateTimeFormat);
+                RuntimeTestData.Add("TestRunDirectory", testRunDirectory);
                 //testRunDirectory = "C:\\Users\\michael.butterfield\\Desktop\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime("dd-MM-yy HH.mm");
 
                 if (!Directory.Exists(testRunDirectory))
@@ -38,9 +40,8 @@ namespace training.automation.common.Tests
             catch (Exception e)
             {
                 string ErrorMessage = string.Format("Failed to create the test run directory with directory string: {0}", testRunDirectory);
-                TestHelper.HandleException(ErrorMessage, e, false);
+                TestHelper.HandleException(ErrorMessage, e);
             }
-            
         }
 
         public static void CreateTestStep(string description)
@@ -67,7 +68,7 @@ namespace training.automation.common.Tests
 
         public static void Initialise()
         {
-            String fileLocation = String.Format("{0}\\Log.txt", GetTestRunDirectory());
+            string fileLocation = String.Format("{0}\\" + TestHelper.GetScenario().Test.Name + ".txt", GetTestRunDirectory());
 
             try
             {
@@ -75,7 +76,7 @@ namespace training.automation.common.Tests
             }
             catch (Exception e)
             {
-                TestHelper.HandleException("Failed to start writer", e, false);
+                TestHelper.HandleException("Failed to start writer", e);
             }
         }
 
@@ -93,13 +94,13 @@ namespace training.automation.common.Tests
 
         public static void LogScenarioEnd()
         {
-            String entryText = "*** SCENARIO ENDED *** : " + TestHelper.GetScenario().Test.Name + Environment.NewLine;
+            string entryText = "*** SCENARIO ENDED *** : " + TestHelper.GetScenario().Test.Name + Environment.NewLine;
             LogEntry(entryText);
         }
 
         public static void LogScenarioStart()
         {
-            String entryText = "*** SCENARIO STARTED *** : " + TestHelper.GetScenario().Test.Name;
+            string entryText = "*** SCENARIO STARTED *** : " + TestHelper.GetScenario().Test.Name;
             LogEntry(entryText);
         }
 
@@ -171,7 +172,7 @@ namespace training.automation.common.Tests
             }
             catch (Exception e)
             {
-                TestHelper.HandleException("Unable to LogEntry", e, false);
+                TestHelper.HandleException("Unable to LogEntry", e);
             }
         }
     }
