@@ -33,7 +33,7 @@ namespace training.automation.api.Data
             {
                 String errorMessage = String.Format("Could not read key and token from Trello API File");
 
-                TestHelper.HandleException(errorMessage, e, false);
+                TestHelper.HandleException(errorMessage, e);
             }
         }
     }
