@@ -32,7 +32,7 @@ namespace training.automation.selenium.Application.Data
 
                 string line = System.IO.File.ReadAllText(@sourceFile);
 
-                String[] lines = line.Split('\t');
+                string[] lines = line.Split('\t');
 
                 username = lines[0];
 
@@ -40,9 +40,9 @@ namespace training.automation.selenium.Application.Data
             }
             catch (Exception e)
             {
-                String errorMessage = String.Format("Could not read username and password from file");
+                string errorMessage = string.Format("Could not read username and password from file");
 
-                TestHelper.HandleException(errorMessage, e, false);
+                TestHelper.HandleException(errorMessage, e);
             }
         }
     }
