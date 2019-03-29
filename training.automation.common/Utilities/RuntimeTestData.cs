@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using training.automation.common.Tests;
 
 namespace training.automation.common.Utilities
 {
@@ -38,6 +39,7 @@ namespace training.automation.common.Utilities
 
         public static void Destroy()
         {
+            TestLogger.CreateTestStep("Runtime Test Data Destroyed");
             TestData.Clear();
         }
     }
