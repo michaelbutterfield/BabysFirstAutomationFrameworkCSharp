@@ -178,7 +178,7 @@ namespace training.automation.common.Winium.Elements.Common
             String errorMessage = "Action '{0}' Failed";
             errorMessage = String.Format(errorMessage, action, name, pageName);
 
-            TestHelper.HandleException(errorMessage, e, true);
+            TestHelper.HandleException(errorMessage, e);
         }
 
         private void Click(String clickType, int maxRetry, Boolean throwNoSuchElementException)
