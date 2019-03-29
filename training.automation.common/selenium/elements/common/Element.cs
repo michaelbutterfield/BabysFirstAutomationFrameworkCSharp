@@ -132,9 +132,9 @@ namespace training.automation.common.selenium.elements.common
 
         public bool Exists()
         {
-            string stepDef = string.Format("Making sure element '{0}' exists on page {1}", name, pageName);
+            //string stepDef = string.Format("Asserting element '{0}' exists on page {1}", name, pageName);
 
-            TestLogger.CreateTestStep(stepDef);
+            //TestLogger.CreateTestStep(stepDef);
 
             return SeleniumHelper.GetElements(locator).Count() > 0;
         }
@@ -181,16 +181,16 @@ namespace training.automation.common.selenium.elements.common
             return element.GetAttribute("value");
         }
 
-        public String GetName()
+        public string GetName()
         {
             return name;
         }
 
-        protected void HandleException(String actionName, Exception ex)
+        protected void HandleException(string actionName, Exception ex)
         {
-            String errorMessage = String.Format("{0} failed on element \"{1}\" on page \"{2}\"", actionName, name, pageName);
+            string errorMessage = string.Format("{0} failed on element \"{1}\" on page \"{2}\"", actionName, name, pageName);
 
-            TestHelper.HandleException(errorMessage, ex, true);
+            TestHelper.HandleException(errorMessage, ex);
         }
 
         public bool IsEnabled()
@@ -293,7 +293,7 @@ namespace training.automation.common.selenium.elements.common
             {
                 string ErrorMessage = string.Format("Failed waiting for element to exist. Element: {0} -- Element Page: {1}", name, pageName);
 
-                TestHelper.HandleException(ErrorMessage, new SystemException(ErrorMessage), true);
+                TestHelper.HandleException(ErrorMessage, new SystemException(ErrorMessage));
             }
         }
     }
