@@ -23,7 +23,7 @@ namespace training.automation.api.Utilities
             IRestResponse response = client.Execute(request);
 
             string statusCode = response.StatusCode.ToString();
-            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+            string assertionDesc = string.Format("Assert Create Board response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
             TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
         }
@@ -41,7 +41,7 @@ namespace training.automation.api.Utilities
             IRestResponse response = client.Execute(request);
 
             string statusCode = response.StatusCode.ToString();
-            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+            string assertionDesc = string.Format("Assert Delete Board response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
             TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
         }
@@ -67,7 +67,7 @@ namespace training.automation.api.Utilities
             RuntimeTestData.Add("cardId", Data.id);
 
             string statusCode = response.StatusCode.ToString();
-            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+            string assertionDesc = string.Format("Assert Create Card response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
             TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
 
@@ -101,7 +101,7 @@ namespace training.automation.api.Utilities
                     RuntimeTestData.Add(dataAdd, Data.id);
 
                     string statusCode = response.StatusCode.ToString();
-                    string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+                    string assertionDesc = string.Format("Assert Create Card response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
                     TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
 
@@ -124,7 +124,7 @@ namespace training.automation.api.Utilities
             IRestResponse response = client.Execute(request);
 
             string statusCode = response.StatusCode.ToString();
-            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+            string assertionDesc = string.Format("Assert Delete Card response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
             TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
         }
@@ -143,7 +143,7 @@ namespace training.automation.api.Utilities
             IRestResponse response = client.Execute(request);
 
             string statusCode = response.StatusCode.ToString();
-            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+            string assertionDesc = string.Format("Assert Archive List response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
             TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
         }
@@ -169,7 +169,7 @@ namespace training.automation.api.Utilities
             RuntimeTestData.Add("listId_1", Data.id);
 
             string statusCode = response.StatusCode.ToString();
-            string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+            string assertionDesc = string.Format("Assert Create List response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
             TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
         }
@@ -199,7 +199,7 @@ namespace training.automation.api.Utilities
                 RuntimeTestData.Add("listId_" + listCount, Data.id);
 
                 string statusCode = response.StatusCode.ToString();
-                string assertionDesc = string.Format("Asserting that actual: {0} is equal to expected: {1}", statusCode, "OK");
+                string assertionDesc = string.Format("Assert Create List response code actual: {0} is equal to expected: {1}", statusCode, "OK");
 
                 TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
 
