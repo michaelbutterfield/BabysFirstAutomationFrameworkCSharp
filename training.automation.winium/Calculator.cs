@@ -41,7 +41,7 @@ namespace training.automation.winium
             }
             catch (Exception e)
             {
-                TestHelper.HandleException("Calculator has not been set to standard mode.", e, false);
+                TestHelper.HandleException("Calculator has not been set to standard mode.", e);
             }
         }
 
