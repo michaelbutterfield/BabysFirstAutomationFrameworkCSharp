@@ -11,28 +11,35 @@ namespace training.automation.common.utilities
     {
         private static TestContext scenario;
 
-        public static void AssertThat<T>(T actual, IMatcher<T> matcher, String stepDescription)
+        public static void AssertThat<T>(T actual, IMatcher<T> matcher, string stepDescription)
         {
             AssertThat(actual, matcher, stepDescription, true);
         }
 
-        public static void AssertThat<T>(T actual, IMatcher<T> matcher, String stepDescription, Boolean takeScreenshot)
+        public static void AssertThat<T>(T actual, IMatcher<T> matcher, string stepDescription, bool takeScreenshot)
         {
             TestLogger.CreateTestStep(stepDescription);
 
-            if (!matcher.Matches(actual))
+            try
             {
-                var description = new StringDescription();
+                if (!matcher.Matches(actual))
+                {
+                    var description = new StringDescription();
 
-                description .AppendText(stepDescription)
-                            .AppendText("\nExpected: ")
-                            .AppendDescriptionOf(matcher)
-                            .AppendText("\n     but: ");
+                    description.AppendText(stepDescription)
+                                .AppendText("\nExpected: ")
+                                .AppendDescriptionOf(matcher)
+                                .AppendText("\n     but: ");
 
-                matcher.DescribeMismatch(actual, description);
-
-                throw new InvalidOperationException(description.ToString());
+                    matcher.DescribeMismatch(actual, description);
+                }
             }
+            catch (Exception e)
+            {
+                string ErrorMessage = string.Format("{0} failed. {1} {2}", stepDescription, "\n", e.Message);
+                HandleException(ErrorMessage, e);
+            }
+
         }
 
         public static TestContext GetScenario()
@@ -42,18 +49,25 @@ namespace training.automation.common.utilities
             return scenario;
         }
 
+        public static void HandleException(string ErrorMessage, Exception e)
+        {
+            HandleException(ErrorMessage, e, true);
+        }
+
         public static void HandleException(string ErrorMessage, Exception e, bool takeScreenshot)
         {
-            String exception = String.Format("{0} : {1} : ", ErrorMessage, e);
+            string exception = string.Format("{0} : {1} : ", ErrorMessage, e);
 
-            TestHelper.WriteToConsole(exception);
+            WriteToConsole(exception);
 
             TestLogger.LogActionFailure(exception, e);
+
+            FailureScreenshot.TakeScreenshot();
 
             throw new System.ArgumentException(e.Message, e);
         }
 
-        public static String GetTodaysDateTime(String format)
+        public static string GetTodaysDateTime(string format)
         {
             return DateTime.Now.ToString(format);
         }
@@ -77,7 +91,7 @@ namespace training.automation.common.utilities
             catch (ThreadInterruptedException e)
             {
                 String errorMessage = String.Format("Unable to perform the requested '{0}' second sleep", seconds);
-                TestHelper.HandleException(errorMessage, e, false);
+                TestHelper.HandleException(errorMessage, e);
             }
         }
 
