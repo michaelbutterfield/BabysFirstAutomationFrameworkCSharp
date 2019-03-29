@@ -19,34 +19,34 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
         [When]
         public void I_add_a_checklist()
         {
-            DesktopWebsite.CardPage.Checklist.Click();
-            DesktopWebsite.CardPage.AddChecklist.ChecklistTitle.WaitUntilExists();
+            DesktopWebsite.SpecificBoardsPage.CardPage.Checklist.Click();
+            DesktopWebsite.SpecificBoardsPage.CardPage.AddChecklist.ChecklistTitle.WaitUntilExists();
 
             string ChecklistTitle = RandomGen.RandomAlphabetString(10);
             RuntimeTestData.Add("ChecklistTitle", ChecklistTitle);
 
-            DesktopWebsite.CardPage.AddChecklist.ChecklistTitle.SendKeys(ChecklistTitle);
-            DesktopWebsite.CardPage.AddChecklist.Add.Click();
+            DesktopWebsite.SpecificBoardsPage.CardPage.AddChecklist.ChecklistTitle.SendKeys(ChecklistTitle);
+            DesktopWebsite.SpecificBoardsPage.CardPage.AddChecklist.Add.Click();
         }
 
         [When]
         public void I_add_a_checklist_item()
         {
-            DesktopWebsite.CardPage.ChecklistItemTitle.WaitUntilExists();
+            DesktopWebsite.SpecificBoardsPage.CardPage.ChecklistItemTitle.WaitUntilExists();
 
             string ChecklistItemTitle = RandomGen.RandomAlphabetString(5);
             RuntimeTestData.Add("ChecklistItemTitle", ChecklistItemTitle);
-            DesktopWebsite.CardPage.ChecklistItemTitle.SendKeys(ChecklistItemTitle);
-            DesktopWebsite.CardPage.ChecklistItemAdd.Click();
+            DesktopWebsite.SpecificBoardsPage.CardPage.ChecklistItemTitle.SendKeys(ChecklistItemTitle);
+            DesktopWebsite.SpecificBoardsPage.CardPage.ChecklistItemAdd.Click();
         }
 
         [Then]
         public void the_checklist_will_be_added()
         {
-            DesktopWebsite.CardPage.CreateChecklistHeader(RuntimeTestData.GetAsString("ChecklistTitle"));
-            DesktopWebsite.CardPage.ChecklistHeader.AssertExists();
-            DesktopWebsite.CardPage.CreateChecklistItem(RuntimeTestData.GetAsString("ChecklistItemTitle"));
-            DesktopWebsite.CardPage.ChecklistItem.AssertExists();
+            DesktopWebsite.SpecificBoardsPage.CardPage.CreateChecklistHeader(RuntimeTestData.GetAsString("ChecklistTitle"));
+            DesktopWebsite.SpecificBoardsPage.CardPage.ChecklistHeader.AssertExists();
+            DesktopWebsite.SpecificBoardsPage.CardPage.CreateChecklistItem(RuntimeTestData.GetAsString("ChecklistItemTitle"));
+            DesktopWebsite.SpecificBoardsPage.CardPage.ChecklistItem.AssertExists();
         }
     }
 }
