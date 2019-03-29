@@ -51,9 +51,12 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When(@"I click the favourite board star")]
         public void IClickTheFavouriteBoardStar()
         {
-            string userBoard = RuntimeTestData.GetAsString("BoardName");
-            DesktopWebsite.BoardsPage.AssignBoardToStar(userBoard);
-            SeleniumHelper.HoverOverElement(string.Format("//div[text()='{0}']", userBoard));
+            string UserBoard = RuntimeTestData.GetAsString("BoardName");
+            //DesktopWebsite.BoardsPage.AssignBoardToStar(UserBoard);
+            //SeleniumHelper.HoverOverElement(string.Format("//div[text()='{0}']", UserBoard));
+
+            DesktopWebsite.BoardsPage.AssignBoardToStar(UserBoard);
+            SeleniumHelper.HoverOverElement(string.Format("//div[text()='aaaaa']", UserBoard));
             DesktopWebsite.BoardsPage.Unstarred.Click();
         }
 
@@ -93,7 +96,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             }
             catch(Exception e)
             {
-                TestHelper.HandleException("Board wasn't starred", e, true);
+                TestHelper.HandleException("Board wasn't starred", e);
             }
             
         }
