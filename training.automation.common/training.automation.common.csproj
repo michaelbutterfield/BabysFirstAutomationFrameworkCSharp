@@ -104,6 +104,7 @@
     <Compile Include="Selenium\Elements\Label.cs" />
     <Compile Include="Selenium\Elements\Link.cs" />
     <Compile Include="Selenium\Elements\Text.cs" />
+    <Compile Include="Tests\FailureScreenshot.cs" />
     <Compile Include="Tests\TestLogger.cs" />
     <Compile Include="Utilities\Counter.cs" />
     <Compile Include="Utilities\RandomGen.cs" />
