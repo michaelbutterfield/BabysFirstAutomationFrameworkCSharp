@@ -13,8 +13,8 @@ namespace training.automation.specflow.Application.Pages
 
         private void BuildPage()
         {
-            LogIn = new Button(By.XPath("//a[@href='/login?returnUrl=%2F']"), "Log In Button", name);
-            //SignUp = new Button(By.XPath("//a[@href='/signup?returnUrl=%2F']"), "Sign Up Button", name);
+            LogIn = new Button(By.XPath("//a[@href='/login']"), "Log In Button", name);
+            //SignUp = new Button(By.XPath("//a[@href='/signup']"), "Sign Up Button", name);
         }
     }
 }
