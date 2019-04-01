@@ -7,6 +7,8 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using training.automation.common.Tests;
+using training.automation.common.Utilities;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace training.automation.common.utilities
 {
@@ -22,7 +24,7 @@ namespace training.automation.common.utilities
 
         public static void DragAndDropAction(By startLocation, By endLocation)
         {
-            Actions act = new Actions(SeleniumHelper.GetWebDriver());
+            Actions act = new Actions(GetWebDriver());
 
             IWebElement From = GetWebDriver().FindElement(startLocation);
             IWebElement To = GetWebDriver().FindElement(endLocation);
@@ -35,6 +37,22 @@ namespace training.automation.common.utilities
             {
                 TestHelper.HandleException("Failed to perform Drag and Drop action.", e);
             }
+        }
+
+        public static void DragAndDropAction(IWebElement From, IWebElement To)
+        {
+            Actions act = new Actions(GetWebDriver());
+
+            try
+            {
+                act.DragAndDrop(From, To).Build().Perform();
+            }
+            catch (Exception e)
+            {
+                TestHelper.HandleException("Failed to perform Drag and Drop action.", e);
+            }
+
+
         }
 
         public static void DestroyDriver()
