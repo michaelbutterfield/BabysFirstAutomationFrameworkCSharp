@@ -56,8 +56,16 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             //SeleniumHelper.HoverOverElement(string.Format("//div[text()='{0}']", UserBoard));
 
             DesktopWebsite.BoardsPage.AssignBoardToStar(UserBoard);
-            SeleniumHelper.HoverOverElement(string.Format("//div[text()='aaaaa']", UserBoard));
-            DesktopWebsite.BoardsPage.Unstarred.Click();
+            try
+            {
+                SeleniumHelper.HoverOverElement(string.Format("//div[text()='{0}']", UserBoard));
+                DesktopWebsite.BoardsPage.Unstarred.Click();
+            }
+            catch (Exception e)
+            {
+                string ErrorMessage = "Failed trying to hover over and click the UserBoard star";
+                TestHelper.HandleException(ErrorMessage, e);
+            }
         }
 
         [Given, When(@"I create the user board")]
