@@ -135,4 +135,13 @@ namespace training.automation.api.Data
             public Limits limits { get; set; }
         }
     }
+
+    public class CardsOnListResponseData
+    {
+        public class RootObject
+        {
+            public string id { get; set; }
+            public string name { get; set; }
+        }
+    }
 }
