@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 using System;
-using training.automation.common.Winium.Elements.Common;
+using training.automation.winium.Common.Winium.Elements.Common;
 
-namespace training.automation.common.Winium.Elements
+namespace training.automation.winium.Common.Winium.Elements
 {
     public class Button : Element
     {

@@ -2,9 +2,9 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Winium;
 using System;
-using training.automation.common.utilities;
+using training.automation.common.Utilities;
 
-namespace training.automation.common.Utilities
+namespace training.automation.winium.Utilities
 {
     public class WiniumHelper
     {

@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 using System;
-using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using NHamcrest;
 using training.automation.common.Tests;
+using training.automation.winium.Utilities;
 
-namespace training.automation.common.Winium.Elements.Common
+namespace training.automation.winium.Common.Winium.Elements.Common
 {
     public class Element
     {
