@@ -28,21 +28,26 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         public void IAmOnTheBoardsPage()
         {
             DesktopWebsite.Header.Add.WaitForElementToBeClickable();
-            Assert.AreEqual("Boards | Trello", SeleniumHelper.GetWebDriver().Title);
+            string ExpectedSiteTitle = "Boards | Trello";
+            string ActualSiteTitle = SeleniumHelper.GetWebDriver().Title;
+            string StepDesc = string.Format("Assert that framework's on the Boards Page. Expected Site Title: {0} - Actual Site Title: {1}", ExpectedSiteTitle, ActualSiteTitle);
+            TestHelper.AssertThat(ExpectedSiteTitle, Is.EqualTo(ActualSiteTitle), StepDesc);
         }
 
         [Given, When(@"I click on the user created board")]
         public static void IClickOnTheUserCreatedBoard()
         {
-            if (DesktopWebsite.BoardsPage.UserBoard == null)
-            {
-                DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-            }
-
             if (!DesktopWebsite.BoardsPage.UserBoard.Exists())
             {
                 DesktopWebsite.Header.BackToHome.JsClick();
             }
+
+            //if (DesktopWebsite.BoardsPage.UserBoard == null)
+            //{
+            //    DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
+            //}
+
+            DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
 
             DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
             DesktopWebsite.BoardsPage.UserBoard.Click();
@@ -187,11 +192,11 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
 
             int boardCount = test.Count;
 
-            while (boardCount > 0)
+            while (boardCount > 1)
             {
                 SeleniumHelper.GetElement(By.XPath("//ul[@class='boards-page-board-section-list']/li[@class='boards-page-board-section-list-item']")).Click();
 
-                BoardsPageSteps.go_through_all_the_delete_prompts();
+                go_through_all_the_delete_prompts();
 
                 DesktopWebsite.SpecificBoardsPage.BoardNotFound.WaitUntilExists();
 
@@ -212,7 +217,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
 
             string stepDesc = string.Format("Assert no boards are left on the boards page");
 
-            //TestHelper.AssertThat(BoardCount, Is.Equals(0), stepDesc);
+            TestHelper.AssertThat(BoardCount, Is.EqualTo(1), stepDesc);
         }
     }
 }
