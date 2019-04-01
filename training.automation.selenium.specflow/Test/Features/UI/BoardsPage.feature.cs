@@ -68,7 +68,66 @@ namespace training.automation.selenium.specflow.Test.Features.UI
         {
             testRunner.CollectScenarioErrors();
         }
+        
+        public virtual void FeatureBackground()
+        {
+#line 3
+#line 4
+testRunner.Given("I log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create a user test board")]
+        [NUnit.Framework.CategoryAttribute("CreateBoard")]
+        public virtual void CreateAUserTestBoard()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a user test board", null, new string[] {
+                        "CreateBoard"});
+#line 7
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line 8
+testRunner.Given("I am on the boards page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+testRunner.When("I click create board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+  testRunner.And("I fill in the user board details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+testRunner.Then("the user board will be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete a user test board")]
+        [NUnit.Framework.CategoryAttribute("DeleteBoard")]
+        public virtual void DeleteAUserTestBoard()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a user test board", null, new string[] {
+                        "DeleteBoard"});
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line 15
+testRunner.Given("I am on the boards page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+  testRunner.And("I create the user board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+testRunner.When("I click on the user created board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+  testRunner.And("go through all the delete prompts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+testRunner.Then("the user board will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
 #endregion
+
