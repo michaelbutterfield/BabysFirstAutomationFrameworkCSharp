@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace training.automation.common.Sections
+﻿namespace training.automation.common.Sections
 {
     public class Section
     {
-        protected String name;
+        protected string name;
 
-        protected Section(String name)
+        protected Section(string name)
         {
             this.name = name;
         }

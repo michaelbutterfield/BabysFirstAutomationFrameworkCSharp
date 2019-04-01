@@ -1,21 +1,21 @@
 ﻿using System;
-using training.automation.common.utilities;
+using training.automation.common.Utilities;
 
 namespace training.automation.specflow.Data
 {
     class TrelloWebData
     {
-        private static String username;
-        private static String password;
+        private static string username;
+        private static string password;
 
         public TrelloWebData() { }
 
-        public static String GetUsername()
+        public static string GetUsername()
         {
             return username;
         }
 
-        public static String GetPassword()
+        public static string GetPassword()
         {
             return password;
         }
@@ -28,7 +28,7 @@ namespace training.automation.specflow.Data
 
                 string line = System.IO.File.ReadAllText(@SourceFile);
 
-                String[] lines = line.Split('\t');
+                string[] lines = line.Split('\t');
 
                 username = lines[0];
 
@@ -36,7 +36,7 @@ namespace training.automation.specflow.Data
             }
             catch (Exception e)
             {
-                String errorMessage = String.Format("Could not read username and password from file");
+                string errorMessage = string.Format("Could not read username and password from file");
 
                 TestHelper.HandleException(errorMessage, e);
             }

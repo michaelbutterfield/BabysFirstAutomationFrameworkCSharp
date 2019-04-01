@@ -8,9 +8,9 @@ namespace training.automation.common.Pages
 {
     public abstract class Page
     {
-        protected String name;
+        protected string name;
 
-        protected Page(String name)
+        protected Page(string name)
         {
             this.name = name;
         }

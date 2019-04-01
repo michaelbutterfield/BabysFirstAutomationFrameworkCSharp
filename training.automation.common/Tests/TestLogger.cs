@@ -51,12 +51,12 @@ namespace training.automation.common.Tests
 
         public static void CreateTestStep(string action, string element, string page)
         {
-            String stepDescription = string.Format("'{0}' '{1}' on page '{2}'", action, element, page);
+            string stepDescription = string.Format("'{0}' '{1}' on page '{2}'", action, element, page);
 
             CreateTestStep(stepDescription);
         }
 
-        private static String GetTestRunDirectory()
+        private static string GetTestRunDirectory()
         {
             if (testRunDirectory == null)
             {
@@ -68,7 +68,7 @@ namespace training.automation.common.Tests
 
         public static void Initialise()
         {
-            string fileLocation = String.Format("{0}\\" + TestHelper.GetScenario().Test.Name + ".txt", GetTestRunDirectory());
+            string fileLocation = string.Format("{0}\\" + TestHelper.GetScenario().Test.Name + ".txt", GetTestRunDirectory());
 
             try
             {
@@ -82,14 +82,24 @@ namespace training.automation.common.Tests
 
         public static void LogActionFailure(string failureMessage, Exception e)
         {
+            LogEntry("\n");
+            LogEntry("***********************");
+            LogEntry("********FAILURE********");
+            LogEntry("\n");
             LogEntry(failureMessage);
+            LogEntry("\n");
             LogExceptionOrError(e);
+            LogEntry("*****END OF FAILURE*****");
+            LogEntry("************************");
+            LogEntry("\n");
         }
 
         public static void LogExceptionOrError(Exception e)
         {
-            LogEntry("EXCEPTION/ERROR MESSAGE: " + e.Message);
-            LogEntry("STACK-TRACE: " + e.StackTrace);
+            LogEntry("***EXCEPTION/ERROR MESSAGE***: " + e.Message);
+            LogEntry("\n");
+            LogEntry("***STACK-TRACE***: " + e.StackTrace);
+            LogEntry("\n");
         }
 
         public static void LogScenarioEnd()

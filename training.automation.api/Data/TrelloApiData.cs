@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using training.automation.common.utilities;
+using training.automation.common.Utilities;
 
 namespace training.automation.api.Data
 {
@@ -23,7 +19,7 @@ namespace training.automation.api.Data
 
                 string line = System.IO.File.ReadAllText(@SourceFile);
 
-                String[] lines = line.Split('\t');
+                string[] lines = line.Split('\t');
 
                 apiKey = lines[0];
 
@@ -31,7 +27,7 @@ namespace training.automation.api.Data
             }
             catch (Exception e)
             {
-                String errorMessage = String.Format("Could not read key and token from Trello API File");
+                string errorMessage = string.Format("Could not read key and token from Trello API File");
 
                 TestHelper.HandleException(errorMessage, e);
             }

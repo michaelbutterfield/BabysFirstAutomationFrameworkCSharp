@@ -8,9 +8,9 @@ namespace training.automation.common.Pop_up
 {
     public abstract class Pop_up
     {
-        protected String name;
+        protected string name;
 
-        protected Pop_up(String name)
+        protected Pop_up(string name)
         {
             this.name = name;
         }

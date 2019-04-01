@@ -5,6 +5,8 @@ using System.Linq;
 using training.automation.common.utilities;
 using NHamcrest;
 using training.automation.common.Tests;
+using training.automation.common.Utilities;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace training.automation.common.selenium.elements.common
 {
@@ -29,7 +31,7 @@ namespace training.automation.common.selenium.elements.common
 
         public void AssertExists()
         {
-            String stepDescription = string.Format("Assert Element '{0}' Exists on page '{1}'", name, pageName);
+            string stepDescription = string.Format("Assert Element '{0}' Exists on page '{1}'", name, pageName);
             IWebElement element = null;
 
             try
@@ -52,7 +54,7 @@ namespace training.automation.common.selenium.elements.common
 
             if (element != null)
             {
-                string error = String.Format("{0} is still displayed. Whoops.", name);
+                string error = string.Format("{0} is still displayed. Whoops.", name);
 
                 TestLogger.CreateTestStep(error);
 
@@ -66,7 +68,7 @@ namespace training.automation.common.selenium.elements.common
 
         public void AssertElementIsDisplayed()
         {
-            string assertionDescription = String.Format("Assert Element {0} on page {1} is displayed", name, pageName);
+            string assertionDescription = string.Format("Assert Element {0} on page {1} is displayed", name, pageName);
 
             IWebElement element = null;
 
@@ -86,7 +88,7 @@ namespace training.automation.common.selenium.elements.common
 
         public void AssertElementTextContains(string containsText)
         {
-            string assertionDescription = String.Format("Assert Element {0} Text Contains {1}", name, containsText);
+            string assertionDescription = string.Format("Assert Element {0} Text Contains {1}", name, containsText);
 
             try
             {
@@ -116,7 +118,7 @@ namespace training.automation.common.selenium.elements.common
 
         public void ClickNoWait()
         {
-            String assertionDescription = String.Format("Clicking {0} on page {1}", name, pageName);
+            string assertionDescription = string.Format("Clicking {0} on page {1}", name, pageName);
 
             TestLogger.CreateTestStep(assertionDescription);
 
@@ -139,9 +141,9 @@ namespace training.automation.common.selenium.elements.common
             return SeleniumHelper.GetElements(locator).Count() > 0;
         }
 
-        public String GetElementAttribute(String attributeName)
+        public string GetElementAttribute(string attributeName)
         {
-            String assertionDescription = String.Format("Getting attribute {0} from element {1} on page {2}", attributeName, name, pageName);
+            string assertionDescription = string.Format("Getting attribute {0} from element {1} on page {2}", attributeName, name, pageName);
 
 
             TestLogger.CreateTestStep(assertionDescription);
@@ -156,11 +158,11 @@ namespace training.automation.common.selenium.elements.common
             return SeleniumHelper.GetWebDriver().FindElements(locator).Count();
         }
 
-        public String GetElementText()
+        public string GetElementText()
         {
             string assertionDesc = string.Format("Getting element text from element {0} on page {1}", name, pageName);
 
-            String elementText = null;
+            string elementText = null;
 
             try
             {
@@ -174,7 +176,7 @@ namespace training.automation.common.selenium.elements.common
             return elementText;
         }
 
-        public String GetElementValue()
+        public string GetElementValue()
         {
             IWebElement element = GetWebElement(false, true);
 
