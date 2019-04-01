@@ -162,9 +162,7 @@ this.FeatureBackground();
 #line 35
    testRunner.And("I click and drag two cards from Done to Doing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
- testRunner.Then("the \'To Do\' cards are in \'Doing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 37
-   testRunner.And("the \'Done\' cards are in \'Doing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the cards are moved successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -194,3 +192,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+

@@ -33,8 +33,8 @@ Scenario: Dragging two cards from 'To Do' & 'Done' to 'Doing'
 	Given I add "3" lists and "5" cards to each list
 	When I click and drag two cards from To Do to Doing
 	  And I click and drag two cards from Done to Doing
-	Then the 'To Do' cards are in 'Doing'
-	  And the 'Done' cards are in 'Doing'
+	Then the cards are moved successfully
+
 
 
 @FavouriteBoard
