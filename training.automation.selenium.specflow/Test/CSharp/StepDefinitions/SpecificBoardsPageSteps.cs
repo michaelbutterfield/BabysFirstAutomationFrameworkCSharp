@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using RandomGen = training.automation.common.Utilities.RandomGen;
 using training.automation.common.Utilities;
 using training.automation.common.Selenium.Elements;
+using NHamcrest;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
@@ -85,6 +86,17 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
                 throw new Exception("The list length returned is not equal to 3. The three lists have not been created successfully.");
             }
         }
+
+        [Then]
+        public void the_cards_are_moved_successfully()
+        {
+            int cards = TrelloAPIHelper.GetNumOfCardsOnAList(2);
+
+            string StepDesc = string.Format("Assert total cards: {0} on list is equal to actual: {1}", cards, 9);
+
+            TestHelper.AssertThat(cards, Is.EqualTo(9), StepDesc);
+        }
+
 
         [Then(@"the three lists will contain five cards each")]
         public void TheThreeListsWillContainFiveCardsEach()
