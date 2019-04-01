@@ -5,7 +5,7 @@ using NHamcrest.Core;
 using NUnit.Framework;
 using training.automation.common.Tests;
 
-namespace training.automation.common.utilities
+namespace training.automation.common.Utilities
 {
     public class TestHelper
     {
@@ -58,13 +58,11 @@ namespace training.automation.common.utilities
         {
             string exception = string.Format("{0} : {1} : ", ErrorMessage, e);
 
-            WriteToConsole(exception);
-
             TestLogger.LogActionFailure(exception, e);
 
             FailureScreenshot.TakeScreenshot();
 
-            throw new System.ArgumentException(e.Message, e);
+            throw new ArgumentException(e.Message, e);
         }
 
         public static string GetTodaysDateTime(string format)
