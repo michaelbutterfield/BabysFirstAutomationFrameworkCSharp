@@ -1,5 +1,5 @@
 ﻿using TechTalk.SpecFlow;
-using training.automation.common.utilities;
+using training.automation.common.Utilities;
 using training.automation.specflow.Application;
 using training.automation.specflow.Data;
 using Is = NHamcrest.Is;
