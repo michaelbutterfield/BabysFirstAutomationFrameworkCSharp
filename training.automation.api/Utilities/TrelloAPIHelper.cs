@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using System.Collections.Generic;
 using training.automation.api.Data;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
@@ -205,6 +206,27 @@ namespace training.automation.api.Utilities
 
                 listCount--;
             }
+        }
+
+        public static int GetNumOfCardsOnAList(int listNum)
+        {
+            var client = new RestClient("http://api.trello.com");
+
+            var request = new RestRequest("https://api.trello.com/1/lists/{listId}/cards?fields=id,name&key={key}&token={token}");
+            request.AddUrlSegment("listId", RuntimeTestData.GetAsString("listId_" + listNum));
+            request.AddUrlSegment("key", TrelloApiData.GetApiKey());
+            request.AddUrlSegment("token", TrelloApiData.GetApiToken());
+            request.AddHeader("content-type", "application/json; charset=utf-8");
+
+            var response = client.Execute<List<CardsOnListResponseData.RootObject>>(request);
+            List<CardsOnListResponseData.RootObject> Data = response.Data;
+
+            string statusCode = response.StatusCode.ToString();
+            string assertionDesc = string.Format("Assert Create List response code actual: {0} is equal to expected: {1}", statusCode, "OK");
+
+            TestHelper.AssertThat(statusCode, Is.EqualTo("OK"), assertionDesc);
+
+            return Data.Count;
         }
 
         //Won't work if multiple boards with the same name -- will always return first board
