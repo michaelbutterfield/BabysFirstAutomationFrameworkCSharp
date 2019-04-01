@@ -1,10 +1,8 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Drawing;
 using System.IO;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
-using System.Drawing.Imaging;
 
 namespace training.automation.common.Tests
 {
@@ -16,7 +14,7 @@ namespace training.automation.common.Tests
         {
             try
             {
-                screenshotDirectory = RuntimeTestData.GetAsString("TestRunDirectory") + "\\FailureScreenshot";
+                screenshotDirectory = RuntimeTestData.GetAsString("TestRunDirectory") + "\\FailureScreenshots";
                 RuntimeTestData.Add("ScreenshotDirectory", screenshotDirectory);
 
                 if (!Directory.Exists(screenshotDirectory))
@@ -35,13 +33,13 @@ namespace training.automation.common.Tests
         {
             CreateScreenshotDirectory();
 
-            string ScreenshotName = TestHelper.GetScenario().Test.Name;
+            string ScreenshotName = TestHelper.GetScenario().Test.Name + ".png";
 
             IWebDriver driver = SeleniumHelper.GetWebDriver();
 
             Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
-            screenshot.SaveAsFile(RuntimeTestData.GetAsString("ScreenshotDirectory") + ScreenshotName, ImageFormat.Gif);
+            screenshot.SaveAsFile(RuntimeTestData.GetAsString("ScreenshotDirectory") + "\\" + ScreenshotName, ScreenshotImageFormat.Png);
         }
 
 
