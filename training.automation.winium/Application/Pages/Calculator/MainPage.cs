@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Pages;
+using training.automation.common.Page;
 using training.automation.winium.Common.Winium.Elements;
 
 namespace training.automation.winium.Application.Pages.Calculator
