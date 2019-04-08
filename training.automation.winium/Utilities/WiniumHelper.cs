@@ -40,7 +40,7 @@ namespace training.automation.winium.Utilities
             }
             catch (Exception e)
             {
-                String errorMessage = "Failed to launch Winium Driver";
+                string errorMessage = "Failed to launch Winium Driver";
                 TestHelper.HandleException(errorMessage, e);
             }
         }
