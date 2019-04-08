@@ -10,46 +10,40 @@ namespace training.automation.winium.Common.Winium.Elements.Common
     public class Element
     {
         protected By locator;
-        protected String name;
-        protected String pageName;
+        protected string name;
+        protected string pageName;
 
-        public Element(By passedLocator, String passedElementName, String passedPageName)
+        public Element(By passedLocator, string passedElementName, string passedPageName)
         {
             locator = passedLocator;
             name = passedElementName;
             pageName = passedPageName;
         }
 
-        public void AssertAttributeContains(String attribute, String expectedText)
+        public void AssertAttributeContains(string attribute, string expectedText)
         {
-            String stepDescription = String.Format("Assert Element '{0}' Attribute '{1}' Contains '{2}'", name, attribute, expectedText);
+            string stepDescription = string.Format("Assert Element '{0}' Attribute '{1}' Contains '{2}'", name, attribute, expectedText);
 
             TestLogger.CreateTestStep(stepDescription);
 
-            String actualText = GetAttribute(attribute);
+            string actualText = GetAttribute(attribute);
             TestHelper.AssertThat(actualText, Contains.String(expectedText), stepDescription);
         }
 
-        public void AssertAttributeEquals(String attributeName, String expectedAttributeValue)
+        public void AssertAttributeEquals(string attributeName, string expectedAttributeValue)
         {
-            String stepDescription = String.Format("Assert Element '{0}' Attribute '{1}' Equals '{2}'", name, attributeName, expectedAttributeValue);
+            string stepDescription = string.Format("Assert Element '{0}' Attribute '{1}' Equals '{2}'", name, attributeName, expectedAttributeValue);
 
             TestLogger.CreateTestStep(stepDescription);
 
-            String actualAttributeValue = GetAttribute(attributeName);
+            string actualAttributeValue = GetAttribute(attributeName);
             TestHelper.AssertThat(actualAttributeValue, Is.EqualTo(expectedAttributeValue), stepDescription);
         }
 
-        //public void assertDoesNotExist()
-        //{
-        //    String stepDescription = "Assert Element Does Not Exists";
-        //    TestHelper.AssertThat(Exists(), Is.False(), stepDescription);
-        //}
-
         public void AssertExists()
         {
-            String stepDescription = "Assert Element Exists '{0}' on page '{1}'";
-            stepDescription = String.Format(stepDescription, name, pageName);
+            string stepDescription = "Assert Element Exists '{0}' on page '{1}'";
+            stepDescription = string.Format(stepDescription, name, pageName);
             TestLogger.CreateTestStep(stepDescription);
             IWebElement element = null;
 
@@ -67,28 +61,18 @@ namespace training.automation.winium.Common.Winium.Elements.Common
             }
         }
 
-        public void AttemptClick(Boolean throwNoSuchElementException)
-        {
-            Click("Attempt Click", 5, throwNoSuchElementException);
-        }
-
         public void Click()
         {
-            string stepDef = String.Format("Clicking on Element '{0}' on page '{1}'", name, pageName);
+            string stepDef = string.Format("Clicking on Element '{0}' on page '{1}'", name, pageName);
 
             TestLogger.CreateTestStep(stepDef);
 
-            Click("Click", 5, false);
+            GetElement().Click();
         }
 
-        //public Boolean exists()
-        //{
-        //    return WiniumDriverHelper.getElements(locator).size() > 0;
-        //}
-
-        public String GetAttribute(String attribute)
+        public string GetAttribute(string attribute)
         {
-            //String actionName = "Get Attribute' '" + attribute;
+            //string actionName = "Get Attribute' '" + attribute;
 
             string stepDef = string.Format("Getting Attribute {0}", attribute);
 
@@ -108,40 +92,10 @@ namespace training.automation.winium.Common.Winium.Elements.Common
             return attributeValue;
         }
 
-        //public List<IWebElement> GetChildElements()
-        //{
-        //    return GetChildElementsByXpath("./*");
-        //}
-
-        //public List<IWebElement> GetChildElementsByXpath(String xpath)
-        //{
-        //    return WiniumDriverHelper.GetElement(locator).FindElements(By.XPath(xpath));
-        //}
-
-        //public int GetCount()
-        //{
-        //    return WiniumDriverHelper.GetElements(locator).size();
-        //}
-
-        //public void WaitUntilDoesNotExist()
-        //{
-        //    int maxRetry = 20;
-        //    int retries = 0;
-
-        //    while (retries++ < maxRetry)
-        //    {
-        //        if (!Exists)
-        //        {
-        //            break;
-        //        }
-
-        //        if (retries == maxRetry)
-        //        {
-        //            String message = "";
-        //            TestHelper.HandleException(message, new Exception(message), true);
-        //        }
-        //    }
-        //}
+        public IWebElement GetElement()
+        {
+            return WiniumHelper.GetElement(locator);
+        }
 
         public void WaitUntilExists()
         {
@@ -173,70 +127,11 @@ namespace training.automation.winium.Common.Winium.Elements.Common
             }
         }
 
-        protected void HandleException(String action, Exception e)
+        protected void HandleException(string actionName, Exception ex)
         {
-            String errorMessage = "Action '{0}' Failed";
-            errorMessage = String.Format(errorMessage, action, name, pageName);
+            string errorMessage = string.Format("{0} failed on element \"{1}\" on page \"{2}\"", actionName, name, pageName);
 
-            TestHelper.HandleException(errorMessage, e);
-        }
-
-        private void Click(String clickType, int maxRetry, Boolean throwNoSuchElementException)
-        {
-            int retries = 0;
-
-            while (retries++ < maxRetry)
-            {
-                try
-                {
-                    WiniumHelper.GetElement(locator).Click();
-                    break;
-                }
-                catch (NoSuchElementException e)
-                {
-                    if (clickType.Equals("Attempt Click"))
-                    {
-                        if (retries == maxRetry &&
-                            throwNoSuchElementException)
-                        {
-                            throw e;
-                        }
-                        else
-                        {
-                            TestHelper.SleepInSeconds(1);
-                            continue;
-                        }
-                    }
-                    else
-                    {
-                        if (retries == maxRetry)
-                        {
-                            HandleException(clickType, e);
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                }
-                catch (WebDriverException e)
-                {
-                    // added to try an swallow exception when element exists but is not currently intractable
-                    if (e.Message.Contains("NOT CLICK") && retries < maxRetry)
-                    {
-                        TestHelper.SleepInSeconds(5);
-                        continue;
-                    }
-                    else
-                    {
-                        HandleException(clickType, e);
-                    }
-                }
-                catch (Exception e)
-                {
-                    HandleException(clickType, e);
-                }
-            }
+            TestHelper.HandleException(errorMessage, ex);
         }
     }
 }
