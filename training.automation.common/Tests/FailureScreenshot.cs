@@ -14,11 +14,12 @@ namespace training.automation.common.Tests
         {
             try
             {
-                screenshotDirectory = RuntimeTestData.GetAsString("TestRunDirectory") + "\\FailureScreenshots";
-                RuntimeTestData.Add("ScreenshotDirectory", screenshotDirectory);
+                screenshotDirectory = string.Concat(RuntimeTestData.GetAsString("TestRunDirectory"), "\\FailureScreenshots");
 
                 if (!Directory.Exists(screenshotDirectory))
                 {
+                    RuntimeTestData.Add("ScreenshotDirectory", screenshotDirectory);
+
                     Directory.CreateDirectory(screenshotDirectory);
                 }
             }
@@ -33,13 +34,13 @@ namespace training.automation.common.Tests
         {
             CreateScreenshotDirectory();
 
-            string ScreenshotName = TestHelper.GetScenario().Test.Name + ".png";
+            string ScreenshotName = string.Concat(TestHelper.GetScenario().Test.Name, ".png");
 
             IWebDriver driver = SeleniumHelper.GetWebDriver();
 
             Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
-            screenshot.SaveAsFile(RuntimeTestData.GetAsString("ScreenshotDirectory") + "\\" + ScreenshotName, ScreenshotImageFormat.Png);
+            screenshot.SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName, ScreenshotImageFormat.Png));
         }
 
 
