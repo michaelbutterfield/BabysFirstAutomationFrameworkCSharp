@@ -40,7 +40,7 @@ namespace training.automation.common.selenium.elements.common
             }
             catch (Exception e)
             {
-                HandleException(stepDescription, e);
+                TestHelper.HandleException(stepDescription, e);
             }
             finally
             {
@@ -251,7 +251,7 @@ namespace training.automation.common.selenium.elements.common
             }
         }
 
-        protected IWebElement GetWebElement(Boolean waitUntilClickable, Boolean waitUntilVisible)
+        protected IWebElement GetWebElement(bool waitUntilClickable, bool waitUntilVisible)
         {
             if (waitUntilClickable)
             {
