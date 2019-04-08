@@ -9,6 +9,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using training.automation.common.Utilities;
 
 namespace training.automation.selenium
 {
@@ -108,7 +109,7 @@ namespace training.automation.selenium
 
             for (int i = 0; i < 5; i++)
             {
-                String testText = String.Format("Test Text Placeholder {0}", i);
+                string testText = string.Format("Test Text Placeholder {0}", i);
                 DesktopWebsite.specificBoardsPage.EnterCardTitle.SendKeys(testText);
                 DesktopWebsite.specificBoardsPage.AddCard.Click();
             }
