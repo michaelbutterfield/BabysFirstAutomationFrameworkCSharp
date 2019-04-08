@@ -6,6 +6,6 @@ namespace training.automation.winium.Common.Winium.Elements
 {
     public class Button : Element
     {
-        public Button(By myLocator, String elementName, String pageName) : base(myLocator, elementName, pageName) { }
+        public Button(By myLocator, string elementName, string pageName) : base(myLocator, elementName, pageName) { }
     }
 }
