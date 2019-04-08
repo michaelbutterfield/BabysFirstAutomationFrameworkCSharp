@@ -28,9 +28,8 @@ namespace training.automation.common.Tests
         {
             try
             {
-                testRunDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime(logDateTimeFormat);
+                testRunDirectory = string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "\\TestRuns\\TestRun_", TestHelper.GetTodaysDateTime(logDateTimeFormat));
                 RuntimeTestData.Add("TestRunDirectory", testRunDirectory);
-                //testRunDirectory = "C:\\Users\\michael.butterfield\\Desktop\\TestRuns\\TestRun_" + TestHelper.GetTodaysDateTime("dd-MM-yy HH.mm");
 
                 if (!Directory.Exists(testRunDirectory))
                 {
@@ -68,7 +67,7 @@ namespace training.automation.common.Tests
 
         public static void Initialise()
         {
-            string fileLocation = string.Format("{0}\\" + TestHelper.GetScenario().Test.Name + ".txt", GetTestRunDirectory());
+            string fileLocation = string.Format(string.Concat("{0}\\", TestHelper.GetScenario().Test.Name, ".txt", GetTestRunDirectory()));
 
             try
             {
@@ -104,13 +103,13 @@ namespace training.automation.common.Tests
 
         public static void LogScenarioEnd()
         {
-            string entryText = "*** SCENARIO ENDED *** : " + TestHelper.GetScenario().Test.Name + Environment.NewLine;
+            string entryText = string.Concat("*** SCENARIO ENDED *** : ", TestHelper.GetScenario().Test.Name, Environment.NewLine);
             LogEntry(entryText);
         }
 
         public static void LogScenarioStart()
         {
-            string entryText = "*** SCENARIO STARTED *** : " + TestHelper.GetScenario().Test.Name;
+            string entryText = string.Concat("*** SCENARIO STARTED *** : ", TestHelper.GetScenario().Test.Name);
             LogEntry(entryText);
         }
 
@@ -154,7 +153,7 @@ namespace training.automation.common.Tests
 
         public static void LogTestResult()
         {
-            String result = "NULL";
+            string result = "NULL";
 
             if (TestHelper.GetScenario().Result.Outcome.ToString().Equals("Failed:Error"))
             {
