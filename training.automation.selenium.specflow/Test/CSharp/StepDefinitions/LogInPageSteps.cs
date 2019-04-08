@@ -43,8 +43,8 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void I_will_be_logged_in_successfully()
         {
-            DesktopWebsite.Header.BackToHome.WaitUntilExists();
-            DesktopWebsite.Header.BackToHome.AssertExists();
+            DesktopWebsite.BoardsPage.Header.BackToHome.WaitUntilExists();
+            DesktopWebsite.BoardsPage.Header.BackToHome.AssertExists();
         }
 
         [Given][When]
