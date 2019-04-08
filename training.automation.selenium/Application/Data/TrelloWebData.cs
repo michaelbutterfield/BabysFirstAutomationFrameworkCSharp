@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using training.automation.common.utilities;
+using training.automation.common.Utilities;
 
 namespace training.automation.selenium.Application.Data
 {
     class TrelloWebData
     {
-        private static String username;
-        private static String password;
+        private static string username;
+        private static string password;
 
         public TrelloWebData() { }
 
-        public static String GetUsername()
+        public static string GetUsername()
         {
             return username;
         }
 
-        public static String GetPassword()
+        public static string GetPassword()
         {
             return password;
         }
