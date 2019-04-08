@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using training.automation.common.Sections;
-using training.automation.common.Winium.Elements;
+using training.automation.winium.Common.Winium.Elements;
 
 namespace training.automation.winium.Application.Sections.Calculator
 {
