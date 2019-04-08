@@ -51,7 +51,7 @@ namespace training.automation.common.Utilities
 
         public static void HandleException(string ErrorMessage, Exception e)
         {
-            HandleException(ErrorMessage, e, true);
+            HandleException(ErrorMessage, e, false);
         }
 
         public static void HandleException(string ErrorMessage, Exception e, bool takeScreenshot)
@@ -60,7 +60,7 @@ namespace training.automation.common.Utilities
 
             TestLogger.LogActionFailure(exception, e);
 
-            FailureScreenshot.TakeScreenshot();
+            //FailureScreenshot.TakeScreenshot();
 
             throw new ArgumentException(e.Message, e);
         }
@@ -70,7 +70,7 @@ namespace training.automation.common.Utilities
             return DateTime.Now.ToString(format);
         }
 
-        public static bool ScenarioHasTag(String tagName)
+        public static bool ScenarioHasTag(string tagName)
         {
             return GetScenario().Test.Name.Contains(tagName);
         }
