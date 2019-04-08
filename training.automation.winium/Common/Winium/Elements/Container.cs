@@ -6,6 +6,6 @@ namespace training.automation.winium.Common.Winium.Elements
 {
     public class Container : Element
     {
-        public Container(By myLocator, String elementName, String pageName) : base(myLocator, elementName, pageName) { }
+        public Container(By myLocator, string elementName, string pageName) : base(myLocator, elementName, pageName) { }
     }
 }
