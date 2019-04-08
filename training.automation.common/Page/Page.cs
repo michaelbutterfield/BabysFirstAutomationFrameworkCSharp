@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace training.automation.common.Pages
+﻿namespace training.automation.common.Page
 {
     public abstract class Page
     {
