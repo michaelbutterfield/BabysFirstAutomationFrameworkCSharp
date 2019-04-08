@@ -1,6 +1,4 @@
-﻿using training.automation.selenium.specflow.Application.Pages;
-using training.automation.selenium.specflow.Application.Pop_ups;
-using training.automation.specflow.Application.Pages;
+﻿using training.automation.specflow.Application.Pages;
 using training.automation.specflow.Application.Sections;
 
 namespace training.automation.specflow.Application
@@ -9,7 +7,6 @@ namespace training.automation.specflow.Application
     {
         public static BoardsPage BoardsPage;
         public static CreateBoardPage CreateBoardPage;
-        public static Header Header;
         public static LogInPage LogInPage;
         public static SpecificBoardsPage SpecificBoardsPage;
         public static SplashPage SplashPage;
@@ -17,7 +14,6 @@ namespace training.automation.specflow.Application
         static DesktopWebsite()
         {
             BuildPages();
-            BuildSections();
         }
 
         private static void BuildPages()
@@ -27,11 +23,6 @@ namespace training.automation.specflow.Application
             LogInPage = new LogInPage();
             SpecificBoardsPage = new SpecificBoardsPage();
             SplashPage = new SplashPage();
-        }
-
-        private static void BuildSections()
-        {
-            Header = new Header();
         }
     }
 }

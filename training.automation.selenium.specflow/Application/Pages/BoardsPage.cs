@@ -1,11 +1,13 @@
 ﻿using OpenQA.Selenium;
 using training.automation.common.Pages;
 using training.automation.common.Selenium.Elements;
+using training.automation.specflow.Application.Sections;
 
 namespace training.automation.specflow.Application.Pages
 {
     public class BoardsPage : Page
     {
+        //Elements
         public Label BoardNotFound;
         public Button CreateNewBoard;
         public Text PersonalBoards;
@@ -13,7 +15,15 @@ namespace training.automation.specflow.Application.Pages
         public Button UserBoard;
         public Button Starred;
 
+        //Headers
+        public Header Header;
+
         public BoardsPage() : base("Boards") { BuildPage(); }
+
+        private void BuildHeader()
+        {
+            Header = new Header();
+        }
 
         private void BuildPage()
         {

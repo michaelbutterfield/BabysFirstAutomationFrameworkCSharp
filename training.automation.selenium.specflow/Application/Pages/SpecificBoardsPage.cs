@@ -2,11 +2,13 @@
 using training.automation.common.Pages;
 using training.automation.common.Selenium.Elements;
 using training.automation.selenium.specflow.Application.Pages;
+using training.automation.specflow.Application.Sections;
 
 namespace training.automation.specflow.Application.Pages
 {
     public class SpecificBoardsPage : Page
     {
+        //Elements
         public Button AddACard;
         public Button AddAnotherList;
         public Button AddAList;
@@ -25,9 +27,18 @@ namespace training.automation.specflow.Application.Pages
         public Button PermDeleteBoardConfirm;
         public Label ToDo;
 
+        //Pages
         public CardPage CardPage;
 
+        //Header
+        public Header Header;
+
         public SpecificBoardsPage() : base("Specific Boards") { BuildPage(); BuildElements(); }
+
+        private void BuildHeader()
+        {
+            Header = new Header();
+        }
 
         private void BuildPage()
         {
