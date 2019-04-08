@@ -1,4 +1,6 @@
-﻿using TechTalk.SpecFlow;
+﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
+using TechTalk.SpecFlow;
 using training.automation.api.Data;
 using training.automation.api.Utilities;
 using training.automation.common.Tests;
@@ -36,9 +38,16 @@ namespace training.automation.specflow.Test.CSharp.Runner
         [AfterScenario]
         static void AfterScenario()
         {
+            TestContext scenario = TestHelper.GetScenario();
+
+            if (scenario.Result.Outcome.Status.Equals(TestStatus.Failed))
+            {
+                FailureScreenshot.TakeScreenshot();
+            }
+
             if (RuntimeTestData.ContainsKey("BoardName"))
             {
-                DesktopWebsite.Header.BackToHome.JsClick();
+                DesktopWebsite.SpecificBoardsPage.Header.BackToHome.JsClick();
                 DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
 
                 if (DesktopWebsite.BoardsPage.UserBoard.Exists())
