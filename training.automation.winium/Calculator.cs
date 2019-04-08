@@ -2,9 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using training.automation.common.Tests;
-using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using training.automation.winium.Application;
+using training.automation.winium.Utilities;
 using Is = NHamcrest.Is;
 
 namespace training.automation.winium
