@@ -29,11 +29,11 @@ namespace training.automation.winium
         [SetUp]
         public void ResetCalculator()
         {
-            DesktopApplication.mainPage.OpenNavigation.AssertExists();
-            DesktopApplication.mainPage.OpenNavigation.Click();
-            DesktopApplication.navigationPane.StandardCalculator.AssertExists();
-            DesktopApplication.navigationPane.StandardCalculator.Click();
-            DesktopApplication.mainPage.EqualsButton.Click();
+            DesktopApplication.MainPage.OpenNavigation.AssertExists();
+            DesktopApplication.MainPage.OpenNavigation.Click();
+            DesktopApplication.NavigationPane.StandardCalculator.AssertExists();
+            DesktopApplication.NavigationPane.StandardCalculator.Click();
+            DesktopApplication.MainPage.EqualsButton.Click();
 
             try
             {
@@ -49,15 +49,15 @@ namespace training.automation.winium
         public void SimpleAddition()
         {
             //Given the calculators open
-            DesktopApplication.mainPage.PositiveNegative.AssertExists();
+            DesktopApplication.MainPage.PositiveNegative.AssertExists();
             Console.WriteLine("Application 'Calculator' is open");
             TestHelper.WriteToConsole("Application 'Calculator' is open");
 
             //When I enter 2+2
-            DesktopApplication.mainPage.Two.Click();
-            DesktopApplication.mainPage.Plus.Click();
-            DesktopApplication.mainPage.Two.Click();
-            DesktopApplication.mainPage.EqualsButton.Click();
+            DesktopApplication.MainPage.Two.Click();
+            DesktopApplication.MainPage.Plus.Click();
+            DesktopApplication.MainPage.Two.Click();
+            DesktopApplication.MainPage.EqualsButton.Click();
 
             Console.WriteLine("2+2= has been entered successfully");
             TestHelper.WriteToConsole("2+2= has been entered successfully");
@@ -71,15 +71,16 @@ namespace training.automation.winium
         public void Log10()
         {
             //Given I change the caluclator to scientific
-            DesktopApplication.mainPage.OpenNavigation.AssertExists();
-            DesktopApplication.mainPage.OpenNavigation.Click();
-            DesktopApplication.navigationPane.ScientificCalculator.AssertExists();
-            DesktopApplication.navigationPane.ScientificCalculator.Click();
+            DesktopApplication.MainPage.OpenNavigation.AssertExists();
+            DesktopApplication.MainPage.OpenNavigation.Click();
+
+            DesktopApplication.NavigationPane.ScientificCalculator.AssertExists();
+            DesktopApplication.NavigationPane.ScientificCalculator.Click();
 
             //When I enter log ten
-            DesktopApplication.mainPage.One.Click();
-            DesktopApplication.mainPage.Zero.Click();
-            DesktopApplication.mainPage.Log.Click();
+            DesktopApplication.MainPage.One.Click();
+            DesktopApplication.MainPage.Zero.Click();
+            DesktopApplication.MainPage.Log.Click();
 
             //The answer will be one
             TestHelper.AssertThat(WiniumHelper.GetWiniumDriver().FindElementByName("Expression is log(10)").GetAttribute("Name"), Is.EqualTo("Expression is log(10)"), "Assert that the answer to log(10) is 1");
