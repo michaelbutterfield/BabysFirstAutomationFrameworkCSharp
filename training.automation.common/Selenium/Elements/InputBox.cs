@@ -23,9 +23,9 @@ namespace training.automation.common.Selenium.Elements
             }
         }
 
-        public void SendKeys(String text)
+        public void SendKeys(string text)
         {
-            String stepDescription = String.Format("Input Text '{0}' into element {1} on page {2}", text, name, pageName);
+            string stepDescription = string.Format("Input Text '{0}' into element {1} on page {2}", text, name, pageName);
 
             TestLogger.CreateTestStep(stepDescription);
 
