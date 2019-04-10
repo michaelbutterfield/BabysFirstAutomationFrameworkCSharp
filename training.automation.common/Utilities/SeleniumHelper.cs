@@ -5,10 +5,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using training.automation.common.Tests;
 using training.automation.common.Utilities;
-using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace training.automation.common.utilities
 {
@@ -129,7 +127,7 @@ namespace training.automation.common.utilities
                         break;
                     }
                 default:
-                    throw new System.ArgumentException("Browser choice not set or choice incorrect: " + browser);
+                    throw new ArgumentException("Browser choice not set or choice incorrect: " + browser);
             }
 
             Driver.Manage().Window.Maximize();
