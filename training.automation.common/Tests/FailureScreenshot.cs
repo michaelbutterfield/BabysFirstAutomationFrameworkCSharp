@@ -40,7 +40,7 @@ namespace training.automation.common.Tests
 
             Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
-            screenshot.SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName, ScreenshotImageFormat.Png));
+            screenshot.SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName));
         }
 
 
