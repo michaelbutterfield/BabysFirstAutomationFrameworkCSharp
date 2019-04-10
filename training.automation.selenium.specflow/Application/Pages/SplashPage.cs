@@ -1,4 +1,4 @@
-﻿using training.automation.common.Pages;
+﻿using training.automation.common.Page;
 using training.automation.common.Selenium.Elements;
 using OpenQA.Selenium;
 

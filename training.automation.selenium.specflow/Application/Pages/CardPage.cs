@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Pages;
+using training.automation.common.Page;
 using training.automation.common.Selenium.Elements;
 using training.automation.selenium.specflow.Application.Pop_ups;
 
