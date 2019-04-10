@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
-using training.automation.common.utilities;
 using training.automation.common.Utilities;
 
 namespace training.automation.common.Tests
@@ -10,7 +10,7 @@ namespace training.automation.common.Tests
         private static StreamWriter writer = null;
         private static string testRunDirectory = null;
         private static string logDateTimeFormat = "dd.MM.yy HH.mm.ss";
-        private static DateTime suiteRunStart;
+        private static Stopwatch scenarioRunStopwatch;
 
         public static void Close()
         {
@@ -67,7 +67,7 @@ namespace training.automation.common.Tests
 
         public static void Initialise()
         {
-            string fileLocation = string.Format(string.Concat("{0}\\", TestHelper.GetScenario().Test.Name, ".txt", GetTestRunDirectory()));
+            string fileLocation = string.Concat(GetTestRunDirectory(),"\\", TestHelper.GetScenario().Test.Name, ".txt");
 
             try
             {
@@ -103,30 +103,30 @@ namespace training.automation.common.Tests
 
         public static void LogScenarioEnd()
         {
-            string entryText = string.Concat("*** SCENARIO ENDED *** : ", TestHelper.GetScenario().Test.Name, Environment.NewLine);
+            scenarioRunStopwatch.Stop();
+            string entryText = string.Concat(Environment.NewLine, "*** SCENARIO ENDED *** : ", TestHelper.GetScenario().Test.Name, Environment.NewLine);
             LogEntry(entryText);
+            LogTestResult();
+
+            TimeSpan ts = scenarioRunStopwatch.Elapsed;
+
+            LogEntry("**    SCENARIO RAN IN --- Hours:  " + ts.Hours + "   Minutes: " + ts.Minutes + "	Seconds: " + ts.Seconds + " **");
         }
 
         public static void LogScenarioStart()
         {
-            string entryText = string.Concat("*** SCENARIO STARTED *** : ", TestHelper.GetScenario().Test.Name);
+            scenarioRunStopwatch = new Stopwatch();
+            scenarioRunStopwatch.Start();
+            string entryText = string.Concat("*** SCENARIO STARTED *** : ", TestHelper.GetScenario().Test.Name, Environment.NewLine);
             LogEntry(entryText);
         }
 
         //TODO: implement a timer to output at the end of test suite
         public static void LogSuiteDuration()
         {
-            //Duration suiteDuration = 
-
-            //long hours = suiteDuration.getStandardHours();
-            //long minutes = suiteDuration.getStandardMinutes();
-            //long seconds = suiteDuration.getStandardSeconds();
-
-            //minutes = minutes - (hours * 60);
 
             //LogEntry("*** RUN DURATION INFORMATION ***");
-            //LogEntry("Hours: " + hours + "	Minutes: " + minutes + "	Seconds: " + seconds);
-
+            //LogEntry("Hours: " + hours + "	Minutes: " + mins + "	Seconds: " + secs);
         }
 
         public static void LogSuiteSetupEnd()
@@ -136,7 +136,7 @@ namespace training.automation.common.Tests
 
         public static void LogSuiteSetupStart()
         {
-            StartSuiteRunTimer();
+            //suiteRunStopwatch.Start();
             LogEntry("*** SUITE SETUP STARTED ***");
         }
 
@@ -165,11 +165,6 @@ namespace training.automation.common.Tests
             }
 
             LogEntry("*** RESULT *** - Scenario: " + TestHelper.GetScenario().Test.Name + " -- Finished with the Result: " + result);
-        }
-
-        public static void StartSuiteRunTimer()
-        {
-            suiteRunStart = new DateTime();
         }
 
         private static void LogEntry(string entryText)
