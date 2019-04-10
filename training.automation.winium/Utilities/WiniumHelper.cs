@@ -9,7 +9,8 @@ namespace training.automation.winium.Utilities
     public class WiniumHelper
     {
         private static DesktopOptions Options = new DesktopOptions { ApplicationPath = @"C:\\Windows\\System32\\calc.exe" };
-        private static WiniumDriverService Service = WiniumDriverService.CreateDesktopService(@"C:\Users\michael.butterfield\Desktop\bbtest\BabysFirstAutomationFrameworkCSharp\packages\Winium\");
+        private static WiniumDriverService Service = WiniumDriverService.CreateDesktopService(AppDomain.CurrentDomain.BaseDirectory);
+        //AppDomain.CurrentDomain.BaseDirectory
         private static WiniumDriver Driver = null;
 
         private WiniumHelper() { }
