@@ -18,7 +18,7 @@ namespace training.automation.specflow.Application.Pages
         //Headers
         public Header Header;
 
-        public BoardsPage() : base("Boards") { BuildPage(); }
+        public BoardsPage() : base("Boards") { BuildPage(); BuildHeader(); }
 
         private void BuildHeader()
         {

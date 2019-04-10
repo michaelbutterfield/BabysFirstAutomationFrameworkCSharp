@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Pages;
+using training.automation.common.Page;
 using training.automation.common.Selenium.Elements;
 using training.automation.selenium.specflow.Application.Pages;
 using training.automation.specflow.Application.Sections;
@@ -33,7 +33,7 @@ namespace training.automation.specflow.Application.Pages
         //Header
         public Header Header;
 
-        public SpecificBoardsPage() : base("Specific Boards") { BuildPage(); BuildElements(); }
+        public SpecificBoardsPage() : base("Specific Boards") { BuildPage(); BuildElements(); BuildHeader(); }
 
         private void BuildHeader()
         {
