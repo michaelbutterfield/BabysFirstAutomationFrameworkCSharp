@@ -1,12 +1,11 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
-using training.automation.common.utilities;
 using NHamcrest;
 using training.automation.common.Tests;
-using training.automation.common.Utilities;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
+using training.automation.common.Utilities;
+using OpenQA.Selenium.Support.UI;
 
 namespace training.automation.common.Appium.Elements.Common
 {
@@ -36,7 +35,7 @@ namespace training.automation.common.Appium.Elements.Common
 
             try
             {
-                //element = AppiumHelper.GetElement(locator);
+                element = AppiumHelper.FindElement(locator);
             }
             catch (Exception e)
             {
@@ -138,7 +137,7 @@ namespace training.automation.common.Appium.Elements.Common
 
             //TestLogger.CreateTestStep(stepDef);
 
-            return SeleniumHelper.GetElements(locator).Count() > 0;
+            return AppiumHelper.FindElements(locator).Count() > 0;
         }
 
         public string GetElementAttribute(string attributeName)
@@ -155,7 +154,7 @@ namespace training.automation.common.Appium.Elements.Common
 
         public int GetElementCount()
         {
-            return SeleniumHelper.GetWebDriver().FindElements(locator).Count();
+            return AppiumHelper.GetDriver().FindElements(locator).Count();
         }
 
         public string GetElementText()
@@ -211,22 +210,6 @@ namespace training.automation.common.Appium.Elements.Common
             }
         }
 
-        public void JsClick()
-        {
-            string assertionDesc = string.Format("Javascript click element {0} on page {1}", name, pageName);
-
-            try
-            {
-                IJavaScriptExecutor executor = (IJavaScriptExecutor)SeleniumHelper.GetWebDriver();
-
-                executor.ExecuteScript("arguments[0].click();", GetWebElement(true, true));
-            }
-            catch (Exception e)
-            {
-                HandleException(assertionDesc, e);
-            }
-        }
-
         public void WaitForElementToBeClickable()
         {
             try
@@ -262,18 +245,18 @@ namespace training.automation.common.Appium.Elements.Common
                 WaitUntilElementToBeVisible();
             }
 
-            return SeleniumHelper.GetWebDriver().FindElement(locator);
+            return AppiumHelper.GetDriver().FindElement(locator);
         }
 
         private void WaitUntilElementToBeClickable()
         {
-            WebDriverWait wait = new WebDriverWait(SeleniumHelper.GetWebDriver(), SeleniumHelper.DEFAULT_TIMEOUT);
+            WebDriverWait wait = new WebDriverWait(AppiumHelper.GetDriver(), AppiumHelper.DEFAULT_TIMEOUT);
             wait.Until(ExpectedConditions.ElementToBeClickable(locator));
         }
 
         private void WaitUntilElementToBeVisible()
         {
-            WebDriverWait wait = new WebDriverWait(SeleniumHelper.GetWebDriver(), SeleniumHelper.DEFAULT_TIMEOUT);
+            WebDriverWait wait = new WebDriverWait(AppiumHelper.GetDriver(), AppiumHelper.DEFAULT_TIMEOUT);
             wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
 
