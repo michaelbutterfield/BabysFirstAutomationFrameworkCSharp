@@ -64,3 +64,7 @@ Thumbs.db
 /training.automation.common/obj/Debug
 /TestResults
 /training.automation.selenium.specflow/bin/Debug
+/training.automation.selenium.specflow/Test/Features/UI/BoardsPage.feature.cs
+/training.automation.selenium.specflow/Test/Features/UI/CardPage.feature.cs
+/training.automation.selenium.specflow/Test/Features/UI/LogInPage.feature.cs
+/training.automation.selenium.specflow/Test/Features/UI/SpecificBoardsPage.feature.cs
