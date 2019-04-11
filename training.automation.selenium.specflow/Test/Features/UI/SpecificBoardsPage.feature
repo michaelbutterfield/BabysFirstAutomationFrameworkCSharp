@@ -29,7 +29,7 @@ Scenario: Adding several cards to three lists
 
 
 @DragAndDropCards
-Scenario: Dragging two cards from 'To Do' & 'Done' to 'Doing'
+Scenario: Dragging two cards from 'To Do' and 'Done' to 'Doing'
 	Given I add "3" lists and "5" cards to each list
 	When I click and drag two cards from To Do to Doing
 	  And I click and drag two cards from Done to Doing
