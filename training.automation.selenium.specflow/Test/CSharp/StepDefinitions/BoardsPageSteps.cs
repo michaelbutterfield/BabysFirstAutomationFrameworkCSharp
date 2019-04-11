@@ -35,15 +35,15 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Given, When(@"I click on the user created board")]
         public static void IClickOnTheUserCreatedBoard()
         {
+            if (DesktopWebsite.BoardsPage.UserBoard == null)
+            {
+                DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
+            }
+
             if (!DesktopWebsite.BoardsPage.UserBoard.Exists())
             {
                 DesktopWebsite.BoardsPage.Header.BackToHome.JsClick();
             }
-
-            //if (DesktopWebsite.BoardsPage.UserBoard == null)
-            //{
-            //    DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-            //}
 
             DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
 
