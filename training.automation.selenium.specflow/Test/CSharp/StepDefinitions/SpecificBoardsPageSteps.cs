@@ -37,9 +37,15 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
             DesktopWebsite.BoardsPage.UserBoard.Click();
             TrelloAPIHelper.CreateLists(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")), p0);
-            TrelloAPIHelper.CreateCards(p1, 1);
-            TrelloAPIHelper.CreateCards(p1, 2);
-            TrelloAPIHelper.CreateCards(p1, 3);
+
+            for(int i = 1; i <= p0; i++)
+            {
+                TrelloAPIHelper.CreateCards(p1, i);
+            }
+
+            //TrelloAPIHelper.CreateCards(p1, 1);
+            //TrelloAPIHelper.CreateCards(p1, 2);
+            //TrelloAPIHelper.CreateCards(p1, 3);
         }
 
 
