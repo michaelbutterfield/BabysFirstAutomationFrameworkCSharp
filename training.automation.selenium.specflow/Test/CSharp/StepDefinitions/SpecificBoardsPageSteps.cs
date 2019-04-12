@@ -32,7 +32,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         }
 
         [Given]
-        public void Given_I_add_P0_lists_and_P1_cards_to_each_list(int p0, int p1)
+        public void I_add_P0_lists_and_P1_cards_to_each_list(int p0, int p1)
         {
             DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
             DesktopWebsite.BoardsPage.UserBoard.Click();
