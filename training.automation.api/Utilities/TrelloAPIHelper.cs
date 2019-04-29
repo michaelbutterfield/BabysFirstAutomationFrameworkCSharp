@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System.Collections.Generic;
 using training.automation.api.Data;
+using training.automation.common.utilities;
 using training.automation.common.Utilities;
 using Is = NHamcrest.Is;
 using RandomGen = training.automation.common.Utilities.RandomGen;
