@@ -14,7 +14,7 @@ namespace training.automation.specflow.Application.Pages
 
         private void BuildPage()
         {
-            BackgroundSelection = new Button(By.XPath("//*[@id='classic']/div[3]/div/div/div/form/div/ul/li[2]/button"), "Board Background Selection", name);
+            BackgroundSelection = new Button(By.XPath("//ul[@class='background-grid']/li[2]"), "Board Background Selection", name);
             CreateBoard = new Button(By.XPath("//div[@class='window-wrapper js-tab-parent']//button[@class='primary'][@type='submit']"), "Create Board Button", name);
             NameInput = new InputBox(By.XPath("//input[@placeholder='Add board title']"), "Board Name Input Box", name);
         }
