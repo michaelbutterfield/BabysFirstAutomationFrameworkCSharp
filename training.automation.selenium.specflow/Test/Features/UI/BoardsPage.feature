@@ -18,7 +18,7 @@ When I click on the user created board
   And go through all the delete prompts
 Then the user board will be deleted
 
-#@DeleteAllBoards
-#Scenario: Delete all boards
-#Given I delete all the boards
-#Then no boards will be left
+@DeleteAllBoards
+Scenario: Delete all boards
+Given I delete all the boards
+Then no boards will be left
