@@ -53,7 +53,6 @@ Thumbs.db
 *.tmp
 /training.automation.winium/obj/Debug
 /training.automation.winium/bin/Debug
-*.config
 *.txt
 *.xml
 *.pdb
@@ -68,3 +67,10 @@ Thumbs.db
 /training.automation.selenium.specflow/Test/Features/UI/CardPage.feature.cs
 /training.automation.selenium.specflow/Test/Features/UI/LogInPage.feature.cs
 /training.automation.selenium.specflow/Test/Features/UI/SpecificBoardsPage.feature.cs
+/training.automation.api/bin/Debug/training.automation.api.dll.config
+/training.automation.api/bin/Debug/training.automation.common.exe.config
+/training.automation.appium/bin/Debug/training.automation.appium.dll.config
+/training.automation.appium/bin/Debug/training.automation.common.exe.config
+/training.automation.common/bin/Debug/training.automation.common.exe.config
+/training.automation.selenium/bin/Debug/training.automation.common.exe.config
+/training.automation.selenium/bin/Debug/training.automation.selenium.dll.config
