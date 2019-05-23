@@ -74,6 +74,13 @@
     <Compile Include="Data\TrelloApiData.cs" />
     <Compile Include="Data\TrelloBoardApiData.cs" />
     <Compile Include="Data\TrelloResponseData.cs" />
+    <Compile Include="Test\CSharp\Runner\TestRunner.cs" />
+    <Compile Include="Test\CSharp\StepDefinitions\TrelloSearchSteps.cs" />
+    <Compile Include="Test\Features\TrelloSearch.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrelloSearch.feature</DependentUpon>
+    </Compile>
     <Compile Include="TrelloAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\TrelloAPIHelper.cs" />
@@ -87,7 +94,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Test\Features\TrelloSearch.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TrelloSearch.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -107,7 +119,7 @@
   <Target Name="AfterUpdateFeatureFilesInProject">
     <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
     <ItemGroup>
-        <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
+      <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
     </ItemGroup>
-</Target>
+  </Target>
 </Project>
