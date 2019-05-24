@@ -67,5 +67,28 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
             string actual = DesktopWebsite.LogInPage.ErrorMessage.GetElementAttribute("innerText");
             TestHelper.AssertThat(actual, Is.EqualTo(p0), string.Format("Assert the error {0} is equal to {1}", p0, actual), false);
         }
+
+        [When(@"I enter ""(.*)"" in the username")]
+        public void WhenIEnterInTheUsername(string p0)
+        {
+            DesktopWebsite.LogInPage.EmailAddress.SendKeys(p0);
+        }
+
+        [When(@"I enter ""(.*)"" in the password")]
+        public void WhenIEnterInThePassword(string p0)
+        {
+            DesktopWebsite.LogInPage.EmailAddress.SendKeys(p0);
+        }
+
+        [Then(@"the error message ""(.*)"" appears")]
+        public void ThenTheErrorMessageAppears(string p0)
+        {
+            DesktopWebsite.LogInPage.LogIn.Click();
+            string actual = DesktopWebsite.LogInPage.ErrorMessage.GetElementAttribute("innerText");
+            TestHelper.AssertThat(actual, Is.EqualTo(p0), string.Format("Assert the error {0} is equal to {1}", p0, actual), false);
+        }
+
+
+
     }
 }

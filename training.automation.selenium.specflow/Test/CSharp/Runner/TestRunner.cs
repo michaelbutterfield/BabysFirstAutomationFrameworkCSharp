@@ -19,18 +19,18 @@ namespace training.automation.specflow.Test.CSharp.Runner
         {
             TrelloWebData.ReadUserPass();
             TrelloApiData.ReadApiKeyToken();
+            TestLogger.Initialise();
         }
 
         [AfterTestRun]
         static void AfterTestRun()
         {
-
+            TestLogger.Close();
         }
 
         [BeforeScenario]
         static void BeforeScenario()
         {
-            TestLogger.Initialise();
             TestLogger.LogScenarioStart();
             SeleniumHelper.Initialise("chrome");
         }
@@ -59,7 +59,6 @@ namespace training.automation.specflow.Test.CSharp.Runner
             SeleniumHelper.DestroyDriver();
             RuntimeTestData.Destroy();
             TestLogger.LogScenarioEnd();
-            TestLogger.Close();
         }
     }
 }

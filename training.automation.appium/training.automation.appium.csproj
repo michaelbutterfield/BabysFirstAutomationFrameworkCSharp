@@ -86,6 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Calendar.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test\Runner\TestRunner.cs" />
     <Compile Include="Test\StepDefinitions\CalendarSteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,9 +97,7 @@
       <LastGenOutput>Calendar.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Test\Runner\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\training.automation.common\training.automation.common.csproj">
       <Project>{E01AFCF7-5D39-40C9-9B65-0139992E0C56}</Project>

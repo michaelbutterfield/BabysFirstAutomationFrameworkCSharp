@@ -67,7 +67,7 @@ namespace training.automation.common.Tests
 
         public static void Initialise()
         {
-            string fileLocation = string.Concat(GetTestRunDirectory(),"\\", TestHelper.GetScenario().Test.Name, ".txt");
+            string fileLocation = string.Concat(GetTestRunDirectory(),"\\", /*TestHelper.GetScenario().Test.Name,*/ "Log.txt");
 
             try
             {

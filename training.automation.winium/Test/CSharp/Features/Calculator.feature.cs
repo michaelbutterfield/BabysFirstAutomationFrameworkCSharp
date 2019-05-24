@@ -19,6 +19,7 @@ namespace training.automation.winium.Test.CSharp.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Calculator")]
+    [NUnit.Framework.CategoryAttribute("Calculator")]
     public partial class CalculatorFeature
     {
         
@@ -31,7 +32,8 @@ namespace training.automation.winium.Test.CSharp.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Calculator", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Calculator", null, ProgrammingLanguage.CSharp, new string[] {
+                        "Calculator"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,20 +73,38 @@ namespace training.automation.winium.Test.CSharp.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add two numbers")]
-        [NUnit.Framework.CategoryAttribute("Calculator")]
+        [NUnit.Framework.CategoryAttribute("AddTwoAndTwo")]
         public virtual void AddTwoNumbers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, new string[] {
-                        "Calculator"});
-#line 4
+                        "AddTwoAndTwo"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given("the calculator is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.When("I enter two plus two", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the calculator is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
+ testRunner.When("I enter two plus two", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
  testRunner.Then("the answer will be 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Test the Scientific Calculator")]
+        public virtual void TestTheScientificCalculator()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test the Scientific Calculator", null, ((string[])(null)));
+#line 10
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 11
+ testRunner.Given("I change the calculator to Scientific", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
+ testRunner.When("I enter log ten", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("the answer will be one", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -11,7 +11,13 @@ namespace training.automation.common.Utilities
     {
         public static TimeSpan DEFAULT_TIMEOUT = new TimeSpan(0, 0, 10);
         private static AppiumDriver<AppiumWebElement> driver;
-        private static Uri testServerAddress = new Uri("http://127.0.0.1:4723/wd/hub");
+        private static Uri testServerAddress = new Uri("http://127.0.0.1:4923/wd/hub");
+
+        public static void DestroyDriver()
+        {
+            driver.Dispose();
+            driver.Quit();
+        }
 
         public void InitialiseAndroid()
         {
@@ -23,8 +29,8 @@ namespace training.automation.common.Utilities
 
         }
 
-        public void InitialiseIOS(string application)
-        {
+        public static void InitialiseIOS(string application)
+       {
             string BundleId = null;
 
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -33,9 +39,9 @@ namespace training.automation.common.Utilities
 
             switch (application.ToLower())
             {
-                case "contacts":
+                case "calendar":
                     {
-                        BundleId = "com.apple.MobileAddressBook";
+                        BundleId = "com.apple.mobilecal";
                         break;
                     }
             }
@@ -44,11 +50,11 @@ namespace training.automation.common.Utilities
             capabilities.SetCapability("platformName", "iOS");
             capabilities.SetCapability("updatedWDABundleId", "com.roq.WebDriverAgentRunner");
             capabilities.SetCapability("udid", "0464173d5acf9c1c5375ddf6d447b72c111d6ff4");
-            capabilities.SetCapability("deviceName", "RoqIT Ipad");
-            capabilities.SetCapability("platformVersion", "10.2.1");
+            capabilities.SetCapability("deviceName", "iPad");
+            capabilities.SetCapability("platformVersion", "12.1.1");
             capabilities.SetCapability("bundleId", BundleId);
 #pragma warning restore CS0618 // Type or member is obsolete
-            driver = new IOSDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
+            driver = new IOSDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4923/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
         }
 
         public static AppiumDriver<AppiumWebElement> GetDriver()

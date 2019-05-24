@@ -14,13 +14,11 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
     [Binding]
     public sealed class SpecificBoardsPageSteps
     {
-        [When(@"I add five cards to the new list")]
-        public void IAddFiveCardsToTheNewList()
+        [When(@"I add (.*) cards to the new list")]
+        public void IAddCardsToTheNewList(int p0)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < p0; i++)
             {
-                TestHelper.SleepInSeconds(1);
-
                 if (DesktopWebsite.SpecificBoardsPage.AddACard.Exists())
                 {
                     DesktopWebsite.SpecificBoardsPage.AddACard.Click();
@@ -104,21 +102,15 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         }
 
 
-        [Then(@"the three lists will contain five cards each")]
+        [Then(@"the list will contain five cards")]
         public void TheThreeListsWillContainFiveCardsEach()
         {
             int cardAmount = TrelloAPIHelper.GetNumOfCards(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
 
-            if (!cardAmount.Equals(15))
+            if (!cardAmount.Equals(5))
             {
                 throw new Exception("The amount of cards returned is not equal to 15. The 5 cards in each list have not been created correctly.");
             }
-        }
-        
-        [Then(@"the '(.*)' cards are in '(.*)'")]
-        public void TheCardsAreIn(string p0, string p1)
-        {
-
         }
 
         [Given]

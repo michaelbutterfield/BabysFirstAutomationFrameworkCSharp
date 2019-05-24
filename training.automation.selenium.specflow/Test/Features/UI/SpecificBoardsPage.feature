@@ -17,15 +17,11 @@ Scenario: Adding several lists
 
 
 @AddingCards
-Scenario: Adding several cards to three lists
+Scenario: Adding several cards to a lists
 	Given I click on the user created board
 	When I create a new list called To Do
-	  And I add five cards to the new list
-	  And I create a new list called Doing
-	  And I add five cards to the new list
-	  And I create a new list called Done
-	  And I add five cards to the new list
-	Then the three lists will contain five cards each
+	  And I add 5 cards to the new list
+	Then the list will contain five cards
 
 
 @DragAndDropCards

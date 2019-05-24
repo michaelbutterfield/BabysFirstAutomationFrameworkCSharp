@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 using training.automation.common.Tests;
 using training.automation.common.Utilities;
 using training.automation.winium.Common;
+using training.automation.winium.Test.CSharp.StepDefinitions;
 using training.automation.winium.Utilities;
 using FailureScreenshot = training.automation.winium.Common.FailureScreenshot;
 
@@ -29,6 +30,7 @@ namespace training.automation.specflow.Test.CSharp.Runner
             WiniumHelper.Initialise();
             TestLogger.Initialise();
             TestLogger.LogScenarioStart();
+            CalculatorSteps.I_reset_the_calculator();
         }
 
         [AfterScenario]
