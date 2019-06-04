@@ -25,6 +25,7 @@ namespace training.automation.specflow.Application.Pages
         public Button MoreSideMenu;
         public Link PermDeleteBoard;
         public Button PermDeleteBoardConfirm;
+        public Button ShowMenu;
         public Label ToDo;
 
         //Pages
@@ -61,6 +62,7 @@ namespace training.automation.specflow.Application.Pages
             MoreSideMenu = new Button(By.XPath("//a[@class='board-menu-navigation-item-link js-open-more']"), "More Button in Side Menu", name);
             PermDeleteBoard = new Link(By.XPath("//a[@class='quiet js-delete']"), "Permanently Delete Board...", name);
             PermDeleteBoardConfirm = new Button(By.XPath("//input[@class='js-confirm full negate']"), "Yes, Permanently Delete Board.", name);
+            ShowMenu = new Button(By.XPath("//a[@class='board-header-btn mod-show-menu js-show-sidebar']"), "Show Menu", name);
 
             ToDo = new Label(By.XPath("//textarea[@class='list-header-name mod-list-name js-list-name-input'][@aria-label='To Do']"), "To Do List", name);
             Doing = new Label(By.XPath("//textarea[@class='list-header-name mod-list-name js-list-name-input'][@aria-label='Doing']"), "Doing List", name);

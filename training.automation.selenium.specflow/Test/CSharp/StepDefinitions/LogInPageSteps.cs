@@ -17,6 +17,8 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.LogInPage.EmailAddress.SendKeys(TrelloWebData.GetUsername());
             DesktopWebsite.LogInPage.Password.SendKeys(TrelloWebData.GetPassword());
             DesktopWebsite.LogInPage.LogIn.Click();
+
+            DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
         }
 
         [Given]
@@ -84,7 +86,7 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
         public void ThenTheErrorMessageAppears(string p0)
         {
             DesktopWebsite.LogInPage.LogIn.Click();
-            string actual = DesktopWebsite.LogInPage.ErrorMessage.GetElementAttribute("innerText");
+            string actual = DesktopWebsite.LogInPage.ErrorMessage.GetElementAttribute("textContent");//.GetElementAttribute("innerText");
             TestHelper.AssertThat(actual, Is.EqualTo(p0), string.Format("Assert the error {0} is equal to {1}", p0, actual), false);
         }
 

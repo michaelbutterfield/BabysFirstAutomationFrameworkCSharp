@@ -67,7 +67,14 @@ namespace training.automation.winium.Common.Winium.Elements.Common
 
             TestLogger.CreateTestStep(stepDef);
 
-            GetElement().Click();
+            try
+            {
+                GetElement().Click();
+            }
+            catch(Exception e)
+            {
+                TestLogger.LogActionFailure(string.Concat("*** FAILED *** : ", stepDef), e);
+            }
         }
 
         public string GetAttribute(string attribute)

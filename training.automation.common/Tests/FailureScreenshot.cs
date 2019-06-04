@@ -34,7 +34,11 @@ namespace training.automation.common.Tests
         {
             CreateScreenshotDirectory();
 
-            string ScreenshotName = string.Concat(TestHelper.GetScenario().Test.Name, ".png");
+            string scenarioName = TestHelper.GetScenario().Test.Name;
+
+            scenarioName = scenarioName.RemoveBackslashAndQuotation();
+
+            string ScreenshotName = string.Concat(scenarioName, ".png");
 
             IWebDriver driver = SeleniumHelper.GetWebDriver();
 

@@ -32,6 +32,8 @@ namespace training.automation.common.Utilities
                                 .AppendText("\n     but: ");
 
                     matcher.DescribeMismatch(actual, description);
+
+                    throw new Exception(string.Format("Failed to assert that actual: \"{0}\" - is equal to expected: \"{1}\"", actual, matcher));
                 }
             }
             catch (Exception e)

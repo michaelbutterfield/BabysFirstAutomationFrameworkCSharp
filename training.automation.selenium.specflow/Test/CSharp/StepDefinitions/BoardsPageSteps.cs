@@ -25,7 +25,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Given(@"I am on the boards page")]
         public void IAmOnTheBoardsPage()
         {
-            DesktopWebsite.BoardsPage.Header.Add.WaitForElementToBeClickable();
+            DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
             string ExpectedSiteTitle = "Boards | Trello";
             string ActualSiteTitle = SeleniumHelper.GetWebDriver().Title;
             string StepDesc = string.Format("Assert that framework's on the Boards Page. Expected Site Title: {0} - Actual Site Title: {1}", ExpectedSiteTitle, ActualSiteTitle);
@@ -155,11 +155,11 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When]
         public static void go_through_all_the_delete_prompts()
         {
-            TestHelper.SleepInSeconds(1);
+            DesktopWebsite.SpecificBoardsPage.ShowMenu.WaitUntilExists();
 
             if (!DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Exists())
             {
-                DesktopWebsite.BoardsPage.UserBoard.Click();
+                DesktopWebsite.SpecificBoardsPage.ShowMenu.Click();
             }
 
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();

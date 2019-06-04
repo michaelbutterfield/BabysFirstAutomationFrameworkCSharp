@@ -9,7 +9,7 @@ namespace training.automation.common.Tests
     {
         private static StreamWriter writer = null;
         private static string testRunDirectory = null;
-        private static string logDateTimeFormat = "dd.MM.yy HH.mm.ss";
+        private static string logDateTimeFormat = "dd.MM.yy";// HH.mm.ss";
         private static Stopwatch scenarioRunStopwatch;
 
         public static void Close()
@@ -24,11 +24,13 @@ namespace training.automation.common.Tests
             }
         }
 
-        private static void CreateTestRunDirectory()
+        private static void CreateTestRunDirectory(string FeatureName)
         {
             try
             {
-                testRunDirectory = string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "\\TestRuns\\TestRun_", TestHelper.GetTodaysDateTime(logDateTimeFormat));
+                string ProjectPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName);
+
+                testRunDirectory = string.Concat(ProjectPath, "\\TestRuns\\TestRun_", TestHelper.GetTodaysDateTime(logDateTimeFormat), "\\", FeatureName, "\\");
                 RuntimeTestData.Add("TestRunDirectory", testRunDirectory);
 
                 if (!Directory.Exists(testRunDirectory))
@@ -55,19 +57,23 @@ namespace training.automation.common.Tests
             CreateTestStep(stepDescription);
         }
 
-        private static string GetTestRunDirectory()
+        private static string GetTestRunDirectory(string FeatureName)
         {
-            if (testRunDirectory == null)
+            if (testRunDirectory == null || !testRunDirectory.Contains(FeatureName))
             {
-                CreateTestRunDirectory();
+                CreateTestRunDirectory(FeatureName);
             }
 
             return testRunDirectory;
         }
 
-        public static void Initialise()
+        public static void Initialise(string FeatureName)
         {
-            string fileLocation = string.Concat(GetTestRunDirectory(),"\\", /*TestHelper.GetScenario().Test.Name,*/ "Log.txt");
+            string scenarioName = TestHelper.GetScenario().Test.Name;
+
+            scenarioName = scenarioName.RemoveBackslashAndQuotation();
+
+            string fileLocation = string.Concat(GetTestRunDirectory(FeatureName), scenarioName, ".txt");
 
             try
             {

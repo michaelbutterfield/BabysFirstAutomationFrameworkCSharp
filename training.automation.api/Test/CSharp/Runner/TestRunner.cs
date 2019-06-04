@@ -26,7 +26,8 @@ namespace training.automation.api.Test.CSharp.Runner
         [BeforeScenario]
         static void BeforeScenario()
         {
-            TestLogger.Initialise();
+            string feature = FeatureContext.Current.FeatureInfo.Title;
+            TestLogger.Initialise(feature);
             TestLogger.LogScenarioStart();
         }
 

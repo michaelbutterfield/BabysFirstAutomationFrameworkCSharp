@@ -22,16 +22,25 @@ namespace training.automation.winium.Test.CSharp.StepDefinitions
         {
             DesktopApplication.MainPage.Two.Click();
             DesktopApplication.MainPage.Plus.Click();
-            DesktopApplication.MainPage.Two.Click();
+            DesktopApplication.MainPage.One.Click();
             DesktopApplication.MainPage.EqualsButton.Click();
         }
 
         [Then]
         public void the_answer_will_be_P0(int p0)
         {
-            string Answer = WiniumHelper.GetWiniumDriver().FindElementByName("Display is 4").GetAttribute("Name");
-            string ExpectedAnswer = "Display is 4";
-            TestHelper.AssertThat(Answer, Is.EqualTo(ExpectedAnswer), "Asserting that the calculation adds up the correct result of 4");
+            string Answer;
+
+            try
+            {
+                Answer = WiniumHelper.GetWiniumDriver().FindElementByName("Display is 4").GetAttribute("Name");
+                string ExpectedAnswer = "Display is 4";
+                TestHelper.AssertThat(Answer, Is.EqualTo(ExpectedAnswer), "Asserting that the calculation adds up the correct result of 4");
+            }
+            catch (Exception e)
+            {
+                TestHelper.HandleException("Failed asserting the expected to actual result of the calculator", e);
+            }
         }
 
         [Given]

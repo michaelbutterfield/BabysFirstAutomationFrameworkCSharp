@@ -94,6 +94,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void the_cards_are_moved_successfully()
         {
+            TestHelper.SleepInSeconds(2);
+
             int cards = TrelloAPIHelper.GetNumOfCardsOnAList(2);
 
             string StepDesc = string.Format("Assert total cards: {0} on list is equal to actual: {1}", cards, 9);

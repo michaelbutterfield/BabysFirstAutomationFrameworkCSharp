@@ -14,9 +14,9 @@ namespace training.automation.selenium.Application.Sections
 
         private void BuildSections()
         {
-            add = new Button(By.XPath("//span[@class=\"header-btn-icon icon-lg icon-add light\"]"), "Header + Button", name);
-            backToHome = new Image(By.XPath("//*[@id=\"header\"]/div[1]/a/span"), "Back to Home button in Top Left", name);
-            trelloLogoHome = new Image(By.XPath("//*[@id=\"header\"]/a/span[2]"), "Trello Logo Home Button", name);
+            add = new Button(By.XPath("//span[@class=\"header-btn-icon icon-lg icon-add light\"]"), "Header +", name);
+            backToHome = new Image(By.XPath("//*[@id=\"header\"]/div[1]/a/span"), "Back to Home in Top Left", name);
+            trelloLogoHome = new Image(By.XPath("//*[@id=\"header\"]/a/span[2]"), "Trello Logo Home", name);
         }
     }
 }

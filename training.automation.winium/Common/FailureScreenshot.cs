@@ -37,8 +37,6 @@ namespace training.automation.winium.Common
 
             string ScreenshotName = string.Concat(TestHelper.GetScenario().Test.Name, ".png");
 
-            IWebDriver driver = WiniumHelper.GetWiniumDriver();
-
             WiniumHelper.GetWiniumDriver().GetScreenshot().SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName), ImageFormat.Png);
 
             //screenshot.SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName), ImageFormat.Png);

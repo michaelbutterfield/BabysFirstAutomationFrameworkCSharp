@@ -23,9 +23,8 @@ Then the error message "<ErrorMessage>" appears
 Examples: 
 	| Username     | Password     | ErrorMessage     |
 	| testusername |              | Invalid password |
-	|              | testpassword | Missing email    |
+	|              | testpassword | There isn't an account for this username    |
 	|              |              | Missing email    |
-
 
 #
 #@LogInNoEmail
