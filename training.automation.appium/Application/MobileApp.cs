@@ -6,22 +6,12 @@ namespace training.automation.appium.Application
 {
     public class MobileApp : Page
     {
-        public static MainCalendarPage MainCalendarPage;
-        public static NewCalendarEventPage NewCalendarEventPage;
-        public static TopCalendarNavigationBar TopCalendarNavigationBar;
 
-        public MobileApp() : base("Mobile App") { BuildPages(); BuildSections(); }
+        public MobileApp() : base("Mobile App") { BuildPages(); }
 
         private void BuildPages()
         {
-            MainCalendarPage = new MainCalendarPage();
-            NewCalendarEventPage = new NewCalendarEventPage();
-        }
 
-        private void BuildSections()
-        {
-            TopCalendarNavigationBar = new TopCalendarNavigationBar();
         }
-
     }
 }

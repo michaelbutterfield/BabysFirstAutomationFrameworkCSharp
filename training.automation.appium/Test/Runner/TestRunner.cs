@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using training.automation.appium.Application;
 using training.automation.common.Tests;
 using training.automation.common.Utilities;
 
@@ -15,7 +16,8 @@ namespace training.automation.appium.Test.Runner
         [BeforeTestRun]
         static void BeforeTestRun()
         {
-            TestLogger.Initialise();
+            string feature = "Just Testing";
+            TestLogger.Initialise(feature);
         }
 
         [AfterTestRun]
@@ -28,7 +30,10 @@ namespace training.automation.appium.Test.Runner
         static void BeforeScenario()
         {
             TestLogger.LogScenarioStart();
-            AppiumHelper.InitialiseIOS("Calendar");
+            AppiumHelper.InitialiseAsosApp();
+            AppiumHelper.InitialiseAndroid();
+
+            //AppiumHelper.InitialiseIOS("Calendar");
         }
 
         [AfterScenario]

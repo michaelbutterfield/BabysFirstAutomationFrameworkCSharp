@@ -282,13 +282,13 @@ namespace training.automation.common.selenium.elements.common
             string assertionDesc = string.Format("Wait until element {0} exists on page {1}", name, pageName);
             TestLogger.CreateTestStep(assertionDesc);
 
-            int maxRetries = 20;
-            int retries = 0;
+            int MaxRetries = 20;
+            int Retries = 0;
 
-            while (Exists() == false && retries < maxRetries)
+            while (Exists() == false && Retries < MaxRetries)
             {
                 TestHelper.SleepInSeconds(1);
-                retries++;
+                Retries++;
             }
 
             if (Exists() == false)

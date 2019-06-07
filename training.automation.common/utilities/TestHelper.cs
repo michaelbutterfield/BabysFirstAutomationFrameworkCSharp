@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading;
 using NHamcrest;
 using NHamcrest.Core;
@@ -7,7 +8,7 @@ using training.automation.common.Tests;
 
 namespace training.automation.common.Utilities
 {
-    public class TestHelper
+    public static class TestHelper
     {
         private static TestContext scenario;
 
@@ -51,6 +52,12 @@ namespace training.automation.common.Utilities
             return scenario;
         }
 
+        public static string GetTodaysDateTime(string format)
+        {
+            return DateTime.Now.ToString(format);
+        }
+
+
         public static void HandleException(string ErrorMessage, Exception e)
         {
             HandleException(ErrorMessage, e, false);
@@ -67,9 +74,11 @@ namespace training.automation.common.Utilities
             throw new ArgumentException(e.Message, e);
         }
 
-        public static string GetTodaysDateTime(string format)
+        public static string RemoveBackslashAndQuotation(this string str)
         {
-            return DateTime.Now.ToString(format);
+            str = Regex.Replace(str, "[\\ \"]", "");
+
+            return str;
         }
 
         public static bool ScenarioHasTag(string tagName)

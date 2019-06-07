@@ -82,27 +82,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\MobileApp.cs" />
-    <Compile Include="Application\Pages\MainCalendarPage.cs" />
-    <Compile Include="Application\Pages\NewCalendarEventPage.cs" />
-    <Compile Include="Application\Sections\TopCalendarNavigationBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\Features\Calendar.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Calendar.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test\Runner\TestRunner.cs" />
-    <Compile Include="Test\StepDefinitions\CalendarSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Test\Features\Calendar.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Calendar.feature.cs</LastGenOutput>
-    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Application\Pages\" />
+    <Folder Include="Application\Sections\" />
+    <Folder Include="Test\Features\" />
+    <Folder Include="Test\StepDefinitions\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\training.automation.common\training.automation.common.csproj">
       <Project>{E01AFCF7-5D39-40C9-9B65-0139992E0C56}</Project>

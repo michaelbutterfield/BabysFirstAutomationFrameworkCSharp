@@ -28,7 +28,8 @@ namespace training.automation.specflow.Test.CSharp.Runner
         static void BeforeScenario()
         {
             WiniumHelper.Initialise();
-            TestLogger.Initialise();
+            string feature = FeatureContext.Current.FeatureInfo.Title;
+            TestLogger.Initialise(feature);
             TestLogger.LogScenarioStart();
             CalculatorSteps.I_reset_the_calculator();
         }
