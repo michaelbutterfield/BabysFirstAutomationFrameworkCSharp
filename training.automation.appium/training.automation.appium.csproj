@@ -81,20 +81,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Header\Argos\Header.cs" />
     <Compile Include="Application\MobileApp.cs" />
+    <Compile Include="Application\Pages\Argos\HomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\Features\GoogleCalendar.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GoogleCalendar.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test\Runner\TestRunner.cs" />
+    <Compile Include="Test\StepDefinitions\Argos\HomePageSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Test\Features\GoogleCalendar.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GoogleCalendar.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Application\Pages\" />
-    <Folder Include="Application\Sections\" />
-    <Folder Include="Test\Features\" />
-    <Folder Include="Test\StepDefinitions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\training.automation.common\training.automation.common.csproj">
       <Project>{E01AFCF7-5D39-40C9-9B65-0139992E0C56}</Project>

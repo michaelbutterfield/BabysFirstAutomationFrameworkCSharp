@@ -50,6 +50,12 @@ namespace training.automation.common.Utilities
             _driver.CloseApp();
         }
 
+        public static void InitialiseArgosApp()
+        {
+            appPackage = "com.homeretailgroup.argos.android";
+            appActivity = "com.homeretailgroup.argos.android.home.HomeActivity";
+        }
+
         public static void InitialiseAsosApp()
         {
             appPackage = "com.asos.app";
