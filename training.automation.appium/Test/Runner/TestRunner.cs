@@ -30,10 +30,8 @@ namespace training.automation.appium.Test.Runner
         static void BeforeScenario()
         {
             TestLogger.LogScenarioStart();
-            AppiumHelper.InitialiseArgosApp();
+            AppiumHelper.InitialiseChromeApp();
             AppiumHelper.InitialiseAndroid();
-
-            //AppiumHelper.InitialiseIOS("Calendar");
         }
 
         [AfterScenario]

@@ -1,17 +1,27 @@
-﻿using training.automation.appium.Application.Pages.Argos;
-using training.automation.common.Page;
+﻿using training.automation.appium.Application.Pages.Chrome;
+using training.automation.appium.Application.Pages.Chrome.YouTube;
 
 namespace training.automation.appium.Application
 {
-    public class MobileApp : Page
+    public class MobileApp
     {
-        public static HomePage HomePage;
+        public static AccountLogInPage AccountLogInPage;
+        public static NewTabSplashPage NewTabSplashPage;
+        public static WelcomeToChromePage WelcomeToChromePage;
+        public static YTHomePage YTHomePage;
 
-        public MobileApp() : base("Mobile App") { BuildPages(); }
 
-        private void BuildPages()
+        static MobileApp()
         {
-            HomePage = new HomePage();
+            BuildPages();
+        }
+
+        private static void BuildPages()
+        {
+            AccountLogInPage = new AccountLogInPage();
+            NewTabSplashPage = new NewTabSplashPage();
+            WelcomeToChromePage = new WelcomeToChromePage();
+            YTHomePage = new YTHomePage();
         }
     }
 }

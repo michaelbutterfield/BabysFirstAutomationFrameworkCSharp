@@ -46,6 +46,7 @@
     <Reference Include="appium-dotnet-driver, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Appium.WebDriver.3.0.0.2\lib\net45\appium-dotnet-driver.dll</HintPath>
     </Reference>
+    <Reference Include="Appium.Net, Version=4.0.0.6, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -81,24 +82,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Header\Argos\Header.cs" />
+    <Compile Include="Application\Headers\Chrome\YouTube\Header.cs" />
     <Compile Include="Application\MobileApp.cs" />
-    <Compile Include="Application\Pages\Argos\HomePage.cs" />
+    <Compile Include="Application\Pages\Chrome\AccountLogInPage.cs" />
+    <Compile Include="Application\Pages\Chrome\NewTabSplashPage.cs" />
+    <Compile Include="Application\Pages\Chrome\WelcomeToChromePage.cs" />
+    <Compile Include="Application\Headers\Chrome\Header.cs" />
+    <Compile Include="Application\Pages\Chrome\YouTube\YTHomePage.cs" />
+    <Compile Include="Application\Pages\Chrome\YouTube\YTSearchPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\Features\GoogleCalendar.feature.cs">
+    <Compile Include="Test\Features\Chrome\WelcomeToChrome.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GoogleCalendar.feature</DependentUpon>
+      <DependentUpon>WelcomeToChrome.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Features\Chrome\YouTube.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YouTube.feature</DependentUpon>
     </Compile>
     <Compile Include="Test\Runner\TestRunner.cs" />
-    <Compile Include="Test\StepDefinitions\Argos\HomePageSteps.cs" />
+    <Compile Include="Test\StepDefinitions\Chrome\AccountLogInSteps.cs" />
+    <Compile Include="Test\StepDefinitions\Chrome\NewTabSplashSteps.cs" />
+    <Compile Include="Test\StepDefinitions\Chrome\WelcomeToChromeSteps.cs" />
+    <Compile Include="Test\StepDefinitions\Chrome\YouTubeSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Test\Features\GoogleCalendar.feature">
+    <None Include="Test\Features\Chrome\WelcomeToChrome.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GoogleCalendar.feature.cs</LastGenOutput>
+      <LastGenOutput>WelcomeToChrome.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test\Features\Chrome\YouTube.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>YouTube.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup />

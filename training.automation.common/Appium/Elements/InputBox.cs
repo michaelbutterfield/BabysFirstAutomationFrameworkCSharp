@@ -1,19 +1,20 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using System;
-using training.automation.common.selenium.elements.common;
+using training.automation.common.Appium.Elements.Common;
 using training.automation.common.Tests;
 
 namespace training.automation.common.Appium.Elements
 {
     public class InputBox : Element
     {
-        public InputBox(By locator, String elementName, String pageName) : base(locator, elementName, pageName) { }
+        public InputBox(By locator, string elementName, string pageName) : base(locator, elementName, pageName) { }
 
         public void Clear()
         {
             try
             {
-                IWebElement element = GetWebElement(true, true);
+                AppiumWebElement element = GetElement(true, true);
                 element.Clear();
             }
             catch (Exception e)
@@ -28,31 +29,10 @@ namespace training.automation.common.Appium.Elements
 
             TestLogger.CreateTestStep(stepDescription);
 
-            int retries = 0;
-            bool sentKeysSuccess = false;
             try
             { 
-                while (!sentKeysSuccess)
-                {
-                    if (retries >= 10)
-                    {
-                        throw new Exception("Tried to input text too many times");
-                    }
-
-                    IWebElement element = GetWebElement(true, true);
+                    AppiumWebElement element = GetElement(true, true);
                     element.SendKeys(text);
-
-                    if (element.GetAttribute("value").Equals(""))
-                    {
-                        sentKeysSuccess = false;
-                        retries++;
-                        break;
-                    }
-                    else
-                    {
-                        sentKeysSuccess = true;
-                    }
-                }
             }
             catch (Exception e)
             {

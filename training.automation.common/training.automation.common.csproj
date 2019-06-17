@@ -111,6 +111,7 @@
     <Compile Include="Appium\Elements\Button.cs" />
     <Compile Include="Appium\Elements\Common\Element.cs" />
     <Compile Include="Appium\Elements\InputBox.cs" />
+    <Compile Include="Appium\Elements\Text.cs" />
     <Compile Include="Page\Page.cs" />
     <Compile Include="Pop-up\Pop-up.cs" />
     <Compile Include="Program.cs" />

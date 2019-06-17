@@ -14,14 +14,14 @@ namespace training.automation.common.Utilities
         private static string appActivity { get; set; }
 
         public static TimeSpan DEFAULT_TIMEOUT = new TimeSpan(0, 0, 10);
-        private static AndroidDriver<AppiumWebElement> _driver;
+        private static AppiumDriver<AppiumWebElement> driver;
         private static AppiumLocalService _appiumLocalService;
 
 
         public static void DestroyDriver()
         {
-            _driver.Dispose();
-            _driver.Quit();
+            driver.Dispose();
+            driver.Quit();
         }
 
         /*
@@ -42,23 +42,24 @@ namespace training.automation.common.Utilities
             appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "9");
             appiumOptions.AddAdditionalCapability("appPackage", appPackage);
             appiumOptions.AddAdditionalCapability("appActivity", appActivity);
-            _driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, appiumOptions);
+            driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, appiumOptions);
         }
 
         public void CloseApp()
         {
-            _driver.CloseApp();
+            driver.CloseApp();
         }
 
         public static void InitialiseArgosApp()
         {
-            appPackage = "com.homeretailgroup.argos.android";
-            appActivity = "com.homeretailgroup.argos.android.home.HomeActivity";
+            appPackage =    "com.homeretailgroup.argos.android";
+            appActivity =   "com.homeretailgroup.argos.android.home.HomeActivity ";
         }
 
         public static void InitialiseAsosApp()
         {
             appPackage = "com.asos.app";
+            //appActivity = "com.asos.app.ui.activities.SplashActivity";
             appActivity = "com.asos.mvp.navigation.view.ui.activity.HomeNavigationActivity";
         }
 
@@ -71,8 +72,6 @@ namespace training.automation.common.Utilities
 //        public static void InitialiseIOS(string application)
 //       {
 //            string BundleId = null;
-
-//#pragma warning disable CS0618 // Type or member is obsolete
 //            DesiredCapabilities capabilities = new DesiredCapabilities();
 
 
@@ -92,23 +91,27 @@ namespace training.automation.common.Utilities
 //            capabilities.SetCapability("deviceName", "iPad");
 //            capabilities.SetCapability("platformVersion", "12.1.1");
 //            capabilities.SetCapability("bundleId", BundleId);
-//#pragma warning restore CS0618 // Type or member is obsolete
 //            driver = new IOSDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4923/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
 //        }
 
         public static AppiumDriver<AppiumWebElement> GetDriver()
         {
-            return _driver;
+            return driver;
+        }
+
+        public static void GoToUrl(string url)
+        {
+            driver.Navigate().GoToUrl(url);
         }
 
         public static AppiumWebElement FindElement(By locator)
         {
-            return _driver.FindElement(locator);
+            return driver.FindElement(locator);
         }
 
         public static ReadOnlyCollection<AppiumWebElement> FindElements(By locator)
         {
-            return _driver.FindElements(locator);
+            return driver.FindElements(locator);
         }
     }
 }

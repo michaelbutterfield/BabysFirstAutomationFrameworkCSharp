@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace training.automation.appium.Test.Features
+namespace training.automation.appium.Test.Features.Chrome
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace training.automation.appium.Test.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Argos Testing")]
-    [NUnit.Framework.CategoryAttribute("Argos")]
-    public partial class ArgosTestingFeature
+    [NUnit.Framework.DescriptionAttribute("WelcomeToChrome")]
+    public partial class WelcomeToChromeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "GoogleCalendar.feature"
+#line 1 "WelcomeToChrome.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Argos Testing", null, ProgrammingLanguage.CSharp, new string[] {
-                        "Argos"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "WelcomeToChrome", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,17 +70,21 @@ namespace training.automation.appium.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Search")]
-        [NUnit.Framework.CategoryAttribute("Search")]
-        public virtual void Search()
+        [NUnit.Framework.DescriptionAttribute("Accept Welcome to Chrome")]
+        public virtual void AcceptWelcomeToChrome()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search", null, new string[] {
-                        "Search"});
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Accept Welcome to Chrome", null, ((string[])(null)));
+#line 3
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 4
+ testRunner.Given("I am on the Welcome To Chrome page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 5
+ testRunner.When("I click the usage and crash reports textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
- testRunner.Given("I try and click the search button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.And("I click the Accept & continue button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.Then("I will be on the account login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

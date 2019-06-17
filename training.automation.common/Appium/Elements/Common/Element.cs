@@ -6,11 +6,13 @@ using training.automation.common.Tests;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using training.automation.common.Utilities;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Appium;
 
 namespace training.automation.common.Appium.Elements.Common
 {
     public class Element
     {
+        
         protected By locator;
         protected string name;
         protected string pageName;
@@ -31,11 +33,11 @@ namespace training.automation.common.Appium.Elements.Common
         public void AssertExists()
         {
             string stepDescription = string.Format("Assert Element '{0}' Exists on page '{1}'", name, pageName);
-            IWebElement element = null;
+            AppiumWebElement element = null;
 
             try
             {
-                element = AppiumHelper.FindElement(locator);
+                element = AppiumHelper.GetDriver().FindElement(locator);
             }
             catch (Exception e)
             {
@@ -49,7 +51,7 @@ namespace training.automation.common.Appium.Elements.Common
 
         public bool AssertElementIsNotDisplayed()
         {
-            IWebElement element = GetWebElement(false, false);
+            IWebElement element = GetElement(false, false);
 
             if (element != null)
             {
@@ -69,11 +71,11 @@ namespace training.automation.common.Appium.Elements.Common
         {
             string assertionDescription = string.Format("Assert Element {0} on page {1} is displayed", name, pageName);
 
-            IWebElement element = null;
+            AppiumWebElement element = null;
 
             try
             {
-                element = GetWebElement(false, true);
+                element = GetElement(false, true);
             }
             catch (Exception e)
             {
@@ -85,21 +87,7 @@ namespace training.automation.common.Appium.Elements.Common
             }
         }
 
-        public void AssertElementTextContains(string containsText)
-        {
-            string assertionDescription = string.Format("Assert Element {0} Text Contains {1}", name, containsText);
-
-            try
-            {
-                string fullText = GetElementText();
-                Console.WriteLine(fullText);
-                TestHelper.AssertThat(fullText, Contains.String(containsText), assertionDescription);
-            }
-            catch (Exception e)
-            {
-                HandleException(assertionDescription, e);
-            }
-        }
+     
 
         public void Click()
         {
@@ -107,7 +95,7 @@ namespace training.automation.common.Appium.Elements.Common
            
             try
             {
-                GetWebElement(true, true).Click();
+                GetElement(true, true).Click();
             }
             catch (Exception e)
             {
@@ -123,7 +111,7 @@ namespace training.automation.common.Appium.Elements.Common
 
             try
             {
-                GetWebElement(false, false).Click();
+                GetElement(false, false).Click();
             }
             catch (Exception e)
             {
@@ -140,52 +128,18 @@ namespace training.automation.common.Appium.Elements.Common
             return AppiumHelper.FindElements(locator).Count() > 0;
         }
 
-        public string GetElementAttribute(string attributeName)
-        {
-            string assertionDescription = string.Format("Getting attribute {0} from element {1} on page {2}", attributeName, name, pageName);
-
-
-            TestLogger.CreateTestStep(assertionDescription);
-
-            IWebElement element = GetWebElement(false, true);
-
-            return element.GetAttribute(attributeName);
-        }
+  
 
         public int GetElementCount()
         {
             return AppiumHelper.GetDriver().FindElements(locator).Count();
         }
 
-        public string GetElementText()
-        {
-            string assertionDesc = string.Format("Getting element text from element {0} on page {1}", name, pageName);
+       
 
-            string elementText = null;
+       
 
-            try
-            {
-                elementText = GetWebElement(false, true).ToString();
-            }
-            catch (Exception e)
-            {
-                HandleException("Get Element Text", e);
-            }
-
-            return elementText;
-        }
-
-        public string GetElementValue()
-        {
-            IWebElement element = GetWebElement(false, true);
-
-            return element.GetAttribute("value");
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
+        
 
         protected void HandleException(string actionName, Exception ex)
         {
@@ -194,21 +148,6 @@ namespace training.automation.common.Appium.Elements.Common
             TestHelper.HandleException(errorMessage, ex);
         }
 
-        public bool IsEnabled()
-        {
-            IWebElement element = null;
-
-            element = GetWebElement(true, false);
-
-            if (element != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         public void WaitForElementToBeClickable()
         {
@@ -234,7 +173,7 @@ namespace training.automation.common.Appium.Elements.Common
             }
         }
 
-        protected IWebElement GetWebElement(Boolean waitUntilClickable, Boolean waitUntilVisible)
+        protected AppiumWebElement GetElement(bool waitUntilClickable, bool waitUntilVisible)
         {
             if (waitUntilClickable)
             {
