@@ -62,6 +62,7 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NHamcrest, Version=2.0.1.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -82,44 +83,59 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Headers\Chrome\YouTube\Header.cs" />
     <Compile Include="Application\MobileApp.cs" />
+    <Compile Include="Application\Pages\Calculator\CalculatorPage.cs" />
     <Compile Include="Application\Pages\Chrome\AccountLogInPage.cs" />
     <Compile Include="Application\Pages\Chrome\NewTabSplashPage.cs" />
+    <Compile Include="Application\Pages\Chrome\Trello\TrelloBoardsPage.cs" />
+    <Compile Include="Application\Pages\Chrome\Trello\TrelloLogInPage.cs" />
+    <Compile Include="Application\Pages\Chrome\Trello\TrelloSplashPage.cs" />
     <Compile Include="Application\Pages\Chrome\WelcomeToChromePage.cs" />
     <Compile Include="Application\Headers\Chrome\Header.cs" />
-    <Compile Include="Application\Pages\Chrome\YouTube\YTHomePage.cs" />
-    <Compile Include="Application\Pages\Chrome\YouTube\YTSearchPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\Features\Calculator\Calculator.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Calculator.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Features\Chrome\Trello\LogIn.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogIn.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test\Features\Chrome\WelcomeToChrome.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WelcomeToChrome.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test\Features\Chrome\YouTube.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>YouTube.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test\Runner\TestRunner.cs" />
+    <Compile Include="Test\StepDefinitions\Calculator\CalculatorSteps.cs" />
     <Compile Include="Test\StepDefinitions\Chrome\AccountLogInSteps.cs" />
     <Compile Include="Test\StepDefinitions\Chrome\NewTabSplashSteps.cs" />
+    <Compile Include="Test\StepDefinitions\Chrome\Trello\BoardsPageSteps.cs" />
+    <Compile Include="Test\StepDefinitions\Chrome\Trello\LogInPageSteps.cs" />
+    <Compile Include="Test\StepDefinitions\Chrome\Trello\SplashPageSteps.cs" />
     <Compile Include="Test\StepDefinitions\Chrome\WelcomeToChromeSteps.cs" />
-    <Compile Include="Test\StepDefinitions\Chrome\YouTubeSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Test\Features\Calculator\Calculator.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Calculator.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test\Features\Chrome\Trello\LogIn.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LogIn.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test\Features\Chrome\WelcomeToChrome.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>WelcomeToChrome.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test\Features\Chrome\YouTube.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>YouTube.feature.cs</LastGenOutput>
-    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Application\Headers\Calculator\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\training.automation.common\training.automation.common.csproj">
       <Project>{E01AFCF7-5D39-40C9-9B65-0139992E0C56}</Project>

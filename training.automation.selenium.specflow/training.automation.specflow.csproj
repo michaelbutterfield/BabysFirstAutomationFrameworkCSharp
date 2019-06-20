@@ -89,7 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\DesktopWebsite.cs" />
-    <Compile Include="Application\Data\TrelloWebData.cs" />
     <Compile Include="Application\Header\Header.cs" />
     <Compile Include="Application\Pages\BoardsPage.cs" />
     <Compile Include="Application\Pages\CardPage.cs" />

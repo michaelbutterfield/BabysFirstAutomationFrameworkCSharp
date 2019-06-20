@@ -1,5 +1,7 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 using training.automation.appium.Application;
+using training.automation.common.Utilities;
 
 namespace training.automation.appium.Test.StepDefinitions.Chrome
 {

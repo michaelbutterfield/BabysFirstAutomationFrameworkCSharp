@@ -1,9 +1,8 @@
 ﻿using System;
-using training.automation.common.Utilities;
 
-namespace training.automation.specflow.Data
+namespace training.automation.common.Utilities.Data
 {
-    class TrelloWebData
+    public class TrelloWebData
     {
         private static string username;
         private static string password;

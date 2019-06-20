@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-using training.automation.appium.Application;
+﻿using TechTalk.SpecFlow;
 using training.automation.common.Tests;
 using training.automation.common.Utilities;
+using training.automation.common.Utilities.Data;
 
 namespace training.automation.appium.Test.Runner
 {
@@ -18,6 +13,7 @@ namespace training.automation.appium.Test.Runner
         {
             string feature = "Just Testing";
             TestLogger.Initialise(feature);
+            TrelloWebData.ReadUserPass();
         }
 
         [AfterTestRun]
@@ -30,8 +26,9 @@ namespace training.automation.appium.Test.Runner
         static void BeforeScenario()
         {
             TestLogger.LogScenarioStart();
-            AppiumHelper.InitialiseChromeApp();
+            //AppiumHelper.InitialiseCalculatorApp();
             AppiumHelper.InitialiseAndroid();
+
         }
 
         [AfterScenario]

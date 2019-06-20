@@ -128,7 +128,20 @@ namespace training.automation.common.Appium.Elements.Common
             return AppiumHelper.FindElements(locator).Count() > 0;
         }
 
-  
+        protected AppiumWebElement GetElement(bool waitUntilClickable, bool waitUntilVisible)
+        {
+            if (waitUntilClickable)
+            {
+                WaitUntilElementToBeClickable();
+            }
+            else if (waitUntilVisible)
+            {
+                WaitUntilElementToBeVisible();
+            }
+
+            return AppiumHelper.GetDriver().FindElement(locator);
+        }
+
 
         public int GetElementCount()
         {
@@ -173,19 +186,7 @@ namespace training.automation.common.Appium.Elements.Common
             }
         }
 
-        protected AppiumWebElement GetElement(bool waitUntilClickable, bool waitUntilVisible)
-        {
-            if (waitUntilClickable)
-            {
-                WaitUntilElementToBeClickable();
-            }
-            else if (waitUntilVisible)
-            {
-                WaitUntilElementToBeVisible();
-            }
-
-            return AppiumHelper.GetDriver().FindElement(locator);
-        }
+        
 
         private void WaitUntilElementToBeClickable()
         {

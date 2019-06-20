@@ -1,7 +1,7 @@
 ﻿using TechTalk.SpecFlow;
 using training.automation.common.Utilities;
+using training.automation.common.Utilities.Data;
 using training.automation.specflow.Application;
-using training.automation.specflow.Data;
 using Is = NHamcrest.Is;
 
 namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
