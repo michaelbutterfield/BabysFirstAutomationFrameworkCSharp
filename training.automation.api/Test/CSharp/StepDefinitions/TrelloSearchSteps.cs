@@ -35,7 +35,7 @@ namespace training.automation.api.Test.CSharp.StepDefinitions
         {
             var client = new RestClient("http://api.trello.com");
 
-            var request = new RestRequest("/1/search?query={query}&key={key}&token={token}", Method.GET);
+            var request = new RestRequest("/1/search?query=&key={key}&token={token}", Method.GET);
             request.AddUrlSegment("query", "boardnotthere");
             request.AddUrlSegment("key", TrelloApiData.GetApiKey());
             request.AddUrlSegment("token", TrelloApiData.GetApiToken());
@@ -84,9 +84,9 @@ namespace training.automation.api.Test.CSharp.StepDefinitions
         }
 
         [Then]
-        public void I_will_receive_a_P0_response(int p0)
+        public void I_will_receive_a_P0_response(string p0)
         {
-            string expected = p0.ToString();
+            string expected = p0;
 
             string actual = RuntimeTestData.GetAsString("ResponseCode");
 

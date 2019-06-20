@@ -22,7 +22,7 @@ namespace training.automation.winium.Test.CSharp.StepDefinitions
         {
             DesktopApplication.MainPage.Two.Click();
             DesktopApplication.MainPage.Plus.Click();
-            DesktopApplication.MainPage.One.Click();
+            DesktopApplication.MainPage.Two.Click();
             DesktopApplication.MainPage.EqualsButton.Click();
         }
 
