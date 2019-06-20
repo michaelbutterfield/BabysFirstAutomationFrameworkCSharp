@@ -3,6 +3,7 @@ using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
 using training.automation.common.Tests;
 using training.automation.common.Utilities;
+using training.automation.common.Utilities.Data;
 using training.automation.winium.Common;
 using training.automation.winium.Test.CSharp.StepDefinitions;
 using training.automation.winium.Utilities;
@@ -16,6 +17,7 @@ namespace training.automation.specflow.Test.CSharp.Runner
         [BeforeTestRun]
         static void BeforeTestRun()
         {
+            DriverType.driverType = DriverType.DRIVER_TYPE.SELENIUM;
         }
 
         [AfterTestRun]

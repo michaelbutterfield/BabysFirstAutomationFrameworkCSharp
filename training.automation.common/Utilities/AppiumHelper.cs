@@ -5,6 +5,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service;
+using training.automation.common.Tests;
 
 namespace training.automation.common.Utilities
 {
@@ -43,11 +44,16 @@ namespace training.automation.common.Utilities
             //appiumOptions.AddAdditionalCapability("appPackage", appPackage);
             //appiumOptions.AddAdditionalCapability("appActivity", appActivity);
             _driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, appiumOptions);
+            string testStep = "Successfully created an Appium instance and started the app under test";
+            TestLogger.CreateTestStep(testStep);
         }
 
         public void CloseApp()
         {
             _driver.CloseApp();
+            string testStep = "Successfully closed Appium instance";
+            TestLogger.CreateTestStep(testStep);
+
         }
 
 
@@ -89,6 +95,9 @@ namespace training.automation.common.Utilities
 
         public static void GoToUrl(string url)
         {
+            string testStep = string.Format("Going to URL: {0}", url);
+            TestLogger.CreateTestStep(testStep);
+
             _driver.Navigate().GoToUrl(url);
         }
 

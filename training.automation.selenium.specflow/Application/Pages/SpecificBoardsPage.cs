@@ -22,6 +22,7 @@ namespace training.automation.specflow.Application.Pages
         public Label Done;
         public InputBox EnterCardTitle;
         public InputBox EnterListTitle;
+        public Button Invite;
         public Button MoreSideMenu;
         public Link PermDeleteBoard;
         public Button PermDeleteBoardConfirm;
@@ -59,6 +60,7 @@ namespace training.automation.specflow.Application.Pages
             CloseBoardConfirmation = new Button(By.XPath("//input[@class='js-confirm full negate']"), "Confirm Close Board", name);
             EnterCardTitle = new InputBox(By.XPath("//textarea[@class='list-card-composer-textarea js-card-title']"), "Entering card title", name);
             EnterListTitle = new InputBox(By.XPath("//input[@class='list-name-input']"), "Entering the list title", name);
+            Invite = new Button(By.XPath("//a[@title='Invite To Board']"), "Invite", name);
             MoreSideMenu = new Button(By.XPath("//a[@class='board-menu-navigation-item-link js-open-more']"), "More Button in Side Menu", name);
             PermDeleteBoard = new Link(By.XPath("//a[@class='quiet js-delete']"), "Permanently Delete Board...", name);
             PermDeleteBoardConfirm = new Button(By.XPath("//input[@class='js-confirm full negate']"), "Yes, Permanently Delete Board.", name);

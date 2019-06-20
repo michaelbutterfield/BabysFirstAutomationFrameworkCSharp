@@ -1,8 +1,10 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using System;
 using System.IO;
 using training.automation.common.utilities;
 using training.automation.common.Utilities;
+using training.automation.common.Utilities.Data;
 
 namespace training.automation.common.Tests
 {
@@ -40,13 +42,23 @@ namespace training.automation.common.Tests
 
             string ScreenshotName = string.Concat(scenarioName, ".png");
 
-            IWebDriver driver = SeleniumHelper.GetWebDriver();
+            if (DriverType.driverType == DriverType.DRIVER_TYPE.APPIUM)
+            {
+                AppiumDriver<AppiumWebElement> driver = AppiumHelper.GetDriver();
 
-            Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
-            screenshot.SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName));
+                screenshot.SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName));
+            }
+            else if(DriverType.driverType == DriverType.DRIVER_TYPE.SELENIUM)
+            {
+
+                IWebDriver driver = SeleniumHelper.GetWebDriver();
+
+                Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+
+                screenshot.SaveAsFile(string.Concat(RuntimeTestData.GetAsString("ScreenshotDirectory"), "\\", ScreenshotName));
+            }
         }
-
-
     }
 }

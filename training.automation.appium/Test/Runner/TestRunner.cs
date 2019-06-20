@@ -1,4 +1,6 @@
-﻿using TechTalk.SpecFlow;
+﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
+using TechTalk.SpecFlow;
 using training.automation.common.Tests;
 using training.automation.common.Utilities;
 using training.automation.common.Utilities.Data;
@@ -11,20 +13,21 @@ namespace training.automation.appium.Test.Runner
         [BeforeTestRun]
         static void BeforeTestRun()
         {
-            string feature = "Just Testing";
-            TestLogger.Initialise(feature);
             TrelloWebData.ReadUserPass();
+            DriverType.driverType = DriverType.DRIVER_TYPE.APPIUM;
         }
 
         [AfterTestRun]
         static void AfterTestRun()
         {
-            TestLogger.Close();
+            
         }
 
         [BeforeScenario]
         static void BeforeScenario()
         {
+            string feature = FeatureContext.Current.FeatureInfo.Title;
+            TestLogger.Initialise(feature);
             TestLogger.LogScenarioStart();
             //AppiumHelper.InitialiseCalculatorApp();
             AppiumHelper.InitialiseAndroid();
@@ -34,9 +37,17 @@ namespace training.automation.appium.Test.Runner
         [AfterScenario]
         static void AfterScenario()
         {
+            TestContext scenario = TestHelper.GetScenario();
+
+            if (scenario.Result.Outcome.Status.Equals(TestStatus.Failed))
+            {
+                FailureScreenshot.TakeScreenshot();
+            }
+
             AppiumHelper.DestroyDriver();
             RuntimeTestData.Destroy();
             TestLogger.LogScenarioEnd();
+            TestLogger.Close();
         }
     }
 }

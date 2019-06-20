@@ -125,6 +125,7 @@
     <Compile Include="Tests\FailureScreenshot.cs" />
     <Compile Include="Tests\TestLogger.cs" />
     <Compile Include="Utilities\AppiumHelper.cs" />
+    <Compile Include="Utilities\Data\DriverType.cs" />
     <Compile Include="Utilities\Data\TrelloWebData.cs" />
     <Compile Include="Utilities\RandomGen.cs" />
     <Compile Include="Utilities\RuntimeTestData.cs" />

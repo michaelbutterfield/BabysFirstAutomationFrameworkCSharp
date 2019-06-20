@@ -17,6 +17,7 @@ namespace training.automation.specflow.Test.CSharp.Runner
         [BeforeTestRun]
         static void BeforeTestRun()
         {
+            DriverType.driverType = DriverType.DRIVER_TYPE.SELENIUM;
             TrelloWebData.ReadUserPass();
             TrelloApiData.ReadApiKeyToken();
         }

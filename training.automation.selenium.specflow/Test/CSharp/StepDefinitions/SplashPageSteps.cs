@@ -1,7 +1,5 @@
 ﻿using TechTalk.SpecFlow;
-using training.automation.common.utilities;
 using training.automation.specflow.Application;
-using training.automation.specflow.Data;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {

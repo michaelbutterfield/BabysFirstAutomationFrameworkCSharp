@@ -61,7 +61,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.BoardsPage.AssignBoardToStar(UserBoard);
             try
             {
-                SeleniumHelper.HoverOverElement(string.Format("//div[text()='{0}']", UserBoard));
+                SeleniumHelper.HoverOverElement(string.Format("//div[@title='{0}']", UserBoard));
                 DesktopWebsite.BoardsPage.Unstarred.Click();
             }
             catch (Exception e)
@@ -155,9 +155,9 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [When]
         public static void go_through_all_the_delete_prompts()
         {
-            DesktopWebsite.SpecificBoardsPage.ShowMenu.WaitUntilExists();
+            DesktopWebsite.SpecificBoardsPage.Invite.WaitUntilExists();
 
-            if (!DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Exists())
+            if(DesktopWebsite.SpecificBoardsPage.ShowMenu.Exists())
             {
                 DesktopWebsite.SpecificBoardsPage.ShowMenu.Click();
             }

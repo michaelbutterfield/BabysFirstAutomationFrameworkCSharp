@@ -4,7 +4,6 @@ Background:
 Given I am on the splash page
 When I click the log in button
 
-
 @LogInCorrect
 Scenario: Log In with Correct Details
 Given I am on the log in page
