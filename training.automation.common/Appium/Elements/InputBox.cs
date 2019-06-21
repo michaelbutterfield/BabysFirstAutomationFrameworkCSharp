@@ -23,11 +23,6 @@ namespace training.automation.common.Appium.Elements
             }
         }
 
-        public void SendKeys(object p)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SendKeys(string text)
         {
             string stepDescription = string.Format("Input Text '{0}' into element {1} on page {2}", text, name, pageName);

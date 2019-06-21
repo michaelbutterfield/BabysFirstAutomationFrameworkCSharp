@@ -1,17 +1,19 @@
-﻿using OpenQA.Selenium;
+﻿using NHamcrest;
+using OpenQA.Selenium;
 using System;
-using training.automation.common.Utilities;
-using NHamcrest;
-using training.automation.common.Tests;
-using training.automation.winium.Utilities;
+
 
 namespace training.automation.winium.Common.Winium.Elements.Common
 {
+    using common.Utilities;
+    using common.Tests;
+    using Utilities;
+
     public class Element
     {
-        protected By locator;
-        protected string name;
-        protected string pageName;
+        protected By locator { get; private set; }
+        protected string name { get; private set; }
+        protected string pageName { get; private set; }
 
         public Element(By passedLocator, string passedElementName, string passedPageName)
         {
@@ -79,8 +81,6 @@ namespace training.automation.winium.Common.Winium.Elements.Common
 
         public string GetAttribute(string attribute)
         {
-            //string actionName = "Get Attribute' '" + attribute;
-
             string stepDef = string.Format("Getting Attribute {0}", attribute);
 
             TestLogger.CreateTestStep(stepDef);
@@ -102,6 +102,13 @@ namespace training.automation.winium.Common.Winium.Elements.Common
         public IWebElement GetElement()
         {
             return WiniumHelper.GetElement(locator);
+        }
+
+        protected void HandleException(string actionName, Exception ex)
+        {
+            string errorMessage = string.Format("{0} failed on element \"{1}\" on page \"{2}\"", actionName, name, pageName);
+
+            TestHelper.HandleException(errorMessage, ex);
         }
 
         public void WaitUntilExists()
@@ -132,13 +139,6 @@ namespace training.automation.winium.Common.Winium.Elements.Common
                     HandleException("Wait Until Exists", e);
                 }
             }
-        }
-
-        protected void HandleException(string actionName, Exception ex)
-        {
-            string errorMessage = string.Format("{0} failed on element \"{1}\" on page \"{2}\"", actionName, name, pageName);
-
-            TestHelper.HandleException(errorMessage, ex);
         }
     }
 }

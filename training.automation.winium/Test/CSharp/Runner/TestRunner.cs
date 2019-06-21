@@ -1,41 +1,17 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
-using training.automation.common.Tests;
-using training.automation.common.Utilities;
-using training.automation.common.Utilities.Data;
-using training.automation.winium.Common;
-using training.automation.winium.Test.CSharp.StepDefinitions;
-using training.automation.winium.Utilities;
-using FailureScreenshot = training.automation.winium.Common.FailureScreenshot;
 
 namespace training.automation.specflow.Test.CSharp.Runner
 {
+    using common.Tests;
+    using common.Utilities;
+    using winium.Test.CSharp.StepDefinitions;
+    using winium.Utilities;
+
     [Binding]
-    public class TestRunner
+    static class TestRunner
     {
-        [BeforeTestRun]
-        static void BeforeTestRun()
-        {
-            DriverType.driverType = DriverType.DRIVER_TYPE.SELENIUM;
-        }
-
-        [AfterTestRun]
-        static void AfterTestRun()
-        {
-
-        }
-
-        [BeforeScenario]
-        static void BeforeScenario()
-        {
-            WiniumHelper.Initialise();
-            string feature = FeatureContext.Current.FeatureInfo.Title;
-            TestLogger.Initialise(feature);
-            TestLogger.LogScenarioStart();
-            CalculatorSteps.I_reset_the_calculator();
-        }
-
         [AfterScenario]
         static void AfterScenario()
         {
@@ -50,6 +26,16 @@ namespace training.automation.specflow.Test.CSharp.Runner
             RuntimeTestData.Destroy();
             TestLogger.LogScenarioEnd();
             TestLogger.Close();
+        }
+
+        [BeforeScenario]
+        static void BeforeScenario()
+        {
+            WiniumHelper.Initialise();
+            string feature = FeatureContext.Current.FeatureInfo.Title;
+            TestLogger.Initialise(feature);
+            TestLogger.LogScenarioStart();
+            CalculatorSteps.I_reset_the_calculator();
         }
     }
 }

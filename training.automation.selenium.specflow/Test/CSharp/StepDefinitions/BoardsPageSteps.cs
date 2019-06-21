@@ -3,14 +3,14 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
-using training.automation.api.Utilities;
-using training.automation.common.utilities;
 using training.automation.common.Utilities;
-using training.automation.specflow.Application;
 using RandomGen = training.automation.common.Utilities.RandomGen;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
+    using Application;
+    using training.automation.common.Selenium.Elements;
+
     [Binding]
     public sealed class BoardsPageSteps
     {
@@ -26,65 +26,24 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         public void IAmOnTheBoardsPage()
         {
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
-            string ExpectedSiteTitle = "Boards | Trello";
-            string ActualSiteTitle = SeleniumHelper.GetWebDriver().Title;
-            string StepDesc = string.Format("Assert that framework's on the Boards Page. Expected Site Title: {0} - Actual Site Title: {1}", ExpectedSiteTitle, ActualSiteTitle);
-            TestHelper.AssertThat(ExpectedSiteTitle, Is.EqualTo(ActualSiteTitle), StepDesc);
+            DesktopWebsite.BoardsPage.AssertPageTitleIs("Boards | Trello");
         }
 
         [Given, When(@"I click on the user created board")]
         public static void IClickOnTheUserCreatedBoard()
         {
-            if (DesktopWebsite.BoardsPage.UserBoard == null)
-            {
-                DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-            }
-
-            if (!DesktopWebsite.BoardsPage.UserBoard.Exists())
-            {
-                DesktopWebsite.BoardsPage.Header.BackToHome.JsClick();
-            }
-
-            DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-
-            DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
-            DesktopWebsite.BoardsPage.UserBoard.Click();
+            DesktopWebsite.BoardsPage.ClickTheUserBoard();
         }
 
         [When(@"I click the favourite board star")]
         public void IClickTheFavouriteBoardStar()
         {
-            string UserBoard = RuntimeTestData.GetAsString("BoardName");
-            //DesktopWebsite.BoardsPage.AssignBoardToStar(UserBoard);
-            //SeleniumHelper.HoverOverElement(string.Format("//div[text()='{0}']", UserBoard));
-
-            DesktopWebsite.BoardsPage.AssignBoardToStar(UserBoard);
-            try
-            {
-                SeleniumHelper.HoverOverElement(string.Format("//div[@title='{0}']", UserBoard));
-                DesktopWebsite.BoardsPage.Unstarred.Click();
-            }
-            catch (Exception e)
-            {
-                string ErrorMessage = "Failed trying to hover over and click the UserBoard star";
-                TestHelper.HandleException(ErrorMessage, e);
-            }
+            DesktopWebsite.BoardsPage.ClickBoardStar();
         }
 
         [Given, When(@"I create the user board")]
         public void ICreateTheUserBoard()
         {
-            //Old UI way of doing it
-            //DesktopWebsite.Header.Add.Click();
-            //DesktopWebsite.BoardsPage.CreateNewBoard.Click();
-
-            //string BoardName = Random.RandomAlphanumericString(10);
-            //RuntimeTestData.Add("BoardName", BoardName);
-
-            //DesktopWebsite.CreateBoardPage.NameInput.SendKeys(BoardName);
-            //DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
-            //DesktopWebsite.CreateBoardPage.CreateBoard.Click();
-
             string BoardName = RandomGen.RandomAlphabetString(8);
             RuntimeTestData.Add("BoardName", BoardName);
 
@@ -99,10 +58,12 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             try
             {
-                if (!TrelloAPIHelper.GetBoardStarredStatus(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName"))))
+                bool starStatus = TrelloAPIHelper.GetBoardStarredStatus(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
+
+                if(starStatus == false)
                 {
-                    string ErrorMessage = "Board not successfully starred or got false get from API";
-                    throw new Exception(ErrorMessage);
+                    string stepDef = "UserBoard was not successfully starred";
+                    throw new Exception(stepDef);
                 }
             }
             catch(Exception e)
@@ -115,9 +76,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then(@"the environment will be set up")]
         public void TheEnvironmentWillBeSetUp()
         {
-            DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-            DesktopWebsite.BoardsPage.UserBoard.WaitUntilExists();
-            DesktopWebsite.BoardsPage.UserBoard.AssertExists();
+            DesktopWebsite.BoardsPage.AssertTheUserBoardExists();
         }
 
         [When]
@@ -141,15 +100,10 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void the_user_board_will_be_created()
         {
-            while (!DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Exists())
-            {
-                DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
-            }
-            
+            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
             DesktopWebsite.SpecificBoardsPage.Header.TrelloLogoHome.JsClick();
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
-            DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-            DesktopWebsite.BoardsPage.UserBoard.AssertExists();
+            DesktopWebsite.BoardsPage.AssertTheUserBoardExists();
         }
 
         [When]
@@ -159,7 +113,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
 
             if(DesktopWebsite.SpecificBoardsPage.ShowMenu.Exists())
             {
-                DesktopWebsite.SpecificBoardsPage.ShowMenu.Click();
+                DesktopWebsite.SpecificBoardsPage.ShowMenu.JsClick();
             }
 
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
@@ -169,7 +123,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.SpecificBoardsPage.PermDeleteBoard.Click();
             DesktopWebsite.SpecificBoardsPage.PermDeleteBoardConfirm.Click();
             DesktopWebsite.SpecificBoardsPage.BoardNotFound.WaitUntilExists();
-            DesktopWebsite.SpecificBoardsPage.BoardNotFound.GetElementAttribute("innerText").ToString().Equals("Board not found.");
+            string boardNotFound = DesktopWebsite.SpecificBoardsPage.BoardNotFound.GetElementAttribute("innerText");
+            TestHelper.AssertThat(boardNotFound, Is.EqualTo("Board not found."), "Assert board has been deleted successfully");
         }
 
         [Then]
@@ -177,7 +132,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             DesktopWebsite.SpecificBoardsPage.Header.BackToHome.WaitUntilExists();
             DesktopWebsite.SpecificBoardsPage.Header.BackToHome.JsClick();
-            DesktopWebsite.BoardsPage.UserBoard.AssertDoesNotExist();
+            DesktopWebsite.BoardsPage.AssertTheUserBoardDoesNotExist();
+            RuntimeTestData.Remove("BoardName");
         }
 
 

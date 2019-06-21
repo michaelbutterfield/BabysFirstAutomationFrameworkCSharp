@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace training.automation.api.Data
+namespace training.automation.common.Utilities.Data.Trello
 {
     public class TrelloResponseData
     {

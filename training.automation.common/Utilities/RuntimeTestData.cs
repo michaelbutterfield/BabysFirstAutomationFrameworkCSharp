@@ -27,6 +27,11 @@ namespace training.automation.common.Utilities
             return TestData.ContainsValue(Value);
         }
 
+        public static void Remove(string Key)
+        {
+            TestData.Remove(Key);
+        }
+
         public static object Get(string Key)
         {
             return TestData[Key];

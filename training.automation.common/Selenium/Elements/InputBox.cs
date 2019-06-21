@@ -2,13 +2,12 @@
 using System;
 using training.automation.common.selenium.elements.common;
 using training.automation.common.Tests;
-using training.automation.common.utilities;
 
 namespace training.automation.common.Selenium.Elements
 {
     public class InputBox : Element
     {
-        public InputBox(By locator, String elementName, String pageName) : base(locator, elementName, pageName) { }
+        public InputBox(By locator, string elementName, string pageName) : base(locator, elementName, pageName) { }
 
         public void Clear()
         {

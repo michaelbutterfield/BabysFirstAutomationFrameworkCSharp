@@ -1,9 +1,9 @@
-﻿using training.automation.winium.Application.Pages.Calculator;
-using training.automation.winium.Application.Sections.Calculator;
-
-namespace training.automation.winium.Application
+﻿namespace training.automation.winium.Application
 {
-    class DesktopApplication
+    using Pages.Calculator;
+    using Sections.Calculator;
+
+    public class DesktopApplication
     {
         public static MainPage MainPage;
         public static NavigationPane NavigationPane;

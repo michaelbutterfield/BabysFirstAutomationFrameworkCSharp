@@ -7,7 +7,7 @@ namespace training.automation.selenium.specflow.Application.Pages
 {
     public class CardPage : Page
     {
-        public CardPage() : base("Cards") { BuildPage(); BuildElements(); }
+        public CardPage() : base("Cards") { BuildPage(); BuildPopup(); }
 
         public Button Checklist;
         public Text ChecklistHeader;
@@ -17,17 +17,6 @@ namespace training.automation.selenium.specflow.Application.Pages
 
         public AddChecklist AddChecklist;
 
-        private void BuildPage()
-        {
-            AddChecklist = new AddChecklist();
-        }
-
-        private void BuildElements()
-        {
-            Checklist = new Button(By.XPath("//a[@title='Checklist']"), "Checklist", name);
-            ChecklistItemTitle = new InputBox(By.XPath("//textarea[@class='edit field checklist-new-item-text js-new-checklist-item-input']"), "Checklist Item Title", name);
-            ChecklistItemAdd = new Button(By.XPath("//input[@value='Add' and @type='submit']"), "Add", name);
-        }
 
         public void CreateChecklistItem(string ChecklistItemName)
         {
@@ -41,7 +30,16 @@ namespace training.automation.selenium.specflow.Application.Pages
             ChecklistHeader = new Text(By.XPath(xpath), "Checklist Header", name);
         }
 
+        private void BuildPage()
+        {
+            Checklist = new Button(By.XPath("//a[@title='Checklist']"), "Checklist", name);
+            ChecklistItemTitle = new InputBox(By.XPath("//textarea[@class='edit field checklist-new-item-text js-new-checklist-item-input']"), "Checklist Item Title", name);
+            ChecklistItemAdd = new Button(By.XPath("//input[@value='Add' and @type='submit']"), "Add", name);
+        }
 
-
+        private void BuildPopup()
+        {
+            AddChecklist = new AddChecklist();
+        }
     }
 }

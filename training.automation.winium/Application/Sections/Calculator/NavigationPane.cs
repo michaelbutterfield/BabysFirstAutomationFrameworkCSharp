@@ -1,15 +1,17 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Sections;
-using training.automation.winium.Common.Winium.Elements;
 
 namespace training.automation.winium.Application.Sections.Calculator
 {
+    using common.Page;
+    using Common.Winium.Elements;
+
+
     public class NavigationPane : Section
     {
-        public Button ScientificCalculator;
-        public Button StandardCalculator;
+        public Button ScientificCalculator { get; private set; }
+        public Button StandardCalculator { get; private set; }
 
-        public NavigationPane() : base("NavigationPane") { BuildSections(); }
+        public NavigationPane() : base("Navigation Pane") { BuildSections(); }
 
         private void BuildSections()
         {

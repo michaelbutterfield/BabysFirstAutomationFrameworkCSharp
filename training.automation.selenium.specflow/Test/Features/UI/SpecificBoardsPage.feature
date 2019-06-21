@@ -31,8 +31,6 @@ Scenario: Dragging two cards from 'To Do' and 'Done' to 'Doing'
 	  And I click and drag two cards from Done to Doing
 	Then the cards are moved successfully
 
-
-
 @FavouriteBoard
 Scenario: Favourite a board
 	Given I am on the boards page

@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
-using System;
-using training.automation.common.selenium.elements.common;
 
-namespace training.automation.winium.Winium.Elements
+namespace training.automation.winium.Common.Winium.Elements
 {
+    using Common;
+
     public class Label : Element
     {
-        public Label(By myLocator, String elementName, String pageName) : base(myLocator, elementName, pageName) { }
+        public Label(By myLocator, string elementName, string pageName) : base(myLocator, elementName, pageName) { }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using TechTalk.SpecFlow;
-using training.automation.api.Utilities;
 using training.automation.common.Utilities;
-using training.automation.specflow.Application;
+
 
 namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
 {
+    using training.automation.specflow.Application;
+    
     [Binding]
     public class CardPageSteps
     {

@@ -1,12 +1,12 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.Drawing.Imaging;
 using System.IO;
-using training.automation.common.Utilities;
-using training.automation.winium.Utilities;
 
 namespace training.automation.winium.Common
 {
+    using common.Utilities;
+    using Utilities;
+
     public class FailureScreenshot
     {
         private static string screenshotDirectory = null;

@@ -6,9 +6,8 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
 using training.automation.common.Tests;
-using training.automation.common.Utilities;
 
-namespace training.automation.common.utilities
+namespace training.automation.common.Utilities
 {
     public class SeleniumHelper
     { 
@@ -90,21 +89,6 @@ namespace training.automation.common.utilities
             Driver.Navigate().Refresh();
         }
 
-        public static void HoverOverElement(string ElementXPath)
-        {
-            try
-            {
-                IWebElement UserBoard = GetWebDriver().FindElement(By.XPath(ElementXPath));
-                Actions action = new Actions(GetWebDriver());
-                action.MoveToElement(UserBoard).Perform();
-            }
-            catch (Exception e)
-            {
-                string ErrorMessage = string.Format("Failed hovering over element");
-                TestHelper.HandleException(ErrorMessage, e);
-            }
-        }
-
         public static void Initialise(string browser)
         {
             browser = browser.ToLower();
@@ -114,7 +98,7 @@ namespace training.automation.common.utilities
                 case "chrome":
                     {
                         ChromeOptions options = new ChromeOptions();
-                        options.AddArgument("--headless");
+                        //options.AddArgument("--headless");
                         Driver = new ChromeDriver(options);
                         break;
                     }
@@ -133,7 +117,6 @@ namespace training.automation.common.utilities
             }
 
             Driver.Manage().Window.Maximize();
-            Driver.Navigate().GoToUrl("http://www.trello.com");
         }
     }
 }

@@ -2,12 +2,12 @@
 using OpenQA.Selenium.Appium;
 using System;
 using System.IO;
-using training.automation.common.utilities;
-using training.automation.common.Utilities;
-using training.automation.common.Utilities.Data;
 
 namespace training.automation.common.Tests
 {
+    using Utilities.Data;
+    using Utilities;
+
     public class FailureScreenshot
     {
         private static string screenshotDirectory = null;

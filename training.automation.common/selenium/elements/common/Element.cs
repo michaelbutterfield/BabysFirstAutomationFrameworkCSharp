@@ -2,14 +2,15 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
-using training.automation.common.utilities;
 using NHamcrest;
-using training.automation.common.Tests;
-using training.automation.common.Utilities;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace training.automation.common.selenium.elements.common
 {
+    using OpenQA.Selenium.Interactions;
+    using Tests;
+    using Utilities;
+
     public class Element
     {
         protected By locator;
@@ -41,10 +42,6 @@ namespace training.automation.common.selenium.elements.common
             catch (Exception e)
             {
                 TestHelper.HandleException(stepDescription, e);
-            }
-            finally
-            {
-                TestHelper.AssertThat(element, Is.NotNull(), stepDescription);
             }
         }
 
@@ -194,6 +191,22 @@ namespace training.automation.common.selenium.elements.common
 
             TestHelper.HandleException(errorMessage, ex);
         }
+
+        public void HoverOverElement()
+        {
+            try
+            {
+                IWebElement UserBoard = SeleniumHelper.GetWebDriver().FindElement(locator);
+                Actions action = new Actions(SeleniumHelper.GetWebDriver());
+                action.MoveToElement(UserBoard).Perform();
+            }
+            catch (Exception e)
+            {
+                string ErrorMessage = string.Format("Failed hovering over element");
+                TestHelper.HandleException(ErrorMessage, e);
+            }
+        }
+
 
         public bool IsEnabled()
         {

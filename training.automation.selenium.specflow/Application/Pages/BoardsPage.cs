@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using training.automation.common.Page;
 using training.automation.common.Selenium.Elements;
+using training.automation.common.Utilities;
 using training.automation.specflow.Application.Sections;
 
 namespace training.automation.specflow.Application.Pages
@@ -8,19 +9,56 @@ namespace training.automation.specflow.Application.Pages
     public class BoardsPage : Page
     {
         //Elements
-        public Label BoardNotFound;
-        public Button CreateNewBoard;
-        public Text PersonalBoards;
-        public Button Unstarred;
-        public Button UserBoard;
-        public Button Starred;
+        public Label BoardNotFound { get; private set; }
+        public Button CreateNewBoard { get; private set; }
+        public Text PersonalBoards { get; private set; }
+        public Button Unstarred { get; private set; }
+        public Button Starred { get; private set; }
 
         //Headers
         public Header Header;
 
-        public BoardsPage() : base("Boards") { BuildPage(); BuildHeader(); }
+        public BoardsPage() : base("Boards")
+        {
+            BuildPage();
+            BuildSections();
+        }
 
-        private void BuildHeader()
+        public void ClickTheUserBoard()
+        {
+            Button userBoard = CreateUserBoard();
+            userBoard.Click();
+        }
+
+        public void AssertTheUserBoardExists()
+        {
+            Button userBoard = CreateUserBoard();
+            userBoard.WaitUntilExists();
+        }
+
+        public void AssertTheUserBoardDoesNotExist()
+        {
+            Button userBoard = CreateUserBoard();
+            userBoard.AssertDoesNotExist();
+        }
+
+        public void ClickBoardStar()
+        {
+            string BoardName = RuntimeTestData.GetAsString("BoardName");
+            string xpath = $"//div[@title='{BoardName}']/..//span[@class='icon-sm icon-star board-tile-options-star-icon']";
+            Button star = new Button(By.XPath(xpath), "Unstarred Board Button", name);
+            star.HoverOverElement();
+            star.Click();
+        }
+
+        private Button CreateUserBoard()
+        {
+            string BoardName = RuntimeTestData.GetAsString("BoardName");
+            Button userBoard = new Button(By.XPath($"//div[@title='{BoardName}']"), "User Created Board", "Boards Page");
+            return userBoard;
+        }
+
+        private void BuildSections()
         {
             Header = new Header();
         }
@@ -33,15 +71,5 @@ namespace training.automation.specflow.Application.Pages
             Starred = new Button(By.XPath("//span[@class='icon-sm icon-star is-starred board-tile-options-star-icon']"), "Starred Board Button", name);
         }
 
-        public void AssignUserBoard(string BoardName)
-        {
-            UserBoard = new Button(By.XPath(string.Format("//div[@title='{0}']", BoardName)), "UserBoard", name);
-        }
-
-        public void AssignBoardToStar(string BoardName)
-        {
-            string xpath = string.Format("//div[@title='{0}']/..//span[@class='icon-sm icon-star board-tile-options-star-icon']", BoardName);
-            Unstarred = new Button(By.XPath(xpath), "Unstarred Board Button", name);
-        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using training.automation.common.Utilities;
 
-namespace training.automation.api.Data
+namespace training.automation.common.Utilities.Data.Trello
 {
     public class TrelloApiData
     {

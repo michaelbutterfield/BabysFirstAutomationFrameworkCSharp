@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
-using training.automation.api.Data;
-using training.automation.api.Utilities;
 using training.automation.common.Tests;
-using training.automation.common.Utilities;
 
 namespace training.automation.api.Test.CSharp.Runner
 {
+    using common.Utilities;
+    using common.Utilities.Data.Trello;
+
     [Binding]
     public class TestRunner
     {
@@ -43,6 +43,8 @@ namespace training.automation.api.Test.CSharp.Runner
 
             if (RuntimeTestData.ContainsKey("BoardName"))
             {
+                TestHelper.SleepInSeconds(1);
+
                 TrelloAPIHelper.DeleteBoard(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
             }
 

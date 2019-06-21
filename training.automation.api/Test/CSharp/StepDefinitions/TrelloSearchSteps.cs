@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using TechTalk.SpecFlow;
-using training.automation.api.Data;
 using training.automation.common.Utilities;
+using training.automation.common.Utilities.Data.Trello;
 using Is = NHamcrest.Is;
 
 namespace training.automation.api.Test.CSharp.StepDefinitions
@@ -50,7 +50,8 @@ namespace training.automation.api.Test.CSharp.StepDefinitions
         {
             var client = new RestClient("https://api.trello.com/");
 
-            string BoardName = "TestBoard";
+            string BoardName = RandomGen.RandomAlphabetString(8);
+            RuntimeTestData.Add("BoardName", BoardName);
 
             var request = new RestRequest("1/boards/?name={name}&desc={desc}&defaultLists=false&key={key}&token={token}", Method.POST, DataFormat.Json);
             request.AddUrlSegment("name", BoardName);
@@ -62,7 +63,6 @@ namespace training.automation.api.Test.CSharp.StepDefinitions
             IRestResponse response = client.Execute(request);
 
             RuntimeTestData.Add("ResponseCode", response.StatusCode.ToString());
-            RuntimeTestData.Add("BoardName", BoardName);
         }
 
         [When]
@@ -70,7 +70,7 @@ namespace training.automation.api.Test.CSharp.StepDefinitions
         {
             var client = new RestClient("https://api.trello.com/");
 
-            string BoardName = "TestBoard";
+            string BoardName = RandomGen.RandomAlphabetString(8);
 
             var request = new RestRequest("1/boards/?name={name}&desc={desc}&defaultLists=false", Method.POST, DataFormat.Json);
             request.AddUrlSegment("name", BoardName);
@@ -80,7 +80,6 @@ namespace training.automation.api.Test.CSharp.StepDefinitions
             IRestResponse response = client.Execute(request);
 
             RuntimeTestData.Add("ResponseCode", response.StatusCode.ToString());
-            RuntimeTestData.Add("BoardName", BoardName);
         }
 
         [Then]

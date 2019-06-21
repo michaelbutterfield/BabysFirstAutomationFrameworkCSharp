@@ -1,16 +1,15 @@
 ﻿using TechTalk.SpecFlow;
-using training.automation.common.utilities;
-using training.automation.specflow.Application;
 using System;
-using training.automation.api.Utilities;
 using OpenQA.Selenium;
 using RandomGen = training.automation.common.Utilities.RandomGen;
 using training.automation.common.Utilities;
-using training.automation.common.Selenium.Elements;
 using NHamcrest;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
+    using Application;
+    using training.automation.common.Selenium.Elements;
+
     [Binding]
     public sealed class SpecificBoardsPageSteps
     {
@@ -30,20 +29,17 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         }
 
         [Given]
-        public void Given_I_add_P0_lists_and_P1_cards_to_each_list(int p0, int p1)
+        public void I_add_P0_lists_and_P1_cards_to_each_list(int p0, int p1)
         {
-            DesktopWebsite.BoardsPage.AssignUserBoard(RuntimeTestData.GetAsString("BoardName"));
-            DesktopWebsite.BoardsPage.UserBoard.Click();
+            string BoardName = RuntimeTestData.GetAsString("BoardName");
+            Button userBoard = new Button(By.XPath($"//div[@title='{BoardName}']"), "User Created Board", "Boards Page");
+            userBoard.Click();
             TrelloAPIHelper.CreateLists(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")), p0);
 
             for(int i = 1; i <= p0; i++)
             {
                 TrelloAPIHelper.CreateCards(p1, i);
             }
-
-            //TrelloAPIHelper.CreateCards(p1, 1);
-            //TrelloAPIHelper.CreateCards(p1, 2);
-            //TrelloAPIHelper.CreateCards(p1, 3);
         }
 
 
