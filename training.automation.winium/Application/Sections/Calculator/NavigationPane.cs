@@ -11,7 +11,10 @@ namespace training.automation.winium.Application.Sections.Calculator
         public Button ScientificCalculator { get; private set; }
         public Button StandardCalculator { get; private set; }
 
-        public NavigationPane() : base("Navigation Pane") { BuildSections(); }
+        public NavigationPane() : base("Navigation Pane")
+        {
+            BuildSections();
+        }
 
         private void BuildSections()
         {

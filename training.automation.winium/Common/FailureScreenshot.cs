@@ -15,7 +15,7 @@ namespace training.automation.winium.Common
         {
             try
             {
-                screenshotDirectory = string.Concat(RuntimeTestData.GetAsString("TestRunDirectory"), "\\FailureScreenshots");
+                screenshotDirectory = string.Concat(RuntimeTestData.GetAsString("TestRunDirectory"), "FailureScreenshots");
 
                 if (!Directory.Exists(screenshotDirectory))
                 {

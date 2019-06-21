@@ -1,16 +1,20 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Sections;
-using training.automation.common.Selenium.Elements;
 
 namespace training.automation.specflow.Application.Sections
 {
+    using common.Page;
+    using common.Selenium.Elements;
+
     public class Header : Section
     {
-        public Button Add;
-        public Image BackToHome;
-        public Image TrelloLogoHome;
+        public Button Add { get; private set; }
+        public Image BackToHome { get; private set; }
+        public Image TrelloLogoHome { get; private set; }
 
-        public Header() : base("Header") { BuildSections(); }
+        public Header() : base("Header")
+        {
+            BuildSections();
+        }
 
         private void BuildSections()
         {

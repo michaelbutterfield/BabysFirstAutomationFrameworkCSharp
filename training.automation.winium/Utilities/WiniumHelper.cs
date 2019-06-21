@@ -15,11 +15,6 @@ namespace training.automation.winium.Utilities
 
         private WiniumHelper() { }
 
-        public static RemoteWebDriver GetWiniumDriver()
-        {
-            return Driver;
-        }
-
         public static void DestroyDriver()
         {
             Driver.Quit();
@@ -30,6 +25,11 @@ namespace training.automation.winium.Utilities
         public static IWebElement GetElement(By locator)
         {
             return Driver.FindElement(locator);
+        }
+
+        public static RemoteWebDriver GetWiniumDriver()
+        {
+            return Driver;
         }
 
         public static void Initialise()
@@ -45,6 +45,5 @@ namespace training.automation.winium.Utilities
                 TestHelper.HandleException(errorMessage, e);
             }
         }
-
     }
 }

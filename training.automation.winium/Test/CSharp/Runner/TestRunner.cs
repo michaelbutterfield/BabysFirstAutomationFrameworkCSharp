@@ -4,14 +4,20 @@ using TechTalk.SpecFlow;
 
 namespace training.automation.specflow.Test.CSharp.Runner
 {
-    using common.Tests;
     using common.Utilities;
+    using training.automation.common.Tests;
     using winium.Test.CSharp.StepDefinitions;
     using winium.Utilities;
 
     [Binding]
     static class TestRunner
     {
+        [AfterFeature]
+        static void AfterFeature()
+        {
+            RuntimeTestData.Destroy();
+        }
+
         [AfterScenario]
         static void AfterScenario()
         {
@@ -19,11 +25,10 @@ namespace training.automation.specflow.Test.CSharp.Runner
 
             if (scenario.Result.Outcome.Status.Equals(TestStatus.Failed))
             {
-                FailureScreenshot.TakeScreenshot();
+                winium.Common.FailureScreenshot.TakeScreenshot();
             }
 
             WiniumHelper.DestroyDriver();
-            RuntimeTestData.Destroy();
             TestLogger.LogScenarioEnd();
             TestLogger.Close();
         }
