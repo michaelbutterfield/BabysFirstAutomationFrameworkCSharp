@@ -2,12 +2,10 @@
 
 namespace training.automation.common.Utilities.Data
 {
-    public class TrelloWebData
+    public class TestRailUser
     {
         private static string username;
         private static string password;
-
-        private TrelloWebData() { }
 
         public static string GetUsername()
         {
@@ -23,7 +21,7 @@ namespace training.automation.common.Utilities.Data
         {
             try
             {
-                string SourceFile = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\trellouserpass.txt";
+                string SourceFile = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\testrailuser.txt";
 
                 string line = System.IO.File.ReadAllText(@SourceFile);
 

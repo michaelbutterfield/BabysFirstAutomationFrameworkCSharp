@@ -100,7 +100,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         [Then]
         public void the_user_board_will_be_created()
         {
-            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
+            DesktopWebsite.SpecificBoardsPage.EnterListTitle.WaitUntilExists();
             DesktopWebsite.SpecificBoardsPage.Header.TrelloLogoHome.JsClick();
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
             DesktopWebsite.BoardsPage.AssertTheUserBoardExists();

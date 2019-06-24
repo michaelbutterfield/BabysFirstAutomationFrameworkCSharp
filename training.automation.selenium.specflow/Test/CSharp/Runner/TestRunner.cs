@@ -18,6 +18,8 @@ namespace training.automation.specflow.Test.CSharp.Runner
             DriverType.driverType = DriverType.DRIVER_TYPE.SELENIUM;
             TrelloWebData.ReadUserPass();
             TrelloApiData.ReadApiKeyToken();
+            TestRailUser.ReadUserPass();
+            TestRail.CreateTestRun();
         }
 
         [BeforeScenario]
@@ -33,9 +35,11 @@ namespace training.automation.specflow.Test.CSharp.Runner
         [AfterScenario]
         static void AfterScenario()
         {
-            TestContext scenario = TestHelper.GetScenario();
+            TestStatus runResult = TestHelper.GetScenario().Result.Outcome.Status;
 
-            if (scenario.Result.Outcome.Status.Equals(TestStatus.Failed))
+            TestRail.PostTestResults(runResult);
+
+            if (runResult.Equals(TestStatus.Failed))
             {
                 FailureScreenshot.TakeScreenshot();
             }

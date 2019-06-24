@@ -98,7 +98,7 @@ namespace training.automation.common.Utilities
                 case "chrome":
                     {
                         ChromeOptions options = new ChromeOptions();
-                        //options.AddArgument("--headless");
+                        options.AddArgument("--headless");
                         Driver = new ChromeDriver(options);
                         break;
                     }

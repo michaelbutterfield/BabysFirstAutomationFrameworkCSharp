@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Sections;
+using training.automation.common.Page;
 using training.automation.common.Selenium.Elements;
 
 namespace training.automation.selenium.Application.Sections

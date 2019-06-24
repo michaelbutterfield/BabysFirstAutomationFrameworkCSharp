@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using training.automation.common.Appium.Elements;
-using training.automation.common.Sections;
+using training.automation.common.Page;
 
 namespace training.automation.appium.Application.Headers.Chrome
 {
