@@ -2,11 +2,10 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Winium;
 using System;
+using training.automation.common.Utilities;
 
 namespace training.automation.winium.Utilities
 {
-    using common.Utilities;
-
     public class WiniumHelper
     {
         private static DesktopOptions Options = new DesktopOptions { ApplicationPath = @"C:\\Windows\\System32\\calc.exe" };

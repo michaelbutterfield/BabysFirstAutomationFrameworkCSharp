@@ -5,8 +5,8 @@
 
     public class DesktopApplication
     {
-        public static MainPage MainPage;
-        public static NavigationPane NavigationPane;
+        public static MainPage MainPage { get; private set; }
+        public static NavigationPane NavigationPane { get; private set; }
 
         static DesktopApplication()
         {

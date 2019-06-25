@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
+using training.automation.common.Tests;
+using training.automation.common.Utilities;
 
-namespace training.automation.specflow.Test.CSharp.Runner
+namespace training.automation.winium.Test.CSharp.Runner
 {
-    using common.Utilities;
-    using training.automation.common.Tests;
-    using winium.Test.CSharp.StepDefinitions;
-    using winium.Utilities;
+    using StepDefinitions;
+    using Utilities;
 
     [Binding]
     static class TestRunner

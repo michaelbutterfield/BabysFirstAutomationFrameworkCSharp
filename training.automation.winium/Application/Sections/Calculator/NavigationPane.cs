@@ -5,7 +5,6 @@ namespace training.automation.winium.Application.Sections.Calculator
     using common.Page;
     using Common.Winium.Elements;
 
-
     public class NavigationPane : Section
     {
         public Button ScientificCalculator { get; private set; }

@@ -36,7 +36,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             userBoard.Click();
             TrelloAPIHelper.CreateLists(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")), p0);
 
-            for(int i = 1; i <= p0; i++)
+            for (int i = 1; i <= p0; i++)
             {
                 TrelloAPIHelper.CreateCards(p1, i);
             }
@@ -75,7 +75,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.SpecificBoardsPage.AddList.Click();
         }
 
-            
+
         [Then(@"the three boards lists will be created")]
         public void TheThreeBoardsListsWillBeCreated()
         {

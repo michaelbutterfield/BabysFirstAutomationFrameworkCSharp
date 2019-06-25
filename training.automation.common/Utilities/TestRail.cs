@@ -1,11 +1,11 @@
 ﻿using Gurock.TestRail;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework.Interfaces;
 using System.Collections.Generic;
 
 namespace training.automation.common.Utilities
 {
     using common.Utilities.Data;
-    using NUnit.Framework.Interfaces;
 
     public static class TestRail
     {

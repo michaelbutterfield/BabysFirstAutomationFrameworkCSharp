@@ -10,7 +10,7 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
     public class CardPageSteps
     {
         [When]
-        public void When_I_add_P0_cards(int p0)
+        public void I_add_P0_cards(int p0)
         {
             TrelloAPIHelper.CreateList(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
             TrelloAPIHelper.CreateCards(p0, 1);

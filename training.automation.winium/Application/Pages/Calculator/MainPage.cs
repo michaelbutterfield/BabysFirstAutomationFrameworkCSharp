@@ -1,11 +1,11 @@
 ﻿using NHamcrest;
 using OpenQA.Selenium;
 using System;
+using training.automation.common.Page;
+using training.automation.common.Utilities;
 
 namespace training.automation.winium.Application.Pages.Calculator
-{
-    using common.Page;
-    using common.Utilities;
+{ 
     using Common.Winium.Elements;
     using Utilities;
 

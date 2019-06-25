@@ -4,45 +4,36 @@ using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using training.automation.common.Utilities;
-using RandomGen = training.automation.common.Utilities.RandomGen;
+
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
     using Application;
-    using training.automation.common.Selenium.Elements;
 
     [Binding]
     public sealed class BoardsPageSteps
     {
         [Given]
-        public void I_click_on_a_board()
-        {
-            DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
-            SeleniumHelper.GetElement(By.XPath("//ul[@class='boards-page-board-section-list']/li[@class='boards-page-board-section-list-item']")).Click();
-        }
-
-
-        [Given(@"I am on the boards page")]
-        public void IAmOnTheBoardsPage()
+        public void I_am_on_the_boards_page()
         {
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
             DesktopWebsite.BoardsPage.AssertPageTitleIs("Boards | Trello");
         }
 
-        [Given, When(@"I click on the user created board")]
-        public static void IClickOnTheUserCreatedBoard()
+        [Given][When]
+        public void I_click_on_the_user_created_board()
         {
             DesktopWebsite.BoardsPage.ClickTheUserBoard();
         }
 
-        [When(@"I click the favourite board star")]
-        public void IClickTheFavouriteBoardStar()
+        [When]
+        public void I_click_the_favourite_board_star()
         {
             DesktopWebsite.BoardsPage.ClickBoardStar();
         }
 
-        [Given, When(@"I create the user board")]
-        public void ICreateTheUserBoard()
+        [Given][When]
+        public void I_create_the_user_board()
         {
             string BoardName = RandomGen.RandomAlphabetString(8);
             RuntimeTestData.Add("BoardName", BoardName);
@@ -53,25 +44,27 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             TrelloAPIHelper.CreateBoard(BoardName, BoardDesc);
         }
 
-        [Then(@"The board will be favourited")]
-        public void TheBoardWillBeFavourited()
+        [Then]
+        public void The_board_will_be_favourited()
         {
             try
             {
                 bool starStatus = TrelloAPIHelper.GetBoardStarredStatus(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
 
-                if(starStatus == false)
+                if (starStatus == false)
                 {
                     string stepDef = "UserBoard was not successfully starred";
                     throw new Exception(stepDef);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 TestHelper.HandleException("Board wasn't starred", e);
             }
-            
         }
+
+
+
 
         [Then(@"the environment will be set up")]
         public void TheEnvironmentWillBeSetUp()
@@ -79,8 +72,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.BoardsPage.AssertTheUserBoardExists();
         }
 
-        [When]
-        public void I_click_create_board()
+        [When(@"I click create board")]
+        public void IClickCreateBoard()
         {
             DesktopWebsite.BoardsPage.Header.Add.Click();
             DesktopWebsite.BoardsPage.CreateNewBoard.Click();
@@ -111,7 +104,7 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
         {
             DesktopWebsite.SpecificBoardsPage.Invite.WaitUntilExists();
 
-            if(DesktopWebsite.SpecificBoardsPage.ShowMenu.Exists())
+            if (DesktopWebsite.SpecificBoardsPage.ShowMenu.Exists())
             {
                 DesktopWebsite.SpecificBoardsPage.ShowMenu.JsClick();
             }
@@ -134,44 +127,6 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.SpecificBoardsPage.Header.BackToHome.JsClick();
             DesktopWebsite.BoardsPage.AssertTheUserBoardDoesNotExist();
             RuntimeTestData.Remove("BoardName");
-        }
-
-
-        [Given]
-        public void I_delete_all_the_boards()
-        {
-            DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
-
-            IReadOnlyCollection<IWebElement> test = SeleniumHelper.GetElements(By.XPath("//ul[@class='boards-page-board-section-list']/li[@class='boards-page-board-section-list-item']"));
-
-            int boardCount = test.Count;
-
-            while (boardCount > 1)
-            {
-                SeleniumHelper.GetElement(By.XPath("//ul[@class='boards-page-board-section-list']/li[@class='boards-page-board-section-list-item']")).Click();
-
-                go_through_all_the_delete_prompts();
-
-                DesktopWebsite.SpecificBoardsPage.BoardNotFound.WaitUntilExists();
-
-                DesktopWebsite.SpecificBoardsPage.Header.BackToHome.JsClick();
-
-                DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
-
-                boardCount--;
-            }
-
-            RuntimeTestData.Add("BoardCount", boardCount);
-        }
-
-        [Then]
-        public void no_boards_will_be_left()
-        {
-            int BoardCount = (int)RuntimeTestData.Get("BoardCount");
-
-            string stepDesc = string.Format("Assert no boards are left on the boards page");
-
-            TestHelper.AssertThat(BoardCount, Is.EqualTo(1), stepDesc);
         }
     }
 }
