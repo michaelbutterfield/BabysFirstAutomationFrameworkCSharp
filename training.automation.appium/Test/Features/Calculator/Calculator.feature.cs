@@ -19,6 +19,7 @@ namespace training.automation.appium.Test.Features.Calculator
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Calculator")]
+    [NUnit.Framework.CategoryAttribute("Calculator")]
     public partial class CalculatorFeature
     {
         
@@ -31,7 +32,8 @@ namespace training.automation.appium.Test.Features.Calculator
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Calculator", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Calculator", null, ProgrammingLanguage.CSharp, new string[] {
+                        "Calculator"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,11 +76,9 @@ namespace training.automation.appium.Test.Features.Calculator
         public virtual void AddTwoNumbers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, ((string[])(null)));
-#line 3
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 4
- testRunner.Given("the advanced tab is not open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
  testRunner.When("I enter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6

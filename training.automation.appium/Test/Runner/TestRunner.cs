@@ -1,12 +1,13 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
-using training.automation.common.Tests;
-using training.automation.common.Utilities;
-using training.automation.common.Utilities.Data;
 
 namespace training.automation.appium.Test.Runner
 {
+    using common.Tests;
+    using common.Utilities;
+    using common.Utilities.Data;
+
     [Binding]
     public class TestRunner
     {

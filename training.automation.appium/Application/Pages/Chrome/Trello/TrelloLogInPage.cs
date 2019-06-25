@@ -6,20 +6,19 @@ namespace training.automation.appium.Application.Pages.Chrome.Trello
 {
     public class TrelloLogInPage : Page
     {
-        public TrelloLogInPage() : base("Trello Splash Page") { BuildPage(); }
+        public InputBox Email { get; private set; }
+        public Button ForgotPassword { get; private set; }
+        public Button LogIn { get; private set; }
+        public InputBox Password { get; private set; }
 
-        public InputBox Email;
-        public InputBox Password;
-        public Button LogIn;
-        public Button ForgotPassword;
+        public TrelloLogInPage() : base("Trello Splash Page") { BuildPage(); }
 
         private void BuildPage()
         {
             Email = new InputBox(By.XPath("//input[@type='email']"), "Email Input", name);
-            Password = new InputBox(By.XPath("//input[@type='password']"), "Password Input", name);
-            LogIn = new Button(By.XPath("//input[@id='login']"), "Log In", name);
             ForgotPassword = new Button(By.XPath("//a[@href='/forgot']"), "Forgot your password?", name);
+            LogIn = new Button(By.XPath("//input[@id='login']"), "Log In", name);
+            Password = new InputBox(By.XPath("//input[@type='password']"), "Password Input", name);
         }
-
     }
 }

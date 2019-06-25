@@ -1,7 +1,7 @@
-﻿Feature: Calculator
+﻿@Calculator
+Feature: Calculator
 
 Scenario: Add two numbers
-	Given the advanced tab is not open
 	When I enter 10
 		And I press Plus
 		And I enter 5

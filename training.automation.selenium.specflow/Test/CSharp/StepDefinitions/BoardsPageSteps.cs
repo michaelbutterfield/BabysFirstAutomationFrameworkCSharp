@@ -13,11 +13,39 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
     [Binding]
     public sealed class BoardsPageSteps
     {
+        [When]
+        public static void go_through_all_the_delete_prompts()
+        {
+            DesktopWebsite.SpecificBoardsPage.Invite.WaitUntilExists();
+
+            if (DesktopWebsite.SpecificBoardsPage.ShowMenu.Exists())
+            {
+                DesktopWebsite.SpecificBoardsPage.ShowMenu.JsClick();
+            }
+
+            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
+            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
+            DesktopWebsite.SpecificBoardsPage.CloseBoard.Click();
+            DesktopWebsite.SpecificBoardsPage.CloseBoardConfirmation.Click();
+            DesktopWebsite.SpecificBoardsPage.PermDeleteBoard.Click();
+            DesktopWebsite.SpecificBoardsPage.PermDeleteBoardConfirm.Click();
+            DesktopWebsite.SpecificBoardsPage.BoardNotFound.WaitUntilExists();
+            string boardNotFound = DesktopWebsite.SpecificBoardsPage.BoardNotFound.GetElementAttribute("innerText");
+            TestHelper.AssertThat(boardNotFound, Is.EqualTo("Board not found."), "Assert board has been deleted successfully");
+        }
+
         [Given]
         public void I_am_on_the_boards_page()
         {
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
             DesktopWebsite.BoardsPage.AssertPageTitleIs("Boards | Trello");
+        }
+
+        [When]
+        public void I_click_create_board()
+        {
+            DesktopWebsite.BoardsPage.Header.Add.Click();
+            DesktopWebsite.BoardsPage.CreateNewBoard.Click();
         }
 
         [Given][When]
@@ -44,6 +72,17 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             TrelloAPIHelper.CreateBoard(BoardName, BoardDesc);
         }
 
+        [When]
+        public void I_fill_in_the_user_board_details()
+        {
+            string BoardName = RandomGen.RandomAlphabetString(10);
+            RuntimeTestData.Add("BoardName", BoardName);
+
+            DesktopWebsite.CreateBoardPage.NameInput.SendKeys(BoardName);
+            DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
+            DesktopWebsite.CreateBoardPage.CreateBoard.Click();
+        }
+
         [Then]
         public void The_board_will_be_favourited()
         {
@@ -63,31 +102,10 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             }
         }
 
-
-
-
-        [Then(@"the environment will be set up")]
-        public void TheEnvironmentWillBeSetUp()
+        [Then]
+        public void the_environment_will_be_set_up()
         {
             DesktopWebsite.BoardsPage.AssertTheUserBoardExists();
-        }
-
-        [When(@"I click create board")]
-        public void IClickCreateBoard()
-        {
-            DesktopWebsite.BoardsPage.Header.Add.Click();
-            DesktopWebsite.BoardsPage.CreateNewBoard.Click();
-        }
-
-        [When]
-        public void I_fill_in_the_user_board_details()
-        {
-            string BoardName = RandomGen.RandomAlphabetString(10);
-            RuntimeTestData.Add("BoardName", BoardName);
-
-            DesktopWebsite.CreateBoardPage.NameInput.SendKeys(BoardName);
-            DesktopWebsite.CreateBoardPage.BackgroundSelection.Click();
-            DesktopWebsite.CreateBoardPage.CreateBoard.Click();
         }
 
         [Then]
@@ -97,27 +115,6 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.SpecificBoardsPage.Header.TrelloLogoHome.JsClick();
             DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
             DesktopWebsite.BoardsPage.AssertTheUserBoardExists();
-        }
-
-        [When]
-        public static void go_through_all_the_delete_prompts()
-        {
-            DesktopWebsite.SpecificBoardsPage.Invite.WaitUntilExists();
-
-            if (DesktopWebsite.SpecificBoardsPage.ShowMenu.Exists())
-            {
-                DesktopWebsite.SpecificBoardsPage.ShowMenu.JsClick();
-            }
-
-            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
-            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.Click();
-            DesktopWebsite.SpecificBoardsPage.CloseBoard.Click();
-            DesktopWebsite.SpecificBoardsPage.CloseBoardConfirmation.Click();
-            DesktopWebsite.SpecificBoardsPage.PermDeleteBoard.Click();
-            DesktopWebsite.SpecificBoardsPage.PermDeleteBoardConfirm.Click();
-            DesktopWebsite.SpecificBoardsPage.BoardNotFound.WaitUntilExists();
-            string boardNotFound = DesktopWebsite.SpecificBoardsPage.BoardNotFound.GetElementAttribute("innerText");
-            TestHelper.AssertThat(boardNotFound, Is.EqualTo("Board not found."), "Assert board has been deleted successfully");
         }
 
         [Then]

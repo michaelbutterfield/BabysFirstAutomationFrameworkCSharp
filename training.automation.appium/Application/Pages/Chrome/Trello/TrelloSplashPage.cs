@@ -6,10 +6,10 @@ namespace training.automation.appium.Application.Pages.Chrome.Trello
 {
     public class TrelloSplashPage : Page
     {
-        public TrelloSplashPage() : base("Trello Splash Page") { BuildPage(); }
+        public Button Home { get; private set; }
+        public Button LogIn { get; private set; }
 
-        public Button LogIn;
-        public Button Home;
+        public TrelloSplashPage() : base("Trello Splash Page") { BuildPage(); }
 
         private void BuildPage()
         {

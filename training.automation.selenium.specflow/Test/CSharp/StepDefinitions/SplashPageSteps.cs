@@ -6,11 +6,10 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
     [Binding]
     public sealed class SplashPageSteps
     {
-        [Given(@"I am on the splash page")]
-        public void IAmOnTheSplashPage()
+        [Given]
+        public void I_am_on_the_splash_page()
         {
             DesktopWebsite.SplashPage.LogIn.WaitUntilExists();
-            DesktopWebsite.SplashPage.LogIn.AssertElementIsDisplayed();
         }
 
         [When]

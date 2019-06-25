@@ -19,6 +19,7 @@ namespace training.automation.appium.Test.Features.Chrome.Trello
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("LogIn")]
+    [NUnit.Framework.CategoryAttribute("LogIn")]
     public partial class LogInFeature
     {
         
@@ -31,7 +32,8 @@ namespace training.automation.appium.Test.Features.Chrome.Trello
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LogIn", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LogIn", null, ProgrammingLanguage.CSharp, new string[] {
+                        "LogIn"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,10 +73,10 @@ namespace training.automation.appium.Test.Features.Chrome.Trello
         
         public virtual void FeatureBackground()
         {
-#line 3
 #line 4
-testRunner.Given("I am on the splash page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
+testRunner.Given("I am on the splash page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
 testRunner.When("I click the log in button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
         }
@@ -86,18 +88,18 @@ testRunner.When("I click the log in button", ((string)(null)), ((TechTalk.SpecFl
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log In with Correct Details", null, new string[] {
                         "LogInCorrect"});
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
-#line 9
-testRunner.Given("I am on the log in page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-testRunner.When("I put in the user details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("I am on the log in page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
-  testRunner.And("I click log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("I put in the user details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
+  testRunner.And("I click log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
 testRunner.Then("I will be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

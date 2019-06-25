@@ -7,15 +7,15 @@ namespace training.automation.appium.Application
     public class MobileApp
     {
         //App
-        public static CalculatorPage CalculatorPage;
+        public static CalculatorPage CalculatorPage { get; private set; }
 
         //Chrome
-        public static AccountLogInPage AccountLogInPage;
-        public static NewTabSplashPage NewTabSplashPage;
-        public static TrelloBoardsPage TrelloBoardsPage;
-        public static TrelloLogInPage TrelloLogInPage;
-        public static TrelloSplashPage TrelloSplashPage;
-        public static WelcomeToChromePage WelcomeToChromePage;
+        public static AccountLogInPage AccountLogInPage { get; private set; }
+        public static NewTabSplashPage NewTabSplashPage { get; private set; }
+        public static TrelloBoardsPage TrelloBoardsPage { get; private set; }
+        public static TrelloLogInPage TrelloLogInPage { get; private set; }
+        public static TrelloSplashPage TrelloSplashPage { get; private set; }
+        public static WelcomeToChromePage WelcomeToChromePage { get; private set; }
 
         static MobileApp()
         {

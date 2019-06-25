@@ -6,8 +6,8 @@ namespace training.automation.appium.Application.Pages.Chrome
 {
     public class NewTabSplashPage : Page
     {
-        public Button Search;
-        public InputBox UrlAddressBar;
+        public Button Search { get; private set; }
+        public InputBox UrlAddressBar { get; private set; }
 
         public NewTabSplashPage() : base("New Tab Splash Page") { BuildPage(); }
 

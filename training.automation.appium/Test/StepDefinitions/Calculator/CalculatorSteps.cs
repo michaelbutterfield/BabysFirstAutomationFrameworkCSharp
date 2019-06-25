@@ -1,22 +1,16 @@
 ﻿using NHamcrest;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using training.automation.appium.Application;
-using training.automation.common.Utilities;
 
 namespace training.automation.appium.Test.StepDefinitions.Calculator
 {
+    using Application;
+
     [Binding]
     class CalculatorSteps
     {
-        [Given(@"the advanced tab is not open")]
-        public void TheAdvancedTabIsNotOpen()
-        {
-
-        }
-
-        [When(@"I enter (.*)")]
-        public void WhenIEnter(int p0)
+        [When]
+        public void I_enter_P0(int p0)
         {
             switch (p0)
             {
@@ -78,11 +72,11 @@ namespace training.automation.appium.Test.StepDefinitions.Calculator
                     }
             }
         }
-        
-        [When(@"I press (.*)")]
-        public void WhenIPress(string p0)
+
+        [When]
+        public void I_press_P0(string p0)
         {
-            switch(p0.ToLower())
+            switch (p0.ToLower())
             {
                 case "divide":
                     {
@@ -117,8 +111,8 @@ namespace training.automation.appium.Test.StepDefinitions.Calculator
             }
         }
 
-        [Then(@"the result will be (.*)")]
-        public void ThenTheResultWillBe(string p0)
+        [Then]
+        public void the_result_will_be_P0(int p0)
         {
             string assertText = AppiumHelper.GetDriver().FindElement(By.Id("result")).Text;
             string StepDef = string.Format("Assert that the expected: {0} - is equal to the actual {1}", p0, assertText);

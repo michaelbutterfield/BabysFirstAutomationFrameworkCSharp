@@ -1,4 +1,5 @@
-﻿Feature: LogIn
+﻿@LogIn
+Feature: LogIn
 
 Background:
 Given I am on the splash page

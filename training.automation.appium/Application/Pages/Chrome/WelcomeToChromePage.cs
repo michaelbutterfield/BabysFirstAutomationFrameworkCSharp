@@ -6,9 +6,9 @@ namespace training.automation.appium.Application.Pages.Chrome
 {
     public class WelcomeToChromePage : Page
     {
-        public Button UsageAndCrashReports;
-        public Button AcceptAndContinue;
-        public Text WelcomeToChrome;
+        public Button UsageAndCrashReports { get; private set; }
+        public Button AcceptAndContinue { get; private set; }
+        public Text WelcomeToChrome { get; private set; }
 
         public WelcomeToChromePage() : base("Welcome to Chrome") { BuildPage(); }
 

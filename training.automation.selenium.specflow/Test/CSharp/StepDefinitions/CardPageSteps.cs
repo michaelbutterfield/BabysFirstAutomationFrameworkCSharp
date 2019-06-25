@@ -10,14 +10,6 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
     public class CardPageSteps
     {
         [When]
-        public void I_add_P0_cards(int p0)
-        {
-            TrelloAPIHelper.CreateList(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
-            TrelloAPIHelper.CreateCards(p0, 1);
-        }
-
-
-        [When]
         public void I_add_a_checklist()
         {
             DesktopWebsite.SpecificBoardsPage.CardPage.Checklist.Click();
@@ -37,8 +29,16 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
 
             string ChecklistItemTitle = RandomGen.RandomAlphabetString(5);
             RuntimeTestData.Add("ChecklistItemTitle", ChecklistItemTitle);
+
             DesktopWebsite.SpecificBoardsPage.CardPage.ChecklistItemTitle.SendKeys(ChecklistItemTitle);
             DesktopWebsite.SpecificBoardsPage.CardPage.ChecklistItemAdd.Click();
+        }
+
+        [When]
+        public void I_add_P0_cards(int p0)
+        {
+            TrelloAPIHelper.CreateList(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
+            TrelloAPIHelper.CreateCards(p0, 1);
         }
 
         [Then]

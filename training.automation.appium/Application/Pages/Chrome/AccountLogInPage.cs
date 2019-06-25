@@ -6,7 +6,7 @@ namespace training.automation.appium.Application.Pages.Chrome
 {
     public class AccountLogInPage : Page
     {
-        public Button NoThanks;
+        public Button NoThanks { get; private set; }
 
         public AccountLogInPage() : base("Account Log In") { BuildPage(); }
 

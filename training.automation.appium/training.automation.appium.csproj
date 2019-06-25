@@ -103,19 +103,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LogIn.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test\Features\Chrome\WelcomeToChrome.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WelcomeToChrome.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test\Runner\TestRunner.cs" />
     <Compile Include="Test\StepDefinitions\Calculator\CalculatorSteps.cs" />
-    <Compile Include="Test\StepDefinitions\Chrome\AccountLogInSteps.cs" />
-    <Compile Include="Test\StepDefinitions\Chrome\NewTabSplashSteps.cs" />
     <Compile Include="Test\StepDefinitions\Chrome\Trello\BoardsPageSteps.cs" />
     <Compile Include="Test\StepDefinitions\Chrome\Trello\LogInPageSteps.cs" />
     <Compile Include="Test\StepDefinitions\Chrome\Trello\SplashPageSteps.cs" />
-    <Compile Include="Test\StepDefinitions\Chrome\WelcomeToChromeSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -127,10 +119,6 @@
     <None Include="Test\Features\Chrome\Trello\LogIn.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LogIn.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test\Features\Chrome\WelcomeToChrome.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>WelcomeToChrome.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

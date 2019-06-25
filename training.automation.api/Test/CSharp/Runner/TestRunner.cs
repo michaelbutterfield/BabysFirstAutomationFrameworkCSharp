@@ -17,12 +17,6 @@ namespace training.automation.api.Test.CSharp.Runner
             TrelloApiData.ReadApiKeyToken();
         }
 
-        [AfterTestRun]
-        static void AfterTestRun()
-        {
-
-        }
-
         [BeforeScenario]
         static void BeforeScenario()
         {

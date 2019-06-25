@@ -13,8 +13,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
     [Binding]
     public sealed class SpecificBoardsPageSteps
     {
-        [When(@"I add (.*) cards to the new list")]
-        public void IAddCardsToTheNewList(int p0)
+        [When]
+        public void I_add_P0_cards_to_the_new_list(int p0)
         {
             for (int i = 0; i < p0; i++)
             {
@@ -42,9 +42,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             }
         }
 
-
-        [When(@"I click and drag two cards from Done to Doing")]
-        public void IClickAndDragTwoCardsFromDoneToDoing()
+        [When]
+        public void I_click_and_drag_two_cards_from_Done_to_Doing()
         {
             By StartLocation = By.XPath("//*[@id=\"board\"]/div[3]/div/div[2]/a[2]/div[3]/span");
             By EndLocation = By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]");
@@ -52,8 +51,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             SeleniumHelper.DragAndDropAction(StartLocation, EndLocation);
         }
 
-        [When(@"I click and drag two cards from To Do to Doing")]
-        public void IClickAndDragTwoCardsFromToDoToDoing()
+        [When]
+        public void I_click_and_drag_two_cards_from_To_Do_to_Doing()
         {
             By StartLocation = By.XPath("//*[@id=\"board\"]/div[1]/div/div[2]/a[1]/div[3]/span");
             By EndLocation = By.XPath("//*[@id=\"board\"]/div[2]/div/div[1]/div[1]");
@@ -61,8 +60,18 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             SeleniumHelper.DragAndDropAction(StartLocation, EndLocation);
         }
 
-        [When(@"I create a new list called (.*)")]
-        public void ICreateANewListCalled(string p0)
+        [Given]
+        public void I_click_on_a_card()
+        {
+            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
+            string genericCardXpath = "//a[@class='list-card js-member-droppable ui-droppable']";
+            int cardCount = SeleniumHelper.GetElements(By.XPath(genericCardXpath)).Count;
+            string locator = string.Format(genericCardXpath + "[{0}]", RandomGen.RandomNumber(1, cardCount));
+            SeleniumHelper.GetElement(By.XPath(locator)).Click();
+        }
+
+        [When]
+        public void I_create_a_new_list_called_P0(string p0)
         {
             DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
 
@@ -73,18 +82,6 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
 
             DesktopWebsite.SpecificBoardsPage.EnterListTitle.SendKeys(p0);
             DesktopWebsite.SpecificBoardsPage.AddList.Click();
-        }
-
-
-        [Then(@"the three boards lists will be created")]
-        public void TheThreeBoardsListsWillBeCreated()
-        {
-            int listLength = TrelloAPIHelper.GetListLength(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
-
-            if (!listLength.Equals(3))
-            {
-                throw new Exception("The list length returned is not equal to 3. The three lists have not been created successfully.");
-            }
         }
 
         [Then]
@@ -99,9 +96,8 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             TestHelper.AssertThat(cards, Is.EqualTo(9), StepDesc);
         }
 
-
-        [Then(@"the list will contain five cards")]
-        public void TheThreeListsWillContainFiveCardsEach()
+        [Then]
+        public void the_list_will_contain_five_cards()
         {
             int cardAmount = TrelloAPIHelper.GetNumOfCards(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
 
@@ -111,14 +107,15 @@ namespace training.automation.specflow.Test.CSharp.StepDefinitions
             }
         }
 
-        [Given]
-        public void I_click_on_a_card()
+        [Then]
+        public void the_three_boards_lists_will_be_created()
         {
-            DesktopWebsite.SpecificBoardsPage.MoreSideMenu.WaitUntilExists();
-            string genericCardXpath = "//a[@class='list-card js-member-droppable ui-droppable']";
-            int cardCount = SeleniumHelper.GetElements(By.XPath(genericCardXpath)).Count;
-            string locator = string.Format(genericCardXpath + "[{0}]", RandomGen.RandomNumber(1, cardCount));
-            SeleniumHelper.GetElement(By.XPath(locator)).Click();
+            int listLength = TrelloAPIHelper.GetListLength(TrelloAPIHelper.GetTrelloBoardId(RuntimeTestData.GetAsString("BoardName")));
+
+            if (!listLength.Equals(3))
+            {
+                throw new Exception("The list length returned is not equal to 3. The three lists have not been created successfully.");
+            }
         }
     }
 }

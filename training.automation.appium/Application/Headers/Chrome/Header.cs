@@ -6,9 +6,9 @@ namespace training.automation.appium.Application.Headers.Chrome
 {
     public class Header : Section
     {
-        public Button Menu;
-        public InputBox SearchBar;
-        public Button Tabs;
+        public Button Menu { get; private set; }
+        public InputBox SearchBar { get; private set; }
+        public Button Tabs { get; private set; }
 
         public Header() : base("Account Log In") { BuildHeader(); }
 
