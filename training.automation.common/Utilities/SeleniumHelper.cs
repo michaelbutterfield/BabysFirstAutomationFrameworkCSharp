@@ -99,6 +99,7 @@ namespace training.automation.common.Utilities
                     {
                         ChromeOptions options = new ChromeOptions();
                         options.AddArgument("--headless");
+                        options.AddArgument("--window-size=1920,1080");
                         Driver = new ChromeDriver(options);
                         break;
                     }

@@ -25,7 +25,7 @@ namespace training.automation.winium.Test.CSharp.Runner
 
             if (scenario.Result.Outcome.Status.Equals(TestStatus.Failed))
             {
-                winium.Common.FailureScreenshot.TakeScreenshot();
+                Common.FailureScreenshot.TakeScreenshot();
             }
 
             WiniumHelper.DestroyDriver();

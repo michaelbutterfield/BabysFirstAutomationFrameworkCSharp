@@ -12,7 +12,6 @@ namespace training.automation.common.Appium.Elements.Common
 {
     public class Element
     {
-        
         protected By locator;
         protected string name;
         protected string pageName;

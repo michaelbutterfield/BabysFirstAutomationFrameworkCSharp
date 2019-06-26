@@ -15,15 +15,10 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.LogInPage.EmailAddress.WaitUntilExists();
         }
 
-        [Given]
-        public void I_Log_In()
+        [When]
+        public void I_click_log_in()
         {
-            DesktopWebsite.SplashPage.LogIn.Click();
-            DesktopWebsite.LogInPage.ForgotPassword.WaitUntilExists();
-            I_enter_the_user_details();
             DesktopWebsite.LogInPage.LogIn.Click();
-
-            DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
         }
 
         [Given][When]
@@ -45,10 +40,15 @@ namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
             DesktopWebsite.LogInPage.EmailAddress.SendKeys(p0);
         }
 
-        [When]
-        public void I_click_log_in()
+        [Given]
+        public void I_Log_In()
         {
+            DesktopWebsite.SplashPage.LogIn.Click();
+            DesktopWebsite.LogInPage.ForgotPassword.WaitUntilExists();
+            I_enter_the_user_details();
             DesktopWebsite.LogInPage.LogIn.Click();
+
+            DesktopWebsite.BoardsPage.PersonalBoards.WaitUntilExists();
         }
 
         [Then]
