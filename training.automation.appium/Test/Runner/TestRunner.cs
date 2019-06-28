@@ -18,19 +18,28 @@ namespace training.automation.appium.Test.Runner
             DriverType.driverType = DriverType.DRIVER_TYPE.APPIUM;
         }
 
-        [AfterTestRun]
-        static void AfterTestRun()
-        {
-            
-        }
-
         [BeforeScenario]
         static void BeforeScenario()
         {
             string feature = FeatureContext.Current.FeatureInfo.Title;
-            TestLogger.Initialise(feature);
+            if (!RuntimeTestData.ContainsKey("FeatureName"))
+            {
+                RuntimeTestData.Add("FeatureName", feature);
+            }
+
+            TestLogger.Initialise();
             TestLogger.LogScenarioStart();
-            //AppiumHelper.InitialiseCalculatorApp();
+            AppiumHelper.InitialiseAppiumOptions();
+
+            if (feature.Equals("Calculator"))
+            {
+                AppiumHelper.InitialiseCalculatorApp();
+            }
+            else if (feature.Equals("Trello"))
+            {
+                AppiumHelper.InitialiseChromeApp();
+            }
+
             AppiumHelper.InitialiseAndroid();
 
         }

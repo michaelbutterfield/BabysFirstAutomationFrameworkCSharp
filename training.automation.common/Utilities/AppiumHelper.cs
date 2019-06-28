@@ -5,10 +5,11 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service;
-using training.automation.common.Tests;
 
 namespace training.automation.common.Utilities
 {
+    using Tests;
+
     public class AppiumHelper
     {
         private static string appPackage { get; set; }
@@ -17,7 +18,7 @@ namespace training.automation.common.Utilities
         public static TimeSpan DEFAULT_TIMEOUT = new TimeSpan(0, 0, 10);
         private static AppiumDriver<AppiumWebElement> _driver;
         private static AppiumLocalService _appiumLocalService;
-
+        private static AppiumOptions appiumOptions;
 
         public static void DestroyDriver()
         {
@@ -35,17 +36,18 @@ namespace training.automation.common.Utilities
         {
             _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().Build();
             _appiumLocalService.Start();
-            var appiumOptions = new AppiumOptions();
             appiumOptions.AddAdditionalCapability(MobileCapabilityType.DeviceName, "OnePlus 7 Pro");
             appiumOptions.AddAdditionalCapability(MobileCapabilityType.Udid, "9b29e3d6");
             appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
             appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "9");
-            appiumOptions.AddAdditionalCapability(MobileCapabilityType.BrowserName, "Chrome");
-            //appiumOptions.AddAdditionalCapability("appPackage", appPackage);
-            //appiumOptions.AddAdditionalCapability("appActivity", appActivity);
             _driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, appiumOptions);
             string testStep = "Successfully created an Appium instance and started the app under test";
             TestLogger.CreateTestStep(testStep);
+        }
+
+        public static void InitialiseAppiumOptions()
+        {
+            appiumOptions = new AppiumOptions();
         }
 
         public void CloseApp()
@@ -56,11 +58,17 @@ namespace training.automation.common.Utilities
 
         }
 
+        public static void InitialiseChromeApp()
+        {
+            appiumOptions.AddAdditionalCapability(MobileCapabilityType.BrowserName, "Chrome");
+        }
 
         public static void InitialiseCalculatorApp()
         {
             appPackage = "com.oneplus.calculator";
             appActivity = "com.oneplus.calculator.Calculator";
+            appiumOptions.AddAdditionalCapability("appPackage", appPackage);
+            appiumOptions.AddAdditionalCapability("appActivity", appActivity);            
         }
 
         //        public static void InitialiseIOS(string application)

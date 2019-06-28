@@ -4,10 +4,11 @@ using System.Threading;
 using NHamcrest;
 using NHamcrest.Core;
 using NUnit.Framework;
-using training.automation.common.Tests;
 
 namespace training.automation.common.Utilities
 {
+    using Tests;
+
     public static class TestHelper
     {
         private static TestContext scenario;
@@ -25,7 +26,7 @@ namespace training.automation.common.Utilities
             {
                 if (!matcher.Matches(actual))
                 {
-                    var description = new StringDescription();
+                    StringDescription description = new StringDescription();
 
                     description.AppendText(stepDescription)
                                 .AppendText("\nExpected: ")

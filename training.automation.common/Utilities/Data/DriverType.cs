@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace training.automation.common.Utilities.Data
+﻿namespace training.automation.common.Utilities.Data
 {
     public class DriverType
     {

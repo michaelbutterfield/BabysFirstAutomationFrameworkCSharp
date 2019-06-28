@@ -98,10 +98,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Calculator.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test\Features\Chrome\Trello\LogIn.feature.cs">
+    <Compile Include="Test\Features\Chrome\Trello\Trello.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LogIn.feature</DependentUpon>
+      <DependentUpon>Trello.feature</DependentUpon>
     </Compile>
     <Compile Include="Test\Runner\TestRunner.cs" />
     <Compile Include="Test\StepDefinitions\Calculator\CalculatorSteps.cs" />
@@ -116,9 +116,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Calculator.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test\Features\Chrome\Trello\LogIn.feature">
+    <None Include="Test\Features\Chrome\Trello\Trello.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LogIn.feature.cs</LastGenOutput>
+      <LastGenOutput>Trello.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

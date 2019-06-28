@@ -1,8 +1,9 @@
 ﻿using TechTalk.SpecFlow;
-using training.automation.specflow.Application;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
+    using Application;
+
     [Binding]
     public sealed class SplashPageSteps
     {

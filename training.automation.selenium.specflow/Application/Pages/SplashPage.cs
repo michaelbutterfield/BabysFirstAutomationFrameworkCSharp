@@ -1,12 +1,13 @@
-﻿using training.automation.common.Page;
-using training.automation.common.Selenium.Elements;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace training.automation.specflow.Application.Pages
 {
+    using common.Page;
+    using common.Selenium.Elements;
+
     public class SplashPage : Page
     {
-        public Button LogIn;
+        public Button LogIn { get; private set; }
         //public Button SignUp;
 
         public SplashPage() : base("Splash Page") { BuildPage(); }

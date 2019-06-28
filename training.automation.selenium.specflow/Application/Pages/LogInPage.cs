@@ -1,16 +1,17 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Page;
-using training.automation.common.Selenium.Elements;
 
 namespace training.automation.specflow.Application.Pages
 {
+    using common.Page;
+    using common.Selenium.Elements;
+
     public class LogInPage : Page
     { 
-        public InputBox EmailAddress;
-        public Link ForgotPassword;
-        public Text ErrorMessage;
-        public Button LogIn;
-        public InputBox Password;
+        public InputBox EmailAddress { get; private set; }
+        public Link ForgotPassword { get; private set; }
+        public Text ErrorMessage { get; private set; }
+        public Button LogIn { get; private set; }
+        public InputBox Password { get; private set; }
 
         public LogInPage() : base("Log In") { BuildPage(); }
 

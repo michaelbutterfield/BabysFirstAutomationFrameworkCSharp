@@ -5,7 +5,7 @@ using System.Linq;
 using NHamcrest;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace training.automation.common.selenium.elements.common
+namespace training.automation.common.Selenium.Elements.Common
 {
     using OpenQA.Selenium.Interactions;
     using Tests;

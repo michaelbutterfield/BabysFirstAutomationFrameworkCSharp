@@ -16,7 +16,7 @@ namespace training.automation.common.Tests
         {
             try
             {
-                screenshotDirectory = string.Concat(RuntimeTestData.GetAsString("TestRunDirectory"), "FailureScreenshots");
+                screenshotDirectory = string.Concat(TestLogger.GetTestRunDirectory(RuntimeTestData.GetAsString("FeatureName")), "FailureScreenshots");
 
                 if (!Directory.Exists(screenshotDirectory))
                 {

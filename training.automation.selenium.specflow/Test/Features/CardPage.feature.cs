@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace training.automation.appium.Test.Features.Chrome.Trello
+namespace training.automation.selenium.specflow.Test.Features
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,22 @@ namespace training.automation.appium.Test.Features.Chrome.Trello
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("LogIn")]
-    [NUnit.Framework.CategoryAttribute("LogIn")]
-    public partial class LogInFeature
+    [NUnit.Framework.DescriptionAttribute("CardPage")]
+    [NUnit.Framework.CategoryAttribute("CardPage")]
+    public partial class CardPageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "LogIn.feature"
+#line 1 "CardPage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LogIn", null, ProgrammingLanguage.CSharp, new string[] {
-                        "LogIn"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CardPage", null, ProgrammingLanguage.CSharp, new string[] {
+                        "CardPage"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,32 +75,38 @@ namespace training.automation.appium.Test.Features.Chrome.Trello
         {
 #line 4
 #line 5
-testRunner.Given("I am on the splash page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
-testRunner.When("I click the log in button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I create the user board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+   testRunner.And("I add \"5\" cards", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
+ testRunner.Then("the environment will be set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Log In with Correct Details")]
-        [NUnit.Framework.CategoryAttribute("LogInCorrect")]
-        public virtual void LogInWithCorrectDetails()
+        [NUnit.Framework.DescriptionAttribute("Add a checklist to a card")]
+        [NUnit.Framework.CategoryAttribute("AddChecklist")]
+        public virtual void AddAChecklistToACard()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log In with Correct Details", null, new string[] {
-                        "LogInCorrect"});
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a checklist to a card", null, new string[] {
+                        "AddChecklist"});
+#line 11
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 10
-testRunner.Given("I am on the log in page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
-testRunner.When("I put in the user details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
-  testRunner.And("I click log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I click on the user created board", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
-testRunner.Then("I will be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.And("I click on a card", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.When("I add a checklist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+   testRunner.And("I add a checklist item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.Then("the checklist will be added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -108,4 +114,3 @@ testRunner.Then("I will be logged in successfully", ((string)(null)), ((TechTalk
 }
 #pragma warning restore
 #endregion
-

@@ -1,8 +1,9 @@
 ﻿using System;
-using training.automation.common.Utilities;
 
 namespace training.automation.common.Utilities.Data.Trello
 {
+    using Utilities;
+
     public class TrelloApiData
     {
         private static string apiKey;

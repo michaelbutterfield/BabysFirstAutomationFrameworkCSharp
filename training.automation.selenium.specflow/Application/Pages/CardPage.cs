@@ -1,19 +1,20 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Page;
-using training.automation.common.Selenium.Elements;
-using training.automation.selenium.specflow.Application.Pop_ups;
 
-namespace training.automation.selenium.specflow.Application.Pages
+namespace training.automation.specflow.Application.Pages
 {
+    using common.Page;
+    using common.Selenium.Elements;
+    using specflow.Application.Popups;
+
     public class CardPage : Page
     {
         public CardPage() : base("Cards") { BuildPage(); BuildPopup(); }
 
-        public Button Checklist;
-        public Text ChecklistHeader;
-        public Text ChecklistItem;
-        public InputBox ChecklistItemTitle;
-        public Button ChecklistItemAdd;
+        public Button Checklist { get; private set; }
+        public Text ChecklistHeader { get; private set; }
+        public Text ChecklistItem { get; private set; }
+        public InputBox ChecklistItemTitle { get; private set; }
+        public Button ChecklistItemAdd { get; private set; }
 
         public AddChecklist AddChecklist;
 

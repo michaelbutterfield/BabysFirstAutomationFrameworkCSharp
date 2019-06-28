@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using training.automation.common.Tests;
 
 namespace training.automation.common.Utilities
 {
+    using Tests;
+
     public class RuntimeTestData
     {
         private static Dictionary<string, object> TestData;

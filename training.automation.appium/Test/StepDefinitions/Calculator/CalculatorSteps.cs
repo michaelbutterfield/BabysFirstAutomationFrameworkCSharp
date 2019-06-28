@@ -115,9 +115,10 @@ namespace training.automation.appium.Test.StepDefinitions.Calculator
         [Then]
         public void the_result_will_be_P0(int p0)
         {
-            string assertText = AppiumHelper.GetDriver().FindElement(By.Id("result")).Text;
+            int assertText = System.Convert.ToInt32(AppiumHelper.GetDriver().FindElement(By.Id("result")).Text);
+
             string StepDef = string.Format("Assert that the expected: {0} - is equal to the actual {1}", p0, assertText);
-            //TestHelper.AssertThat(assertText, Is.EqualTo(p0), StepDef);
+            TestHelper.AssertThat(assertText, Is.EqualTo(p0), StepDef);
         }
     }
 }

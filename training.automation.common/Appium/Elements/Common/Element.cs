@@ -2,14 +2,15 @@
 using System;
 using System.Linq;
 using NHamcrest;
-using training.automation.common.Tests;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
-using training.automation.common.Utilities;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Appium;
 
 namespace training.automation.common.Appium.Elements.Common
 {
+    using Utilities;
+    using Tests;
+
     public class Element
     {
         protected By locator;

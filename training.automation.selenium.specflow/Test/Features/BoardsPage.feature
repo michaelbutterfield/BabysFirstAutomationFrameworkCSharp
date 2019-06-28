@@ -1,4 +1,5 @@
-﻿Feature: BoardsPage
+﻿@BoardsPage
+Feature: BoardsPage
 
 Background: Set up the environment
 Given I log in

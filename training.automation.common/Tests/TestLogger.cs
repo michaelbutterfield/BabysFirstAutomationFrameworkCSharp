@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using training.automation.common.Utilities;
 
 namespace training.automation.common.Tests
 {
+    using Utilities;
+
     public class TestLogger
     {
         private static StreamWriter writer = null;
@@ -30,7 +31,8 @@ namespace training.automation.common.Tests
             {
                 string ProjectPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName);
 
-                testRunDirectory = string.Concat(ProjectPath, "\\TestRuns\\TestRun_", TestHelper.GetTodaysDateTime(logDateTimeFormat), "\\", FeatureName, "\\");
+                testRunDirectory = string.Concat(ProjectPath, "\\TestRuns\\TestRun",/* TestHelper.GetTodaysDateTime(logDateTimeFormat),*/ "\\", FeatureName, "\\");
+
                 RuntimeTestData.Add("TestRunDirectory", testRunDirectory);
 
                 if (!Directory.Exists(testRunDirectory))
@@ -57,7 +59,7 @@ namespace training.automation.common.Tests
             CreateTestStep(stepDescription);
         }
 
-        private static string GetTestRunDirectory(string FeatureName)
+        public static string GetTestRunDirectory(string FeatureName)
         {
             if (testRunDirectory == null || !testRunDirectory.Contains(FeatureName))
             {
@@ -67,13 +69,13 @@ namespace training.automation.common.Tests
             return testRunDirectory;
         }
 
-        public static void Initialise(string FeatureName)
+        public static void Initialise()
         {
             string scenarioName = TestHelper.GetScenario().Test.Name;
 
             scenarioName = scenarioName.RemoveBackslashAndQuotation();
 
-            string fileLocation = string.Concat(GetTestRunDirectory(FeatureName), scenarioName, ".txt");
+            string fileLocation = string.Concat(GetTestRunDirectory(RuntimeTestData.GetAsString("FeatureName")), scenarioName, ".txt");
 
             try
             {

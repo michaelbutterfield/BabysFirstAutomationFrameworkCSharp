@@ -1,15 +1,14 @@
-﻿using training.automation.specflow.Application.Pages;
-using training.automation.specflow.Application.Sections;
-
-namespace training.automation.specflow.Application
+﻿namespace training.automation.specflow.Application
 {
+    using Pages;
+
     class DesktopWebsite
     {
-        public static BoardsPage BoardsPage;
-        public static CreateBoardPage CreateBoardPage;
-        public static LogInPage LogInPage;
-        public static SpecificBoardsPage SpecificBoardsPage;
-        public static SplashPage SplashPage;
+        public static BoardsPage BoardsPage { get; private set; }
+        public static CreateBoardPage CreateBoardPage { get; private set; }
+        public static LogInPage LogInPage { get; private set; }
+        public static SpecificBoardsPage SpecificBoardsPage { get; private set; }
+        public static SplashPage SplashPage { get; private set; }
 
         static DesktopWebsite()
         {

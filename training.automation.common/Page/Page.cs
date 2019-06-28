@@ -1,5 +1,4 @@
-﻿
-namespace training.automation.common.Page
+﻿namespace training.automation.common.Page
 {
     using NHamcrest;
     using Utilities;

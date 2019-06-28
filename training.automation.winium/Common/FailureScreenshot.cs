@@ -5,6 +5,7 @@ using System.IO;
 namespace training.automation.winium.Common
 {
     using common.Utilities;
+    using training.automation.common.Tests;
     using Utilities;
 
     public class FailureScreenshot
@@ -15,7 +16,8 @@ namespace training.automation.winium.Common
         {
             try
             {
-                screenshotDirectory = string.Concat(RuntimeTestData.GetAsString("TestRunDirectory"), "FailureScreenshots");
+                
+                screenshotDirectory = string.Concat(TestLogger.GetTestRunDirectory(RuntimeTestData.GetAsString("FeatureName")), "FailureScreenshots");
 
                 if (!Directory.Exists(screenshotDirectory))
                 {

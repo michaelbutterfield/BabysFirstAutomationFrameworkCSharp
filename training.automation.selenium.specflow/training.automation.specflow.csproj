@@ -112,10 +112,10 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Test\Features\UI\BoardsPage.feature" />
-    <None Include="Test\Features\UI\CardPage.feature" />
-    <None Include="Test\Features\UI\LogInPage.feature" />
-    <None Include="Test\Features\UI\SpecificBoardsPage.feature" />
+    <None Include="Test\Features\BoardsPage.feature" />
+    <None Include="Test\Features\CardPage.feature" />
+    <None Include="Test\Features\LogInPage.feature" />
+    <None Include="Test\Features\SpecificBoardsPage.feature" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,11 +1,12 @@
 ﻿using TechTalk.SpecFlow;
-using training.automation.common.Utilities;
-using training.automation.common.Utilities.Data;
-using training.automation.specflow.Application;
 using Is = NHamcrest.Is;
 
-namespace training.automation.selenium.specflow.Test.CSharp.StepDefinitions
+namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
+    using common.Utilities;
+    using common.Utilities.Data;
+    using Application;
+
     [Binding]
     public sealed class LogInPageSteps
     {

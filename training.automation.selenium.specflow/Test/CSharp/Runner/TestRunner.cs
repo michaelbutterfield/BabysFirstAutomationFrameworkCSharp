@@ -26,7 +26,11 @@ namespace training.automation.specflow.Test.CSharp.Runner
         static void BeforeScenario()
         {
             string feature = FeatureContext.Current.FeatureInfo.Title;
-            TestLogger.Initialise(feature);
+            if(!RuntimeTestData.ContainsKey("FeatureName"))
+            {
+                RuntimeTestData.Add("FeatureName", feature);
+            }
+            TestLogger.Initialise();
             TestLogger.LogScenarioStart();
             SeleniumHelper.Initialise("chrome");
             SeleniumHelper.GoToUrl("http://trello.com");

@@ -15,7 +15,7 @@ namespace training.automation.winium.Test.CSharp.Runner
         [AfterFeature]
         static void AfterFeature()
         {
-            RuntimeTestData.Destroy();
+
         }
 
         [AfterScenario]
@@ -29,6 +29,8 @@ namespace training.automation.winium.Test.CSharp.Runner
             }
 
             WiniumHelper.DestroyDriver();
+            WiniumHelper.KillProcess("Calculator");
+            RuntimeTestData.Destroy();
             TestLogger.LogScenarioEnd();
             TestLogger.Close();
         }
@@ -38,7 +40,11 @@ namespace training.automation.winium.Test.CSharp.Runner
         {
             WiniumHelper.Initialise();
             string feature = FeatureContext.Current.FeatureInfo.Title;
-            TestLogger.Initialise(feature);
+            if (!RuntimeTestData.ContainsKey("FeatureName"))
+            {
+                RuntimeTestData.Add("FeatureName", feature);
+            }
+            TestLogger.Initialise();
             TestLogger.LogScenarioStart();
             CalculatorSteps.I_reset_the_calculator();
         }

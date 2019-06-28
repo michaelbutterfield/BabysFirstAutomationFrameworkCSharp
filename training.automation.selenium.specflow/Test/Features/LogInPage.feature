@@ -1,4 +1,4 @@
-﻿@LogInPage @UI
+﻿@LogInPage
 Feature: LogInPage
 
 Background:
@@ -25,6 +25,13 @@ Examples:
 	| testusername |              | Invalid password |
 	|              | testpassword | There isn't an account for this username    |
 	|              |              | Missing email    |
+
+@ShowFailure
+Scenario: Show Failure
+Given I am on the log in page
+When I enter the user details
+Then I will be logged in successfully
+
 
 #
 #@LogInNoEmail

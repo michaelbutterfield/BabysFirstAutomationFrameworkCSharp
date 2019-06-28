@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Page;
-using training.automation.common.Selenium.Elements;
-using training.automation.common.Utilities;
-using training.automation.specflow.Application.Sections;
 
 namespace training.automation.specflow.Application.Pages
 {
+    using common.Page;
+    using common.Selenium.Elements;
+    using common.Utilities;
+    using Sections;
+
     public class BoardsPage : Page
     {
         //Elements

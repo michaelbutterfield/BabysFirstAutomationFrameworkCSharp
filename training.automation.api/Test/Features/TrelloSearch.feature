@@ -20,3 +20,8 @@ Scenario: Create a board
 Scenario: Try and create a board without key and/or token
 	When I send a create board request with no key or token
 	Then I will receive a Unauthorized response
+
+@ShowFailure
+Scenario: Show Failure
+	When I send a create board request with no key or token
+	Then I will receive a OK response

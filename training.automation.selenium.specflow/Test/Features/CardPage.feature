@@ -1,4 +1,5 @@
-﻿Feature: CardPage
+﻿@CardPage
+Feature: CardPage
 
 Background: Set up the environment ready for the scenarios to take place
 	Given I log in

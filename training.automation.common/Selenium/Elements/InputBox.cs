@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
 using System;
-using training.automation.common.selenium.elements.common;
-using training.automation.common.Tests;
 
 namespace training.automation.common.Selenium.Elements
 {
+    using Common;
+    using Tests;
+
     public class InputBox : Element
     {
         public InputBox(By locator, string elementName, string pageName) : base(locator, elementName, pageName) { }

@@ -2,10 +2,12 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Winium;
 using System;
-using training.automation.common.Utilities;
 
 namespace training.automation.winium.Utilities
 {
+    using common.Utilities;
+    using System.Diagnostics;
+
     public class WiniumHelper
     {
         private static DesktopOptions Options = new DesktopOptions { ApplicationPath = @"C:\\Windows\\System32\\calc.exe" };
@@ -43,6 +45,17 @@ namespace training.automation.winium.Utilities
                 string errorMessage = "Failed to launch Winium Driver";
                 TestHelper.HandleException(errorMessage, e);
             }
+        }
+
+        public static void KillProcess(string ProcessName)
+        {
+            Process[] process = Process.GetProcessesByName("Calculator");
+
+            foreach(var thingstokill in process)
+            {
+                thingstokill.Kill();
+            }
+
         }
     }
 }

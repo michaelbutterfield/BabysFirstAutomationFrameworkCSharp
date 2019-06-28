@@ -5,7 +5,7 @@ using Is = NHamcrest.Is;
 
 namespace training.automation.common.Utilities
 {
-    using Utilities.Data.Trello;
+    using Data.Trello;
 
     public class TrelloAPIHelper
     {

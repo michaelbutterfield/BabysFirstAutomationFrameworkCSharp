@@ -10,7 +10,7 @@ namespace training.automation.appium.Application.Pages.Calculator
         public Button Delete { get; private set; }
         public Button Divide { get; private set; }
         public Button Eight { get; private set; }
-        public Button Equals { get; private set; }
+        public new Button Equals { get; private set; }
         public Button Five { get; private set; }
         public Text Fomula { get; private set; }
         public Button Four { get; private set; }

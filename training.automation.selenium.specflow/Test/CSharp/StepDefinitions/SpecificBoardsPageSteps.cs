@@ -1,14 +1,13 @@
 ﻿using TechTalk.SpecFlow;
 using System;
 using OpenQA.Selenium;
-using RandomGen = training.automation.common.Utilities.RandomGen;
-using training.automation.common.Utilities;
 using NHamcrest;
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
     using Application;
-    using training.automation.common.Selenium.Elements;
+    using common.Utilities;
+    using common.Selenium.Elements;
 
     [Binding]
     public sealed class SpecificBoardsPageSteps

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace training.automation.common.Utilities
 {
-    using common.Utilities.Data;
+    using Data;
 
     public static class TestRail
     {

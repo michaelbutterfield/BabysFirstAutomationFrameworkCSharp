@@ -1,10 +1,10 @@
 ﻿using System;
 using TechTalk.SpecFlow;
-using training.automation.common.Utilities;
 
 namespace training.automation.winium.Test.CSharp.StepDefinitions
 {
     using Application;
+    using common.Utilities;
     using Utilities;
 
     [Binding]

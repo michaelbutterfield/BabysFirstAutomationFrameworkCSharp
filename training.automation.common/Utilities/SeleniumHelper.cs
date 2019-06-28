@@ -5,10 +5,10 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
-using training.automation.common.Tests;
 
 namespace training.automation.common.Utilities
 {
+    using Tests;
     public class SeleniumHelper
     { 
         private static IWebDriver Driver = null;

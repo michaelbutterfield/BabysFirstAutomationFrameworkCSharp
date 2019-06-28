@@ -7,3 +7,10 @@ Scenario: Add two numbers
 		And I enter 5
 		And I press equals
 	Then the result will be 15
+
+Scenario: Show Failure
+	When I enter 10
+		And I press Plus
+		And I enter 10
+		And I press equals
+	Then the result will be 15

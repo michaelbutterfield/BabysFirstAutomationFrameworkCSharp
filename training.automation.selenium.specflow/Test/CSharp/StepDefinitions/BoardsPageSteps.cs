@@ -1,14 +1,11 @@
 ﻿using NHamcrest;
-using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
-using training.automation.common.Utilities;
-
 
 namespace training.automation.specflow.Test.CSharp.StepDefinitions
 {
     using Application;
+    using common.Utilities;
 
     [Binding]
     public sealed class BoardsPageSteps

@@ -1,14 +1,15 @@
 ﻿using OpenQA.Selenium;
-using training.automation.common.Page;
-using training.automation.common.Selenium.Elements;
 
 namespace training.automation.specflow.Application.Pages
 {
+    using common.Page;
+    using common.Selenium.Elements;
+
     public class CreateBoardPage : Page
     {
-        public Button BackgroundSelection;
-        public Button CreateBoard;
-        public InputBox NameInput;
+        public Button BackgroundSelection { get; private set; }
+        public Button CreateBoard { get; private set; }
+        public InputBox NameInput { get; private set; }
 
         public CreateBoardPage() : base("Create Board") { BuildPage(); }
 

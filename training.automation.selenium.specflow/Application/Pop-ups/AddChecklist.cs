@@ -1,16 +1,16 @@
 ﻿using OpenQA.Selenium;
 
-namespace training.automation.selenium.specflow.Application.Pop_ups
+namespace training.automation.specflow.Application.Popups
 {
     using common.Page;
     using common.Selenium.Elements;
 
     public class AddChecklist : Popup
     {
-        public AddChecklist() : base("Add Checklist") { BuildPage(); }
+        public InputBox ChecklistTitle { get; private set; }
+        public Button Add { get; private set; }
 
-        public InputBox ChecklistTitle;
-        public Button Add;
+    public AddChecklist() : base("Add Checklist") { BuildPage(); }
 
         private void BuildPage()
         {

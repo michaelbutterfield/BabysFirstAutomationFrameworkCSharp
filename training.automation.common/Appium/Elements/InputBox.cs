@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System;
-using training.automation.common.Appium.Elements.Common;
-using training.automation.common.Tests;
 
 namespace training.automation.common.Appium.Elements
 {
+    using Common;
+    using Tests;
+
     public class InputBox : Element
     {
         public InputBox(By locator, string elementName, string pageName) : base(locator, elementName, pageName) { }

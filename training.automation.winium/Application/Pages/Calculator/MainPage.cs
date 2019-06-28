@@ -1,14 +1,13 @@
 ﻿using NHamcrest;
 using OpenQA.Selenium;
-using System;
-using training.automation.common.Page;
-using training.automation.common.Utilities;
 
 namespace training.automation.winium.Application.Pages.Calculator
-{ 
+{
+    using common.Page;
+    using common.Utilities;
     using Common.Winium.Elements;
     using Utilities;
-
+    
     public class MainPage : Page
     {
         public Container CalculatorResults { get; private set; }
@@ -28,17 +27,10 @@ namespace training.automation.winium.Application.Pages.Calculator
 
         public void AssertAnswerIs(int expected)
         {
-            try
-            {
-                string actual = WiniumHelper.GetWiniumDriver().FindElementByName($"Display is {expected}").GetAttribute("Name");
-                string expectedAnswer = $"Display is {expected}";
-                string stepDef = $"Assert expected outcome: {expectedAnswer} is equal to the actual: {actual}";
-                TestHelper.AssertThat(expectedAnswer, Is.EqualTo(actual), stepDef);
-            }
-            catch(Exception e)
-            {
-                TestHelper.HandleException("FAILED: Asserting Calculator answer", e);
-            }
+            string actual = WiniumHelper.GetWiniumDriver().FindElementByName($"Display is {expected}").GetAttribute("Name");
+            string expectedAnswer = $"Display is {expected}";
+            string stepDef = $"Assert expected outcome: {expectedAnswer} is equal to the actual: {actual}";
+            TestHelper.AssertThat(expectedAnswer, Is.EqualTo(actual), stepDef);
         }
 
         private void BuildPage()
