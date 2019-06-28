@@ -76,6 +76,7 @@ Thumbs.db
 /training.automation.selenium/bin/Debug/training.automation.selenium.dll.config
 /training.automation.appium/training.automation.appium.csproj.user
 /training.automation.selenium.specflow/TestRuns/TestRun_04.06.19
-/training.automation.appium/TestRuns/What happens on failure/LogIn/FailureScreenshots
-/training.automation.winium/TestRuns/What happens on failure/Calculator/FailureScreenshots
+/training.automation.appium/TestRuns
+/training.automation.winium/TestRuns
 /training.automation.selenium.specflow/TestRuns
+/training.automation.api/TestRuns
